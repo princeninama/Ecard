@@ -3,9 +3,10 @@ import { config } from "dotenv";
 config({
     path: './General.env',
 })
-const URL= process.env.MONGO_URI;
+// const URL= process.env.MONGO_URI;
+const URL='mongodb://localhost:27017/ekankotri'
 // console.log(process.env.PORT)
-
+                                                                                                
 
 const Connection = () =>{
     try {

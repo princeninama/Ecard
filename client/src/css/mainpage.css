@@ -32,3 +32,10 @@
     color: transparent;
     font-family: Brush Script MT;
   }
+
+.scrollbar{
+    overflow-y:scroll;
+}
+.scrollbar::-webkit-scrollbar{
+display: none;
+}

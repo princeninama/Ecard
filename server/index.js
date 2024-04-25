@@ -17,5 +17,8 @@ app.get("/", (req, res) => {
 
 
 import ecard from './routers/cards.js'
+import user from './routers/user.js'
 
 app.use('/api/ecard',ecard)
+app.use('/api/user',user)
+

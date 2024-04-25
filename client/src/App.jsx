@@ -10,6 +10,7 @@ import Img from './components/img'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Mainpage from './screens/Mainpage'
 import Create from './screens/create'
+import Show from './components/Mainpage/More'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/main" element={<Mainpage />} />
       <Route path="/Create" element={<Create />} />
+      <Route path="/More" element={<Show />} />
       
     </Routes>
   </BrowserRouter>
