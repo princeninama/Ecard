@@ -62,62 +62,6 @@ export const signup = (formData) => async (dispatch) => {
   }
 };
 
-export const loadUser = () => async (dispatch) => {
-  try {
-    // console.log("loadUser1");
 
-    dispatch({
-      type: "loadUserRequest",
-    });
-    const { data } = await axios.get(`${server}/api/user/me`, {
-      withCredentials: true,
-    });
-    // .then((res) => {
-    //   console.log(res); 
-    // })
-    // .catch((err) => {
-    //   console.log(err.message);
-    // });
-    // console.log("loadUser2");
-    dispatch({
-      type: "loadUserSuccess",
-      payload: data.user,
-    });
-    // await setTimeout(5000);
-    console.log(data.user);
-  } catch (error) {
-    // console.log("loadUser3");
 
-    dispatch({
-      type: "loadUserFail",
-      payload: error.response.data.message,
-    });
-    console.log(error);
-  }
-};
 
-export const logout = () => async (dispatch) => {
-  try {
-    dispatch({
-      type: "logoutRequest",
-    });
-    const { data } = await axios.get(`${server}/user/logout`, {
-      withCredentials: true,
-    });
-    const pastDate = new Date(Date.now() - 1);
-    const pastDateString = pastDate.toUTCString();
-    document.cookie = `token=; expires=${pastDateString}; path=/`;
-    dispatch({
-      type: "logoutSuccess",
-      payload: data.message,
-    });
-    document.cookie = undefined;
-    console.log(data.message);
-    
-  } catch (error) {
-    dispatch({
-      type: "logoutFail",
-      payload: error.response.data.message,
-    });
-  }
-};

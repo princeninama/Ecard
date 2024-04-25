@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Mainpage from './screens/Mainpage'
 import Create from './screens/create'
 import Show from './components/Mainpage/More'
+import Signin from './components/login/signin'
 
 function App() {
 
@@ -29,6 +30,8 @@ function App() {
       <Route path="/main" element={<Mainpage />} />
       <Route path="/Create" element={<Create />} />
       <Route path="/More" element={<Show />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/login/signin" element={<Signin />} />
       
     </Routes>
   </BrowserRouter>
