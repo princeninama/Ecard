@@ -16,9 +16,9 @@ const Img = () => {
   }
 
   for (let i = 5; i <= l; i++) {
-    imgsrc.push({ src: `../../${i}.jpg` });
+    imgsrc.push({ src: `../../../${i}.jpg` });
   }
-  for (let i = 13; i <= 15; i++) images.push({ src: `../../${i}.jpg` });
+  for (let i = 13; i <= 15; i++) images.push({ src: `../../../${i}.jpg` });
 
   return (
     <>
