@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/logo1.jpg";
+import logo from "../../assets/logo1.jpg";
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
