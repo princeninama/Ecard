@@ -1,0 +1,81 @@
+
+
+.swiper {
+  width: 300px;
+  height: 300px;
+  
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+@font-face {
+  font-family: GreatVibes;
+  src: url('../../GreatVibes-Regular.ttf');
+  
+ 
+}
+@font-face {
+  font-family: Glowbloomper;
+  src: url('../../GlowbloompersonaluseItalic-RpzjA.otf');
+  
+ 
+}
+@font-face {
+  font-family: Creation;
+  src: url('../../Creattion-Demo.otf');
+  
+ 
+}
+@font-face {
+  font-family: Angle;
+  src: url('../../AngelDemoRegular-p7GaR.otf');
+  
+ 
+}
+
+@font-face {
+  font-family: Katerlin;
+  src: url('../../Katerlin-51zjB.ttf');
+  
+ 
+}
+
+@font-face {
+  font-family: Geraldine;
+  src: url('../../GeraldinePersonalUseItalic-PK12m.ttf');
+  
+ 
+}
+
+@font-face {
+  font-family: Loveline;
+  src: url('../../LovelineGlamour-owdE0.ttf');
+  
+ 
+}
+
+@font-face {
+  font-family: lucy;
+  src: url('../../LucySaidOkPersonalUseItalic-OV9ee.ttf');
+  
+ 
+}
+
+
+.font{
+  font-family: Lucy;
+}
+.font1{
+  font-family: GreatVibes;
+}
+.font2{
+  font-family: Geraldine;
+}
