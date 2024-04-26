@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import A1 from '../../../public/A1.json'
+import Lottie from 'lottie-react'
 const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +25,7 @@ const Signin = () => {
 
   return (
     <div className="bg-[#2b373f] h-screen w-full">
+      
        <div className="flex absolute w-full p-2 z-10 bg-transparnet">
         <div className=" flex items-center cursor-pointer">
           <span className="text-3xl font-bold brand-text ml-3 mt-1">
