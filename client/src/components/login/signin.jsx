@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import A1 from '../../../public/A1.json'
+import A1 from '../../../public/animations/A1.json'
 import Lottie from 'lottie-react'
 const Signin = () => {
   const [username, setUsername] = useState("");

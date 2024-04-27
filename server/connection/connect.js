@@ -14,7 +14,7 @@ const Connection = () =>{
         console.log(`database connected ${connection}`)
         
     } catch (error) {
-        console.log('error : ',error)
+        console.log('error : ',error)  
     }
 }
 

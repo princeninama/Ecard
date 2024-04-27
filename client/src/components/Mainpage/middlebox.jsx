@@ -11,7 +11,11 @@ import { FreeMode, Pagination } from "swiper/modules";
 
 const Middlebox = () => {
   return (
+<<<<<<< HEAD
     <div className="mx-2 md:mx-4 lg:mx-6 h-[21rem] xl:mx-8 my-6  rounded-lg overflow-hidden relative shadow-lg flex justify-center items-center">
+=======
+    <div className="mx-2 md:mx-4 lg:mx-6 h-screen xl:mx-8 my-6  rounded-lg overflow-hidden relative shadow-lg flex justify-center items-center">
+>>>>>>> 571db4749e6a499c71a95047417b9c97050a685d
       <div className="absolute inset-x-0 z-10 top-8 text-center text-2xl font-semibold text-gray-600"></div>
       <div className="absolute w-full h-full bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200"></div>
       <div className="absolute mt-24 " style={{ top: "-30px" }}>

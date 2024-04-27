@@ -1,7 +1,20 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Signin from "./signin";
+import { signup } from "../../states/action-creators";
 const Signup = () => {
+
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const { message,auth } = useSelector((state) => state.user);
+
+  const notify = (Message) => toast(Message);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -23,30 +36,39 @@ const Signup = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const handleSignup = (e) => {
+  const handleSignup = async(e) => {
     e.preventDefault();
     if (password !== repeatPassword) {
       alert("Passwords don't match");
+      notify("Passwords don't match");
       return;
     }
-    console.log("Signing up with:", { username, password });
-    setUsername("");
-    setPassword("");
-    setRepeatPassword("");
+    const resp = await dispatch(signup(username,password));
+    console.log('fetch success')
+    // console.log(message,auth)
+    notify(resp.message)
+    if(resp.success)
+    {
+      navigate('/main')
+    }
   };
+
+  
 
   return (
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-white text-center w-full sm:max-w-md mx-auto p-4">
+      <ToastContainer/>
       <div className="bg-[#21272b]  p-6 rounded-lg">
         <div id="typewriter" className="font-mono text-start mb-6"></div>
 
         {/* Conditional rendering of form based on hideForm state */}
+        <div className="text-black">
         {!hideForm && (
           <form onSubmit={handleSignup}>
             <div className="mb-4">
               <input
                 type="text"
-                placeholder="Username"
+                placeholder="email"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="bg-gray-200 rounded-lg p-2 w-full"
@@ -73,11 +95,13 @@ const Signup = () => {
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-300 text-white rounded-lg px-4 py-2 "
+              
             >
               Sign Up
             </button>
           </form>
         )}
+        </div>
       </div>
     </div>
   );
