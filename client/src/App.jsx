@@ -11,6 +11,8 @@ import Create from './screens/create'
 import Show from './components/Mainpage/More'
 import Signin from './components/login/signin'
 import Model2 from './Models/F2/Model2'
+// import Model2 from './components/Model2'
+import Post from './components/Admin/Post'
 
 function App() {
 
@@ -28,7 +30,7 @@ function App() {
       <Route path="/" element={<Model1 />} />
       <Route path="/main" element={<Mainpage />} />
       <Route path="/Create" element={<Create />} />
-      <Route path="/More" element={<Show />} />
+      <Route path="/More" element={<Post />} />
       <Route path="/login" element={<Login />} />
       <Route path="/login/signin" element={<Signin />} />
       
