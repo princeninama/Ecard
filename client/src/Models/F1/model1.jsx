@@ -1,8 +1,8 @@
 import React from 'react'
-import Navbar from './1/Navbar'
-import Home from './1/Home'
-import Img from './1/Img'
-import Message from './1/Message'
+import Navbar from './Navbar'
+import Home from './Home'
+import Img from './Img'
+import Message from './Message'
 
 const Model1 = () => {
   return (

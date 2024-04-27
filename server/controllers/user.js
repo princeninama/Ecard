@@ -7,7 +7,7 @@ import { cookieOptions, sendToken } from "../utils/features.js";
 
 
 export const signup = asyncError(async (req, res, next) => {
-    const { username, name, email, password, gender, dob} = req.body;
+    const {email, password} = req.body;
     // console.log("here")
     let user = await User.findOne({ email });
     if (user) return res.status(200).json({message:"already exist",success:false});
@@ -17,12 +17,10 @@ export const signup = asyncError(async (req, res, next) => {
   
       user = await User.create({
       
-      username,
-      name,
+      
       email,
       password,
-      gender,
-      dob,
+     
       
     });
     sendToken(user, res, `Registered Successfully`, 201);
@@ -37,7 +35,7 @@ export const signup = asyncError(async (req, res, next) => {
     const isMatched = await user.comparePassword(password);
     
     if (!isMatched || !user) {
-      return res.status(200).json({message:"incorrect Password/invalid username",success:false});
+      return res.status(400).json({message:"incorrect Password/invalid username",success:false});
     }
     sendToken(user, res, `Welcome back ${user.name}`, 200);
   });

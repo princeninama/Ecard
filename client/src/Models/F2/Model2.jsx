@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "./2/Navbar";
-import Middle1 from "./2/Middle1";
-import Middle2 from "./2/Middle2";
-import Middle3 from "./2/Middle3";
-import Middle4 from "./2/Middle4";
+import Navbar from "./Navbar";
+import Middle1 from "./Middle1";
+import Middle2 from "./Middle2";
+import Middle3 from "./Middle3";
+import Middle4 from "./Middle4";
 
 const Model2 = () => {
   return (

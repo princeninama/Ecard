@@ -6,7 +6,7 @@ import mrgdone from "../../assets/mrgdone.jpeg";
 import dine from "../../assets/dine.jpeg";
 import hastmelap from "../../assets/hastmelap.webp";
 import car from "../../assets/car.jpeg";
-import "../style.css";
+import "./style.css";
 import Navbar from "./Navbar";
 
 const Home = () => {

@@ -4,15 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const schema = new mongoose.Schema({
-        username:{
-            type:String,
-            require:[true,"Please enter username"],
-            Unique:[true,"Username already exists"],
-        },
-        name:{
-            type: String,
-            required:[true,"Please enter name"]
-        },
+     
         email:{
             type: String,
             required:[true,"Please enter email"],
@@ -25,16 +17,7 @@ const schema = new mongoose.Schema({
             minLength:[6,"Password must be atleast 6 characters long"],
             select:false,
         },
-        gender:{
-            type:String,
-            // require:true
-        },
-        dob:{
-            type:Date,
-            // require:true
-        },
-        otp:Number,
-        otp_expire:Date,
+        
 },
 {
     timestamps:true
