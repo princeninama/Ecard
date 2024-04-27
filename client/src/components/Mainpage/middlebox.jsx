@@ -1,27 +1,20 @@
 import "../../css/mainpage.css";
-import { useState } from "react";
+
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+
+import { FreeMode, Pagination } from "swiper/modules";
 
 const Middlebox = () => {
-  const [selectedCircle, setSelectedCircle] = useState(null);
-
-  const handleCircleClick = (circleId) => {
-    setSelectedCircle(circleId);
-  };
-
-  const circles = [
-    { id: 1, text: "Birthday" },
-    { id: 2, text: "Text 2" },
-    { id: 3, text: "Text 3" },
-    { id: 4, text: "Text 4" },
-    { id: 5, text: "Text 5" },
-    { id: 6, text: "Text 6" },
-  ];
-
   return (
-    <div className="mx-2 md:mx-4 lg:mx-6 h-screen xl:mx-8 my-6 h-60 rounded-lg overflow-hidden relative shadow-lg flex justify-center items-center">
+    <div className="mx-2 md:mx-4 lg:mx-6 h-[21rem] xl:mx-8 my-6  rounded-lg overflow-hidden relative shadow-lg flex justify-center items-center">
       <div className="absolute inset-x-0 z-10 top-8 text-center text-2xl font-semibold text-gray-600"></div>
       <div className="absolute w-full h-full bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200"></div>
-      <div className="absolute mt-44 " style={{ top: "-30px" }}>
+      <div className="absolute mt-24 " style={{ top: "-30px" }}>
         <input
           type="text"
           placeholder="Search..."
@@ -47,30 +40,48 @@ const Middlebox = () => {
         </svg>
       </div>
       {/* {circles.map((circle) =>(
-          <div
-          key={circle.id}
-          className={`text-center cursor-pointer `}
-          onClick={() => handleCircleClick(circle.id)}
-          >
-          <div className={`w-12 h-12 bg-white rounded-full transition-shadow shadow-slate-900    ${selectedCircle === circle.id ? 'shadow-sm' :''}`}></div>
-          
-          </div>
-        ))} */}
-      <div className="absolute  w-full flex justify-around">
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">Birthday</div>
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">
-        Valentine's Day:
+        <div
+        key={circle.id}
+        className={`text-center cursor-pointer `}
+        onClick={() => handleCircleClick(circle.id)}
+        >
+        <div className={`w-12 h-12 bg-white rounded-full transition-shadow shadow-slate-900    ${selectedCircle === circle.id ? 'shadow-sm' :''}`}></div>
+        
         </div>
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">Wedding:</div>
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">Holiday Celebrations:</div>
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">Anniversary (Non-Wedding):</div>
-      </div>
-      <div className="absolute mt-96  w-full flex justify-around">
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">Graduation:</div>
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">Baby Shower:</div>
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">Retirement Party:</div>
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">Farewell Party</div>
-        <div className="bg-white h-40 rounded-2xl w-32 flex justify-center items-center">Engagement Party</div>
+      ))} */}
+      <div className="absolute w-[60rem] mt-32 ">
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={30}
+          freeMode={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode, Pagination]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Birthday</div>
+          </SwiperSlide>
+          <SwiperSlide>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Valentine's Day</div></SwiperSlide>
+          <SwiperSlide>
+                        <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Wedding</div></SwiperSlide>
+          <SwiperSlide>
+                        <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Holiday Celebrations</div></SwiperSlide>
+          <SwiperSlide>
+                        <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Anniversary</div></SwiperSlide>
+          <SwiperSlide>
+                        <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Graduation</div></SwiperSlide>
+          <SwiperSlide>
+                        <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Baby Shower</div></SwiperSlide>
+          <SwiperSlide>
+                        <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Retirement Party</div></SwiperSlide>
+          <SwiperSlide>
+                        <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Farewell Party</div></SwiperSlide>
+          <SwiperSlide>
+                        <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">Engagement Party</div></SwiperSlide>
+        </Swiper>
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import Show from './components/Mainpage/More'
 import Signin from './components/login/signin'
 import Model2 from './components/Model2'
 import Post from './components/Admin/Post'
+import Forget from './components/Forget'
 
 function App() {
 
@@ -26,7 +27,7 @@ function App() {
    
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Model2 />} />
+      <Route path="/" element={<Forget />} />
       <Route path="/main" element={<Mainpage />} />
       <Route path="/Create" element={<Create />} />
       <Route path="/More" element={<Post />} />

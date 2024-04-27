@@ -24,6 +24,7 @@
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
     "slick-carousel": "^1.8.1",
+    "swiper": "^11.1.1",
     "uikit": "^3.17.11",
     "uikit-icons": "^0.5.0"
   },
