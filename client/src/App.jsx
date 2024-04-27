@@ -31,6 +31,7 @@ function App() {
       <Route path="/main" element={<Mainpage />} />
       <Route path="/Create" element={<Create />} />
       <Route path="/More" element={<Post />} />
+      <Route path="/show" element={<Show />} />
       <Route path="/login" element={<Login />} />
       <Route path="/login/signin" element={<Signin />} />
       
