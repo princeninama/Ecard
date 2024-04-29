@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import A1 from '../../../public/animations/A1.json'
-import Lottie from 'lottie-react'
+import Video from "../../../public/smoke.mp4"
 const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginstate, setloginstate] = useState("Login");
   const navigate = useNavigate()
   const handleSignup=()=>{
-    navigate('/login')
+    navigate('/signup')
   }
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,8 +23,8 @@ const Signin = () => {
   };
 
   return (
-    <div className="bg-[#2b373f] h-screen w-full">
-      
+    <div className="relative">
+      <video src={Video} className="absolute w-full" loop autoPlay muted/>
        <div className="flex absolute w-full p-2 z-10 bg-transparnet">
         <div className=" flex items-center cursor-pointer">
           <span className="text-3xl font-bold brand-text ml-3 mt-1">
@@ -40,8 +39,8 @@ const Signin = () => {
 
       </div>
       {/* <div className="z-10  bg-[#21272b] text-white text-center w-full sm:max-w-md mx-auto p-4"> */}
-      <div className="bg-[#677b88] bg-opacity-25 p-6 rounded-lg absolute mt-60 ml-[32rem] text-white text-center w-full sm:max-w-md  ">
-        <h1 className="text-4xl font-bold mb-4">Login</h1>
+      <div className="bg-black bg-opacity-75 p-6 rounded-lg absolute mt-60 ml-[32rem] text-white text-center w-full sm:max-w-md  ">
+        <h1 className="text-4xl font-mono mb-4 font-extrabold">Login</h1>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <input
@@ -49,7 +48,7 @@ const Signin = () => {
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="bg-gray-200 rounded-lg p-2 w-full"
+              className="bg-gray-200 rounded-lg p-2 w-full text-black"
             />
           </div>
           <div className="mb-4">
@@ -58,7 +57,7 @@ const Signin = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-gray-200 rounded-lg p-2 w-full"
+              className="bg-gray-200 rounded-lg p-2 w-full text-black"
             />
           </div>
           <button
