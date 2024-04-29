@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-import Signin from "./signin";
+import 'react-toastify/dist/ReactToastify.css'
 import { signup } from "../../states/action-creators";
 const Signup = () => {
 
@@ -53,16 +51,19 @@ const Signup = () => {
     }
   };
 
-  
+  const HandleNavigate=()=>
+  {
+    navigate('/forget')
+  }
 
   return (
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-white text-center w-full sm:max-w-md mx-auto p-4">
       <ToastContainer/>
-      <div className="bg-[#21272b]  p-6 rounded-lg">
+      <div className="bg-black opacity-80  p-6 rounded-lg">
         <div id="typewriter" className="font-mono text-start mb-6"></div>
 
         {/* Conditional rendering of form based on hideForm state */}
-        <div className="text-black">
+        <div className="text-black ">
         {!hideForm && (
           <form onSubmit={handleSignup}>
             <div className="mb-4">
@@ -92,9 +93,12 @@ const Signup = () => {
                 className="bg-gray-200 rounded-lg p-2 w-full"
               />
             </div>
+            <h1 onClick={HandleNavigate} className="font-mono text-white text-start underline hover:text-blue-400">
+              Forget Password?
+            </h1>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-300 text-white rounded-lg px-4 py-2 "
+              className="bg-blue-500 hover:bg-blue-300 text-white rounded-lg px-4 py-2 mt-4"
               
             >
               Sign Up
