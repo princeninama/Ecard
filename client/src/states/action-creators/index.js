@@ -1,6 +1,28 @@
 import { server } from "../api";
 import axios from "axios";
 
+export const login=(email,username,password)=>async (dispatch)=>
+{
+    try {
+        const data=await axios.post(`${server}/api/user/login`,{email,username,password})
+        dispatch(
+            {
+                type:'loginsucess',
+                payload:data.message
+            }
+        )
+        console.log("this is data = ",data)
+        return data;
+    } catch (error) {
+        console.log("error in login",error)
+        dispatch(
+            {
+                type:"loginfail",
+                payload:"email already exist"
+            }
+         )
+    }
+};
 export const signup = (email,password) => async (dispatch) => {
     try {
         const {data} =await axios.post(`${server}/api/user/new`,{email,password},{ withCredentials:true});
