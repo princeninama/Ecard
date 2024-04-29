@@ -6,25 +6,27 @@ import '../../css/mainpage.css'
 import { useNavigate } from 'react-router-dom'
 
 
-const Container = () =>{
+
+const Container = ({card}) =>{
 
     const navigtor = useNavigate();
+    
 
     const GotoMore = () =>{
         navigtor('/more')
     }
 
-    const Images = [[Image1,Image2,Image3,Image4],[Image1,Image2,Image3,Image4],[Image1,Image2,Image3,Image4],[Image1,Image2,Image3,Image4,]]
+    // const Images = [[Image1,Image2,Image3,Image4],[Image1,Image2,Image3,Image4],[Image1,Image2,Image3,Image4],[Image1,Image2,Image3,Image4,]]
 
     return(
         <div style={{height:400,overflow:'scroll'}} className='scrollbar'>
-            {Images.map((images)=>(
+            {card.map((images)=>(
                
                     <div className='flex'>
                             {images.map(((image,idex) =>(
                                 
                                 <div>
-                                   <img src={image} alt="" style={{height:300,width:300,margin:'15px 30px',border:'3px solid #f2ca5c',borderRadius:10,cursor:'pointer'}}/>
+                                   <img src={image.imageURL} alt="" style={{height:300,width:300,margin:'15px 30px',border:'3px solid #f2ca5c',borderRadius:10,cursor:'pointer'}}/>
                                 </div>
                             )))}
                     </div>

@@ -1,5 +1,6 @@
 export const sendToken = (user, res, message, statusCode) => {
     const token = user.generateToken();
+    console.log('token generated  ',token);
   
     res
       .cookie("token", token, {

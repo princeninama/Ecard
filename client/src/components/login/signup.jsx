@@ -45,7 +45,7 @@ const Signup = () => {
     }
     const resp = await dispatch(signup(username,password));
     console.log('fetch success')
-    // console.log(message,auth)
+    console.log(message,auth)
     notify(resp.message)
     if(resp.success)
     {

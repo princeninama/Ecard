@@ -2,7 +2,7 @@ import express from 'express'
 import { config } from 'dotenv'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-
+import bodyParser from 'body-parser'
 config({
     path: './General.env',
 })
@@ -15,7 +15,8 @@ const corsOptions = {
     origin: 'http://localhost:5173',
     credentials: true // Allow credentials
   };
-  
+app.use(bodyParser.json({extended:true}))
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors(corsOptions));
 app.use(express.json())
 app.use(cookieParser())

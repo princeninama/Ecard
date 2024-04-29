@@ -33,9 +33,9 @@
     font-family: Brush Script MT;
   }
 
-.scrollbar{
+/* .scrollbar{
     overflow-y:scroll;
 }
 .scrollbar::-webkit-scrollbar{
 display: none;
-}
+} */
