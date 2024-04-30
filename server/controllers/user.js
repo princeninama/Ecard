@@ -29,10 +29,10 @@ export const signup = asyncError(async (req, res, next) => {
 
   export const login = asyncError(async (req, res, next) => {
     const { username, password } = req.body;
+    console.log('info  : ',username,password);
 
-
-      let  user = await User.findOne({ username }).select("+password");
-
+      let  user = await User.findOne({ email:username });
+      // console.log('user : ',user.password)
 
     if (!user) {
         return res.status(400).json({ message: "Invalid username/email", success: false });

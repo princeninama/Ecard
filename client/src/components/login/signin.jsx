@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Video from "../../../public/smoke.mp4"
-import {login} from "../../states/api"
+import {login} from "../../states/action-creators/index"
 import { useDispatch } from "react-redux";
 const Signin = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Signin = () => {
   const handleLogin = async(e) => {
     e.preventDefault();
     console.log("Logging in with:", { username, password });
-    const response= await dispatch(login(username,password))
+    const response= await login(username,password)
     console.log("fethced success", response);
     setUsername("");
     setPassword("");
@@ -50,7 +50,7 @@ const Signin = () => {
               type="text"
               placeholder="Username or Email"
               value={username}
-              onChange={(e) => {setUsername(e.target.value);setEmail(e.target.value)}}
+              onChange={(e) => {setUsername(e.target.value);}}
               className="bg-gray-200 rounded-lg p-2 w-full text-black"
             />
           </div>

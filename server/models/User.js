@@ -15,7 +15,7 @@ const schema = new mongoose.Schema({
             type: String,
             required:[true,"Please enter password"],
             minLength:[6,"Password must be atleast 6 characters long"],
-            select:false,
+            
         },
         
 },
