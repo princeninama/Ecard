@@ -13,7 +13,7 @@ const Signup = () => {
 
   const notify = (Message) => toast(Message);
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [hideForm, setHideForm] = useState(true); // State to control form visibility
@@ -41,7 +41,7 @@ const Signup = () => {
       notify("Passwords don't match");
       return;
     }
-    const resp = await dispatch(signup(username,password));
+    const resp = await dispatch(signup(email,password));
     console.log('fetch success')
     console.log(message,auth)
     notify(resp.message)
@@ -70,8 +70,8 @@ const Signup = () => {
               <input
                 type="text"
                 placeholder="email"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="bg-gray-200 rounded-lg p-2 w-full"
               />
             </div>

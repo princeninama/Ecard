@@ -12,14 +12,14 @@ export const userReducer = createReducer({}, (builder) => {
         state.auth = false;
         state.message = action.payload;
       })
-    .addCase("loginsucess",(state,action) => {
-      console.log('success in sign in')
-      state.auth = true;
-      state.message = action.payload;
-    })
-    .addCase("loginfail",(state,action) => {
-      console.log("failed in sign IN")
-      state.auth = false;
-      state.message = action.payload;
-    })
+    // .addCase("loginsucess",(state,action) => {
+    //   console.log('success in sign in')
+    //   state.auth = true;
+    //   state.message = action.payload;
+    // })
+    // .addCase("loginfail",(state,action) => {
+    //   console.log("failed in sign IN")
+    //   state.auth = false;
+    //   state.message = action.payload;
+    // })
 });

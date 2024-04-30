@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Video from "../../../public/smoke.mp4"
+import {login} from "../../states/api"
+import { useDispatch } from "react-redux";
 const Signin = () => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginstate, setloginstate] = useState("Login");
@@ -9,11 +12,11 @@ const Signin = () => {
   const handleSignup=()=>{
     navigate('/signup')
   }
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
-    // Your login logic here, such as API calls, authentication, etc.
     console.log("Logging in with:", { username, password });
-    // Reset the form
+    const response= await dispatch(login(username,password))
+    console.log("fethced success", response);
     setUsername("");
     setPassword("");
   };
@@ -45,9 +48,9 @@ const Signin = () => {
           <div className="mb-4">
             <input
               type="text"
-              placeholder="Username"
+              placeholder="Username or Email"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {setUsername(e.target.value);setEmail(e.target.value)}}
               className="bg-gray-200 rounded-lg p-2 w-full text-black"
             />
           </div>
