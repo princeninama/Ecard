@@ -35,12 +35,12 @@ export const signup = asyncError(async (req, res, next) => {
       // console.log('user : ',user.password)
 
     if (!user) {
-        return res.status(400).json({ message: "Invalid username/email", success: false });
+        return res.status(200).json({ message: "Invalid username/email", success: false });
     }
 
     const isMatched = await user.comparePassword(password);
     if (!isMatched) {
-        return res.status(400).json({ message: "Incorrect password", success: false });
+        return res.status(200).json({ message: "Incorrect password", success: false });
     }
 
     sendToken(user, res, `Welcome back ${user.name}`, 200);

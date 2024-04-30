@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Video from "../../../public/smoke.mp4"
 import {login} from "../../states/action-creators/index"
 import { useDispatch } from "react-redux";
+import { toast,ToastContainer } from "react-toastify";
 const Signin = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
@@ -12,6 +13,8 @@ const Signin = () => {
   const handleSignup=()=>{
     navigate('/signup')
   }
+  const notify = (Message) => toast(Message);
+
   const handleLogin = async(e) => {
     e.preventDefault();
     console.log("Logging in with:", { username, password });
@@ -19,6 +22,14 @@ const Signin = () => {
     console.log("fethced success", response);
     setUsername("");
     setPassword("");
+    notify(response.data.message)
+    if(response.data.success)
+    {
+      navigate('/main')
+    }
+    else{
+      return
+    }
   };
 
   const change = () => {
@@ -44,6 +55,7 @@ const Signin = () => {
       {/* <div className="z-10  bg-[#21272b] text-white text-center w-full sm:max-w-md mx-auto p-4"> */}
       <div className="bg-black bg-opacity-75 p-6 rounded-lg absolute mt-60 ml-[32rem] text-white text-center w-full sm:max-w-md  ">
         <h1 className="text-4xl font-mono mb-4 font-extrabold">Login</h1>
+        <ToastContainer/>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <input
