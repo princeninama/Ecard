@@ -1,10 +1,8 @@
 import VideoSource from "../../public/smoke.mp4";
 import React, { useState } from "react";
-import Signin from "../components/login/signin";
 import Signup from "../components/login/signup";
 import { Navigate, useNavigate } from "react-router-dom";
 const Login = () => {
-  const [state, setstate] = useState(false);
   const navigate = useNavigate()
   const handleSignin=()=>{
     navigate('/signin')

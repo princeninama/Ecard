@@ -4,12 +4,12 @@ import { act } from "react";
 export const userReducer = createReducer({}, (builder) => {
   builder
     .addCase("signupsuccess", (state,action) => {
-        console.log('success')
+        console.log('success in sign Up')
       state.auth = true;
       state.message = action.payload;
     })
     .addCase("signupfail",(state,action) => {
-        console.log('fail')
+        console.log('failed in sign Up')
         state.auth = false;
         state.message = action.payload;
       })

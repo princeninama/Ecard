@@ -28,18 +28,23 @@ export const signup = asyncError(async (req, res, next) => {
   });
 
   export const login = asyncError(async (req, res, next) => {
-    const { email, username, password } = req.body;
-    const user = await User.findOne({ email }).select("+password") || await User.findOne({ username }).select("+password");
-    // handle error
-   
-  
-    const isMatched = await user.comparePassword(password);
-    
-    if (!isMatched || !user) {
-      return res.status(400).json({message:"incorrect Password/invalid username",success:false});
+    const { username, password } = req.body;
+
+
+      let  user = await User.findOne({ username }).select("+password");
+
+
+    if (!user) {
+        return res.status(400).json({ message: "Invalid username/email", success: false });
     }
+
+    const isMatched = await user.comparePassword(password);
+    if (!isMatched) {
+        return res.status(400).json({ message: "Incorrect password", success: false });
+    }
+
     sendToken(user, res, `Welcome back ${user.name}`, 200);
-  });
+});
 
 
   export const SaveTemplates = (async(req,res,next) => {

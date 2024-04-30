@@ -1,6 +1,7 @@
 import { server } from "../api";
 import axios from "axios";
 
+
 export const signup = (email,password) => async (dispatch) => {
     try {
         const {data} =await axios.post(`${server}/api/user/new`,{email,password},{ withCredentials:true});
