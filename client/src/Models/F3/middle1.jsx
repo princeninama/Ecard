@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Haldi from '../../assets/f2Assets/haldi.png'
-import Engagement from '../../assets/f2Assets/engagement.png'
-import Engage from '../../assets/f2Assets/engage1.png'
+import Haldi from './images/haldi.png'
+import Engagement from './images/engagement.png'
+import Engage from './images/engage1.png'
 import { FaArrowAltCircleUp } from "react-icons/fa";
 // import Engage2 from '../../assets/f2Assets/engage2.png'
 

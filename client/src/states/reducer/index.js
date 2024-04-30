@@ -1,4 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
+import { act } from "react";
 
 export const userReducer = createReducer({}, (builder) => {
   builder
@@ -12,5 +13,8 @@ export const userReducer = createReducer({}, (builder) => {
         state.auth = false;
         state.message = action.payload;
       })
+    .addCase('changeTemplate',(state,action)=>{
+      state.title = action.payload
+    })
     
 });

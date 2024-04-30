@@ -10,6 +10,7 @@ import Model2 from './Models/F2/Model2'
 import Post from './components/Admin/Post'
 import Forget from './components/Forget'
 import Index from './screens/Index'
+import Model from './screens/model';
 
 function App() {
 
@@ -28,6 +29,8 @@ function App() {
       <Route path="/signup" element={<Login />} />
       <Route path="/forget" element={<Forget />} />
       <Route path="/signin" element={<Signin />} />
+      <Route path='/model' element={<Model/>} />
+      
     </Routes>
   </BrowserRouter>
   )

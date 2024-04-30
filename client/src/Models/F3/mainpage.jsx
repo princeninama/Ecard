@@ -22,14 +22,12 @@ const MainPage = () =>{
     return(
         <>
             <div>
+                <h1>hey   it not showing anything</h1>
             <Navbar/>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path='/' element={<Combine1/>} />
+               
+                        {/* <Route path='/' element={<Combine1/>} />
                         <Route path='/map' element={<Map/>} />
-                        <Route path='/album' element={<Album/>} />
-                    </Routes>
-                </BrowserRouter>
+                        <Route path='/album' element={<Album/>} /> */}
             </div>
         </>
     )

@@ -1,7 +1,7 @@
 // Navbar.js
 import { IoMdMenu } from "react-icons/io";
 import { ImCancelCircle } from "react-icons/im";
-import '../animations/animation1.css'
+import './animations/animation1.css'
 
 import React from 'react';
 import { useState } from 'react';

@@ -7,6 +7,7 @@ const Forget = () => {
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
   const [showResetForm, setShowResetForm] = useState(false);
+  const [showotpform,setshowotpform] = useState(false)
 
   const handleHide = () => {
     setShowResetForm(true);

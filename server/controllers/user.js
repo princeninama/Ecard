@@ -89,7 +89,8 @@ export const loadtemplates = asyncError(async(req,res,next)=>{
               const imageData = `data:${data[k].Photo.contentType};base64,${base64Image}`;
               const object = {
                   imageURL: imageData,
-                  title: data[k].title
+                  title: data[k].title,
+                  type:data[k].type
               };
               // console.log('object : ', object.title);
               Tempaletlist[i][j] = object;

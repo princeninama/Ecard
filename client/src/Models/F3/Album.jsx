@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Image1 from '../../assets/f2Assets/sample1.png'
-import Image2 from '../../assets/f2Assets/sample2.png'
-import Image3 from '../../assets/f2Assets/sample3.jpg'
-import Image4 from '../../assets/f2Assets/sample4.jpg'
+import Image1 from './images/sample1.png'
+import Image2 from './images/sample2.png'
+import Image3 from './images/sample3.png'
+import Image4 from './images/sample4.png'
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-flip';

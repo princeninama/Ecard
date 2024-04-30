@@ -43,3 +43,10 @@ export const loadtemplates = async(page,pagesize,row,col)=>{
          console.log(error);
     }
 }
+
+export const changeTemplates =(title)=> (dispatch) =>{
+    dispatch({
+        type:'changeTemplate',
+        payload:title
+    })
+}
