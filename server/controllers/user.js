@@ -9,7 +9,7 @@ import  {Templates}  from "../models/templets.js";
 
 export const signup = asyncError(async (req, res, next) => {
     const {email, password} = req.body;
-    // console.log("here")
+    console.log("here")
     let user = await User.findOne({ email });
     if (user) return res.status(200).json({message:"already exist",success:false});
   

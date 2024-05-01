@@ -31,7 +31,7 @@ const Mainpage = () => {
       <Middlebox/>
     </div>
     <div>
-      <Container card={card}/>
+      {/* <Container card={card}/> */}
     </div>
   </div>
  )
