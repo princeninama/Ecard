@@ -11,6 +11,10 @@ import Post from './components/Admin/Post'
 import Forget from './components/Forget'
 import Index from './screens/Index'
 import Model from './screens/model';
+import Middle1 from './Models/F3/middle1';
+import Model3 from './Models/F3/mainpage';
+import Album from './Models/F3/Album';
+import Map from './Models/F3/map';
 
 function App() {
 
@@ -24,16 +28,34 @@ function App() {
       <Route path="/Create" element={<Create />} />
       <Route path="/More" element={<Post />} />
       <Route path="/show" element={<Show />} />
-      <Route path="/wedding/model1" element={<Model1 />} />
-      <Route path="/wedding/model2" element={<Model2 />} />
+      <Route path="/main/model1" element={<Model1 />} />
+      <Route path="/main/model2" element={<Model2 />} />
       <Route path="/signUp" element={<Login />} />
       <Route path="/forget" element={<Forget />} />
       <Route path="/signin" element={<Signin />} />
-      <Route path='/model' element={<Model/>} />
-      
+      <Route path='/main/model3' element={<Model3/>} >
+            <Route path='map' element={<Map/>} />
+            <Route path='album' element={<Album/>} />
+            <Route path='' element={<Middle1/>} />
+      </Route> 
+
+
+
     </Routes>
   </BrowserRouter>
   )
 }
 
 export default App
+
+
+
+// const Changes = () =>{
+
+
+//   return (
+//     <Routes>
+//        <Route path='/x' element={<Album/>} />
+//     </Routes>
+//   )
+// }

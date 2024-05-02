@@ -5,7 +5,7 @@ import "../css/heart.css";
 const Index = () => {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("/main");
+    navigate("/signin");
   };
   return (
     <div className="relative ">
