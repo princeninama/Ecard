@@ -15,6 +15,7 @@ export const signup = (email,password) => async (dispatch) => {
         document.cookie = `token=${data.token} expires=${new Date(Date.now() + 1000 * 60 * 60 * 24*5).toUTCString()} path=/`;
         return data
     } catch (error) {
+        console.log("errror in sign up is ",error);
      dispatch(
         {
             type:"signupfail",

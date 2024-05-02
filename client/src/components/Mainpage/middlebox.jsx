@@ -1,17 +1,11 @@
-import "../../css/mainpage.css";
-
-import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-
-import { FreeMode, Pagination } from "swiper/modules";
-
+import React, { useRef, useState } from 'react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
 const Middlebox = () => {
   return (
-    <div className="mx-2 md:mx-4 lg:mx-6 h-[22rem] xl:mx-8 my-6  rounded-lg overflow-hidden relative shadow-lg flex justify-center items-center">
+    <div className="mx-2 md:mx-4 lg:mx-6 h-[21rem] xl:mx-8 my-6  rounded-lg overflow-hidden relative shadow-lg flex justify-center items-center">
       <div className="absolute inset-x-0 z-10 top-8 text-center text-2xl font-semibold text-gray-600"></div>
       <div className="absolute w-full h-full bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200"></div>
       <div className="absolute mt-24 " style={{ top: "-30px" }}>
@@ -49,67 +43,65 @@ const Middlebox = () => {
         
         </div>
       ))} */}
-      <div className="absolute w-[60rem] mt-20 ">
-        <Swiper
-          slidesPerView={4}
-          spaceBetween={30}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[FreeMode, Pagination]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Birthday
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Valentine's Day
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Wedding
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Holiday Celebrations
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Anniversary
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Graduation
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Baby Shower
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Retirement Party
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Farewell Party
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
-              Engagement Party
-            </div>
-          </SwiperSlide>
+      <div className=" w-full mt-60 ">
+      <Swiper
+        slidesPerView={4}
+        spaceBetween={50}
+
+        className="mySwiper w-full "
+        style=
+        { {width: '90%'} }
+      >
+        <SwiperSlide className=''>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Birthday
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="h-32 w-40 mr-7 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Valentine's Day
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Wedding
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Holiday Celebrations
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Anniversary
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Graduation
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Baby Shower
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Retirement Party
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Farewell Party
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+            Engagement Party
+          </div>
+        </SwiperSlide>
         </Swiper>
       </div>
     </div>
