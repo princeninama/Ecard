@@ -27,12 +27,16 @@ function App() {
       <Route path="/main" element={<Mainpage />} />
       <Route path="/Create" element={<Create />} />
       <Route path="/More" element={<Post />} />
-      <Route path="/show" element={<Show />} />
-      <Route path="/main/model1" element={<Model1 />} />
-      <Route path="/main/model2" element={<Model2 />} />
+      <Route path="/show" element={<Show />} >
+        <Route path='model3' element={<Model3/>} />
+        <Route path='model1' element={<Model1/>} />
+        <Route path='model2' element={<Model2/>} />
+      </Route>
       <Route path="/signUp" element={<Login />} />
       <Route path="/forget" element={<Forget />} />
-      <Route path="/signin" element={<Signin />} />
+      <Route path="/signin" element={<Signin />} /> 
+      <Route path="/main/model1" element={<Model1 />} />
+      <Route path="/main/model2" element={<Model2 />} />
       <Route path='/main/model3' element={<Model3/>} >
             <Route path='map' element={<Map/>} />
             <Route path='album' element={<Album/>} />

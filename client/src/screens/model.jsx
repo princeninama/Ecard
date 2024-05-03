@@ -21,8 +21,7 @@ const Model = () =>{
     return(
         <div>
           
-            <Outlet/>
-
+          
         </div>
     )
 }

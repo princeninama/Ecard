@@ -8,7 +8,7 @@ const Middlebox = () => {
     <div className="mx-2 md:mx-4 lg:mx-6 h-[21rem] xl:mx-8 my-6  rounded-lg overflow-hidden relative shadow-lg flex justify-center items-center">
       <div className="absolute inset-x-0 z-10 top-8 text-center text-2xl font-semibold text-gray-600"></div>
       <div className="absolute w-full h-full bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200"></div>
-      <div className="absolute mt-24 " style={{ top: "-30px" }}>
+      {/* <div className="absolute mt-24 " style={{ top: "-30px" }}>
         <input
           type="text"
           placeholder="Search..."
@@ -32,7 +32,7 @@ const Middlebox = () => {
             fill="currentColor"
           />
         </svg>
-      </div>
+      </div> */}
       {/* {circles.map((circle) =>(
         <div
         key={circle.id}
@@ -53,52 +53,52 @@ const Middlebox = () => {
         { {width: '90%'} }
       >
         <SwiperSlide className=''>
-          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className=" cursor-pointer h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
             Birthday
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-32 w-40 mr-7 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className=" cursor-pointer h-32 w-40 mr-7 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
             Valentine's Day
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300 cursor-pointer">
             Wedding
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300 cursor-pointer">
             Holiday Celebrations
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300 cursor-pointer">
             Anniversary
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300 cursor-pointer">
             Graduation
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300 cursor-pointer">
             Baby Shower
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300 cursor-pointer">
             Retirement Party
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300 cursor-pointer">
             Farewell Party
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300">
+          <div className="h-32 w-40 rounded-lg flex justify-center items-center bg-gradient-to-br from-pink-100 via-orange-50 to-pink-300 cursor-pointer">
             Engagement Party
           </div>
         </SwiperSlide>
