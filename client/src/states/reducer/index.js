@@ -16,5 +16,9 @@ export const userReducer = createReducer({}, (builder) => {
     .addCase('changeTemplate',(state,action)=>{
       state.title = action.payload
     })
+    .addCase("ForgetPassword",(state,action)=>
+    {
+      state.title = action.payload
+    })
     
 });

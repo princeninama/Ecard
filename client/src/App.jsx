@@ -11,6 +11,7 @@ import Post from './components/Admin/Post'
 import Forget from './components/Forget'
 import Index from './screens/Index'
 import Model from './screens/model';
+
 import Middle1 from './Models/F3/middle1';
 import Model3 from './Models/F3/mainpage';
 import Album from './Models/F3/Album';

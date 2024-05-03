@@ -1,20 +1,18 @@
-
 import React, { useState } from "react";
 import Video from "../../public/fire.mp4";
-
+import { forgetPassword } from "../states/action-creators";
 const Forget = () => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
   const [showResetForm, setShowResetForm] = useState(false);
-  const [showotpform,setshowotpform] = useState(false)
-
   const handleHide = () => {
     setShowResetForm(true);
   };
 
-  const handleSubmit = () => {
-    // Logic to handle form submission
+  const handleForget = async () => {
+    res = await forgetPassword(mail);
+    console.log(res);
   };
 
   return (
@@ -33,37 +31,40 @@ const Forget = () => {
             placeholder="Enter E Mail Id"
           />
 
-          {showResetForm && (
-              <div>
-                <input
-                  type="password"
-                  value={password}
-                  className="border-2 px-3 py-2  w-full"
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter Password Here"
-                />
-                <input
-                  type="password"
-                  value={cpassword}
-                  className="border-2 px-3 py-2 mt-4 w-full"
-                  onChange={(e) => setCpassword(e.target.value)}
-                  placeholder="Confirm Password"
-                />
-                <button
-                  onClick={handleSubmit}
-                  className="bg-blue-200 px-3 py-2 mt-4 w-full"
-                >
-                  Submit
-                </button>
-              </div>
-            ) || (
+          {(showResetForm && (
+            <div>
+              <input
+                type="password"
+                value={password}
+                className="border-2 px-3 py-2  w-full"
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter Password Here"
+              />
+              <input
+                type="password"
+                value={cpassword}
+                className="border-2 px-3 py-2 mt-4 w-full"
+                onChange={(e) => setCpassword(e.target.value)}
+                placeholder="Confirm Password"
+              />
               <button
-                className="border py-2 text-white w-full rounded-full "
-                onClick={handleHide}
+                onClick={handleSubmit}
+                className="bg-blue-200 px-3 py-2 mt-4 w-full rounded-3xl"
               >
-                GET OTP
+                Submit
               </button>
-            )}
+            </div>
+          )) || (
+            <button
+              className="border py-2 text-white w-full rounded-full"
+              onClick={() => {
+                handleHide();
+                handleForget();
+              }}
+            >
+              GET OTP
+            </button>
+          )}
         </div>
       </div>
     </div>

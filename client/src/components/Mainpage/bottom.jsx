@@ -13,6 +13,13 @@ import { useState } from 'react'
 
 const Container = ({ card }) => {
 
+
+    const [showform,setShowform]=useState(false)
+    const handleshowform=()=>
+    {
+        setShowform(true);
+        console.log("Form will be visible now")
+    }
     const navigtor = useNavigate();
     const dispatch = useDispatch();
 
@@ -54,7 +61,7 @@ const Container = ({ card }) => {
                           
                                 <div className="preview-buttons justify-center items-center flex">
                                     
-                                    <button className="button-select">Select</button>
+                                    <button className="button-select" onClick={handleshowform}>Select</button>
                                     <button className="button-preview">Preview</button>
                                 </div>
                             
