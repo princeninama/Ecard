@@ -11,7 +11,7 @@ import { useState,useEffect } from 'react'
 
 export const Model3 = () =>{
 
-    
+    const name = 'Model3'
 
    
     return(

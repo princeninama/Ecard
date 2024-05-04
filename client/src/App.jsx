@@ -17,9 +17,8 @@ import Album from './Models/F3/Album';
 import Map from './Models/F3/map';
 import { Model3router } from './AppRouting';
 import Model from './screens/model';
-import Form3 from './Models/F3/form';
-import Form1 from './Models/F1/form';
-import Form2 from './Models/F2/form';
+import Form3 from './components/Form/form';
+
 
 function App() {
 
@@ -42,9 +41,9 @@ function App() {
       <Route path="/signUp" element={<Login />} />
       <Route path="/forget" element={<Forget />} />
       <Route path="/signin" element={<Signin />} /> 
-      <Route path="/main/model1" element={<Form1 />} />
-      <Route path="/main/model2" element={<Form2 />} />
-      <Route path='/main/model3' element={<Form3/>} >
+      <Route path="/main/model1" element={<Form3 Model={Model1}/>} />
+      <Route path="/main/model2" element={<Form3 Model={Model2}/>} />
+      <Route path='/main/model3' element={<Form3 Model={Model3}/>} >
             {/* <Route path='map' element={<Map/>} />
             <Route path='album' element={<Album/>} />
             <Route path='' element={<Middle1/>} /> */}

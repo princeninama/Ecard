@@ -55,15 +55,11 @@ const Container = ({ card }) => {
                     {images.map(((image, idex) => (
 
                         <div style={{ margin: '15px 30px', cursor: 'pointer' }} className='main h-[320px]'>
-                            <img src={image.imageURL} alt="" style={{ height: 300, width: 300, border: '3px solid #f2ca5c', borderRadius: 10 }} className='image'  />
+                            <img src={image.imageURL} alt="" style={{ height: 300, width: 300, border: '3px solid #f2ca5c', borderRadius: 10 }} className='image'  onClick={()=>{handleOpenNewTab(`main/${image.title}`)}}/>
                             <div className=' justify-center items-center flex'>{image.title}</div>
 
                           
-                                <div className="preview-buttons justify-center items-center flex">
-                                    
-                                    <button className="button-select">Select</button>
-                                    <button className="button-preview" onClick={() => { handleOpenNewTab(`main/${image.title}`); }} >Preview</button>
-                                </div>
+                              
                             
 
                         </div>
