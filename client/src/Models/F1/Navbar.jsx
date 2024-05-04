@@ -44,7 +44,7 @@ const Navbar = () => {
             <div className="cursor-pointer hover:text-gray-700"  onClick={() => scrollToSection("eventsSection")}
         >Reception</div>
             <div className="cursor-pointer hover:text-gray-700"  onClick={() => scrollToSection("mapSection")}
-        >Message</div>
+        >Map</div>
           </div>
         )}
 
@@ -73,7 +73,7 @@ const Navbar = () => {
                 className="cursor-pointer hover:text-gray-700"
                 onClick={() => scrollToSection("mapSection")}
               >
-                Message
+                Map
               </div>
             </div>
           </div>

@@ -13,6 +13,13 @@ import { useState } from 'react'
 
 const Container = ({ card }) => {
 
+
+    const [showform,setShowform]=useState(false)
+    const handleshowform=()=>
+    {
+        setShowform(true);
+        console.log("Form will be visible now")
+    }
     const navigtor = useNavigate();
     const dispatch = useDispatch();
 

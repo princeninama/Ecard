@@ -7,11 +7,11 @@ const Img = () => {
   let isSmallScreen = window.innerWidth <= 320;
   let l = 0;
   if (isSmallScreen) {
-    l = 10;
+    l = 7;
   }
   else
   {
-    l = 12;
+    l = 9;
 
   }
 
