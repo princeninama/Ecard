@@ -9,7 +9,7 @@ import { useState,useEffect } from 'react'
 
 
 
-export const MainPage = () =>{
+export const Model3 = () =>{
 
     
 
@@ -28,4 +28,4 @@ export const MainPage = () =>{
     )
 }
 
-export default MainPage
+export default Model3
