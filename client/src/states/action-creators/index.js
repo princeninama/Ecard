@@ -84,3 +84,14 @@ export const forgetPassword = (mail) => async (dispatch) => {
     console.log("error in forgot password", error);
   }
 };
+
+
+
+export const fetchEcardData = async(id)=>{
+  try {
+      const data = await axios.get(`${server}/api/user/getecard/${id}`);
+      return data;
+  } catch (error) {
+    console.log(error)
+  }
+}
