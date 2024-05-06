@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Model3 from "../Models/F3/mainpage"
 import { fetchEcardData } from "../states/action-creators"
+import { RenderPage } from "../exports/functions"
 
 
 
@@ -14,7 +15,9 @@ const Card = () =>{
     useEffect(()=>{
         const fetchdata = async() =>{
           const data = await fetchEcardData(id);
-          setData(Data)
+          setData(data)
+
+          setmodel(RenderPage(data.modelname))
         }
         fetchdata()
     })
