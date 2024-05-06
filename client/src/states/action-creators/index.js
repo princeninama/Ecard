@@ -85,6 +85,15 @@ export const forgetPassword = (mail) => async (dispatch) => {
   }
 };
 
+export const FormSubmit = async(data) => {
+  try {
+    console.log("data at api",data)
+    const res=await axios.post(`${server}/api/ecard/form`,data);
+    console.log("form's data is sent",res)
+  } catch (error) {
+    console.log("error in form submission",error);
+  }
+}
 
 
 export const fetchEcardData = async(id)=>{
