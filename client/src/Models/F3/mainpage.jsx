@@ -9,7 +9,7 @@ import { useState,useEffect } from 'react'
 
 
 
-export const Model3 = () =>{
+export const Model3 = ({data}) =>{
 
     const name = 'Model3'
 
@@ -18,8 +18,8 @@ export const Model3 = () =>{
         <>
             <div >
                 
-                <Navbar/>
-                <Outlet/>
+                <Navbar data={data}/>
+                <Outlet data={data}/>
                
                 
                

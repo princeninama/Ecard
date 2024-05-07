@@ -1,5 +1,5 @@
 import express from 'express'
-import { SubmitForm } from '../controllers/ecard';
+import SubmitForm  from '../controllers/ecard.js';
 
 const router = express.Router()
 

@@ -74,10 +74,10 @@ export const changeTemplates = (title) => (dispatch) => {
 export const forgetPassword = (mail) => async (dispatch) => {
   try {
     const data = await axios.post(`${server}/api/user/forget`, mail);
-    console.log("daata of forget password",data)
+    console.log("data of forget password", data);
     dispatch({
-        type: "ForgetPassword",
-        payload: title,
+      type: "ForgetPassword",
+      payload: title,
     });
     return data;
   } catch (error) {
@@ -85,12 +85,26 @@ export const forgetPassword = (mail) => async (dispatch) => {
   }
 };
 
-export const FormSubmit = async(data) => {
-  try {
-    console.log("data at api",data)
-    const res=await axios.post(`${server}/api/ecard/form`,data);
-    console.log("form's data is sent",res)
-  } catch (error) {
-    console.log("error in form submission",error);
-  }
-}
+export const FormSubmit = (data) =>(dispatch) => {
+  // return async (dispatch) => {
+  //   try {
+  //     console.log("data at api", data);
+  //     // const res = await axios.post(`${server}/api/ecard/form`, data);
+  //     // console.log("form's data is sent", res);
+  //     dispatch(
+  //       {
+  //         type:"formdata_success",
+  //         payload: data
+  //       }
+  //     );
+  //     // return res.data;
+  //   } catch (error) {
+  //     console.log("error in form submission", error);
+  //     throw error;
+  //   }
+  // };
+  dispatch({
+    type: "formdata_success",
+    payload: data,
+  });
+};

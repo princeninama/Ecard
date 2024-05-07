@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { FormSubmit } from "../../states/action-creators";
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const GeneralWedding = () => {
   const [fileInputs, setFileInputs] = useState([]);
-
+  const dispatch = useDispatch();
   const addFileInput = () => {
     setFileInputs([...fileInputs, { key: fileInputs.length }]);
   };
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -62,14 +64,11 @@ const GeneralWedding = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await FormSubmit(formData);
-      console.log(response.data);
-      console.log("form's data is collected");
-    } catch (error) {
-      console.error("Error:", error);
-      console.log("form's data is missing");
-    }
+
+    dispatch(FormSubmit(formData));
+    console.log("form's data is collected");
+
+    navigate("/preview");
   };
 
   return (

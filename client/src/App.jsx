@@ -18,10 +18,10 @@ import Map from './Models/F3/map';
 import { Model3router } from './AppRouting';
 import Model from './screens/model';
 import Form3 from './components/Form/form';
-
-
+import Preview from './screens/preview';
+import { useSelector } from 'react-redux';
 function App() {
-
+  const data=useSelector((state)=>{state.user.firstname})
   return (
     
     <BrowserRouter>
@@ -29,6 +29,7 @@ function App() {
 
       <Route path="/" element={<Index />} />
       <Route path="/main" element={<Mainpage />} />
+      <Route path="/preview" element={<Preview data={data}/>} />
       
       
       <Route path="/Create" element={<Create />} />
