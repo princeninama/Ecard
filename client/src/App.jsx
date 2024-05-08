@@ -26,7 +26,6 @@ import Model3form from './components/Form/Model3form';
 
 
 function App() {
-  const data=useSelector((state)=>{state.user.firstname})
   return (
     
     <BrowserRouter>
@@ -34,7 +33,7 @@ function App() {
 
       <Route path="/" element={<Index />} />
       <Route path="/main" element={<Mainpage />} />
-      <Route path="/preview" element={<Preview data={data}/>} />
+      <Route path="/preview" element={<Preview />} />
       
       <Route path='/preview/model1' element={<Preview/>} />
       <Route path='/preview/model2' element={<Preview/>} />
