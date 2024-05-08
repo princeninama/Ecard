@@ -17,16 +17,21 @@ import Login from './screens/login'
 // import Map from './Models/F3/map';
 // import { Model3router } from './AppRouting';
 // import Model from './screens/model';
-// import Form3 from './components/Form/form';
-// import Card from './screens/Display_userCard';
-// import { Model1,Model2,Model3 } from './exports/exportsModule';
-// import Preview from './screens/preview';
-// import GeneralWedding from './components/Form/GeneralWedding';
-// import Model3form from './components/Form/Model3form';
+import Middle1 from './Models/F3/middle1';
+// import Model3 from './Models/F3/mainpage';
+import Album from './Models/F3/Album';
+import Map from './Models/F3/map';
+import { Model3router } from './AppRouting';
+import Model from './screens/model';
+import Form3 from './components/Form/form';
+import Card from './screens/Display_userCard';
+import { Model1,Model2,Model3 } from './exports/exportsModule';
+import Preview from './screens/preview';
+import GeneralWedding from './components/Form/GeneralWedding';
+import Model3form from './components/Form/Model3form';
 
 
 function App() {
-  // const data=useSelector((state)=>{state.user.firstname})
   return (
     <>
     <Login/>
@@ -37,6 +42,7 @@ function App() {
 
       <Route path="/" element={<Index />} />
       <Route path="/main" element={<Mainpage />} />
+      <Route path="/preview" element={<Preview />} />
       
       <Route path='/preview/model1' element={<Preview/>} />
       <Route path='/preview/model2' element={<Preview/>} />
@@ -72,12 +78,12 @@ function App() {
       {Model3router.map((route,index)=>(
               <Route key={index} path={route.path} element={route.component} />
             ))} 
-      </Route> */
+      </Route>
 
 
 
-
-  // </BrowserRouter>
+    </Routes>
+  </BrowserRouter>
   )
 }
 
