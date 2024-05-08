@@ -20,7 +20,7 @@ import Model from './screens/model';
 import Form3 from './components/Form/form';
 import Card from './screens/Display_userCard';
 import { Model1,Model2,Model3 } from './exports/exportsModule';
-
+import Preview from "./screens/preview"
 
 function App() {
   const data=useSelector((state)=>{state.user.firstname})
