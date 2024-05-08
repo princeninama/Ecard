@@ -3,10 +3,7 @@ import { FormSubmit } from "../../states/action-creators";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-
-const Model3form = ({Modelname}) => {
-
-
+const Model3form = ({ Modelname }) => {
   const [fileInputs, setFileInputs] = useState([]);
   const dispatch = useDispatch();
   const addFileInput = () => {
@@ -18,20 +15,20 @@ const Model3form = ({Modelname}) => {
     firstname: "",
     secondname: "",
     location: "",
-    dates: [],
-    eventname: [],
+    eventdates: [],
+    eventname: [""], // At least one event input box will be displayed initially
     invitedBy: "",
     preweddigphotos: [],
     map_url: "",
-    eventdescription:[],
+    eventdescription: [],
   });
 
   const handleFileChange = (e, index) => {
-    const files = [...formData.photos];
+    const files = [...formData.preweddigphotos];
     files[index] = e.target.files[0];
     setFormData({
       ...formData,
-      photos: files,
+      preweddigphotos: files,
     });
   };
 
@@ -45,7 +42,17 @@ const Model3form = ({Modelname}) => {
         ...formData,
         eventname: updatedEventNames,
       });
-    } else {
+    }
+    else if(name === "eventdate"){
+        const index = parseInt(e.target.id.replace("eventdate", ""));
+      const updatedEventNames = [...formData.eventdates];
+      updatedEventNames[index] = value;
+      setFormData({
+        ...formData,
+        eventdates: updatedEventNames,
+      });
+    }
+    else {
       setFormData({
         ...formData,
         [name]: value,
@@ -54,11 +61,8 @@ const Model3form = ({Modelname}) => {
   };
 
   const placeholders = {
-    // maindate: "Enter Date",
     firstname: "Enter Bride's Name",
     secondname: "Enter Groom's Name",
-    hastag: "Enter #Couple",
-    // dates: "Enter Date of Events",
     invitedBy: "Enter Family's Names",
     map_url: "Enter Map Location",
     location: "Enter Venue Location",
@@ -68,14 +72,34 @@ const Model3form = ({Modelname}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
-    sessionStorage.setItem('Formdata',JSON.stringify(formData))
-    localStorage.setItem('mode','preview')
-    
+    sessionStorage.setItem("Formdata", JSON.stringify(formData));
+    localStorage.setItem("mode", "preview");
     console.log("form's data is collected");
-    const Modelname = sessionStorage.getItem('modelname')
-    navigate(`/preview/${Modelname}` , {state : {Modelname:Modelname}});
+    console.log(JSON.stringify(formData))
+    const Modelname = sessionStorage.getItem("modelname");
+    navigate(`/preview/${Modelname}`, { state: { Modelname: Modelname } });
+  };
+
+  const addEvent = () => {
+    setFormData({
+      ...formData,
+      eventname: [...formData.eventname, ""],
+      eventdates: [...formData.eventdates, ""],
+    });
+  };
+
+  const removeEvent = () => {
+    if (formData.eventname.length > 1) {
+      const updatedEventNames = [...formData.eventname];
+      const updatedEventDates = [...formData.eventdates];
+      updatedEventNames.pop();
+      updatedEventDates.pop();
+      setFormData({
+        ...formData,
+        eventname: updatedEventNames,
+        eventdates: updatedEventDates,
+      });
+    }
   };
 
   return (
@@ -101,7 +125,7 @@ const Model3form = ({Modelname}) => {
           </div>
         ))}
 
-        {eventNames.map((eventName, index) => (
+        {formData.eventname.map((eventName, index) => (
           <div key={index}>
             <label htmlFor={`eventname${index}`} className="font-bold border-1">
               Event Name
@@ -110,40 +134,40 @@ const Model3form = ({Modelname}) => {
               type="text"
               name="eventname"
               id={`eventname${index}`}
-              placeholder={eventName}
+              placeholder={eventNames[index] || "Event Name"}
+              onChange={handleChange}
+              className="input border-2 py-1 px-3 w-full"
+            />
+            <label htmlFor={`eventdate${index}`} className="font-bold border-1">
+              Event Date
+            </label>
+            <input
+              type="date"
+              name="eventdate"
+              id={`eventdate${index}`}
               onChange={handleChange}
               className="input border-2 py-1 px-3 w-full"
             />
           </div>
         ))}
 
-        <input
-          type="file"
-          onChange={handleFileChange}
-          value={formData.photos}
-          name={`file`}
-          id={`file`}
-        />
-
-        {fileInputs.map((input, index) => (
-          <div key={input.key}>
-            <input
-              type="file"
-              name={`file${index}`}
-              onChange={handleFileChange}
-              id={`file${index}`}
-              value={formData.photos}
-            />
-          </div>
-        ))}
+       <div className=" justify-center items-center flex">
+       <button
+          type="button"
+          onClick={addEvent}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
+        >
+          Add Event
+        </button>
 
         <button
           type="button"
-          onClick={addFileInput}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded"
+          onClick={removeEvent}
+          className="bg-red-500 hover:bg-red-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
         >
-          Add One More Pic
+          Remove Last Event
         </button>
+       </div>
 
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded"
