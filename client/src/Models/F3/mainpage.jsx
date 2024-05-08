@@ -9,7 +9,7 @@ import { useState,useEffect } from 'react'
 
 
 
-export const Model3 = () =>{
+export const Model3 = ({data}) =>{
 
     const name = 'Model3'
 

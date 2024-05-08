@@ -74,10 +74,10 @@ export const changeTemplates = (title) => (dispatch) => {
 export const forgetPassword = (mail) => async (dispatch) => {
   try {
     const data = await axios.post(`${server}/api/user/forget`, mail);
-    console.log("daata of forget password",data)
+    console.log("data of forget password", data);
     dispatch({
-        type: "ForgetPassword",
-        payload: title,
+      type: "ForgetPassword",
+      payload: title,
     });
     return data;
   } catch (error) {
