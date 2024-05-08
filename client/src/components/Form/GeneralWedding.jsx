@@ -65,10 +65,13 @@ const GeneralWedding = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(FormSubmit(formData));
-    console.log("form's data is collected");
 
-    navigate("/preview");
+    sessionStorage.setItem('Formdata',JSON.stringify(formData))
+    localStorage.setItem('mode','preview')
+    
+    console.log("form's data is collected");
+    const Modelname = sessionStorage.getItem('modelname')
+    navigate(`/preview/${Modelname}` , {state : {Modelname:Modelname}});
   };
 
   return (

@@ -18,8 +18,8 @@ export const Model3 = ({data}) =>{
         <>
             <div >
                 
-                <Navbar data={data}/>
-                <Outlet data={data}/>
+                <Navbar/>
+                <Outlet />
                
                 
                

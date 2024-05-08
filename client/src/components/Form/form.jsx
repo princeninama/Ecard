@@ -5,9 +5,10 @@ import GeneralWedding from "../../components/Form/GeneralWedding"
 
 
 
-const Form3 = ({Model}) => {
+const Form3 = ({Model,Modelname,Formname}) => {
 
     const [selected,setselected] = useState(false)
+    sessionStorage.setItem('modelname',Modelname)
     
     return (
         <div className="scrollbar">
@@ -17,7 +18,7 @@ const Form3 = ({Model}) => {
             
             <div className=" justify-center flex items-center my-4" >
                 {
-                    selected ? <GeneralWedding/> : <button onClick={()=>{setselected(true);}} className="relative overflow-hidden bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-md">
+                    selected ? <Formname /> : <button onClick={()=>{setselected(true);}} className="relative overflow-hidden bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-md">
                     <span className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600"></span>
                     <span className="absolute inset-0 transform scale-0 bg-white rounded-lg" />
                     <span className="relative z-10">Select</span>

@@ -8,6 +8,7 @@ import dine from "../../assets/dine.jpeg";
 import hastmelap from "../../assets/hastmelap.webp";
 import car from "../../assets/car.jpeg";
 import "./style.css";
+
 const Home = () => {
   return (
     <>
@@ -30,9 +31,7 @@ const Home = () => {
           </div>
           <div className="w-[50%] h-full mt-6">
             <div className="  text-orange-100 lg:ml-16 lg:mt-56">
-              <p className=" text-[0.8rem] z-10 font-serif lg:text-2xl">
-
-              </p>
+              <p className=" text-[0.8rem] z-10 font-serif lg:text-2xl">MAY 2ND 2024</p>
               <p className="text-[2rem] font-serif lg:text-[5rem]  z-10 text-shodaow-lg shadow-red-200">
 
               </p>
@@ -46,14 +45,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div
-        className="bg-gradient-to-r from-red-50 to-red-200 w-[100%] h-[60rem] relative   lg:h-[65rem]  pt-12"
-        id="eventsSection"
-      >
+      <div className="bg-gradient-to-r from-red-50 to-red-200 w-[100%] h-[60rem] relative   lg:h-[65rem]  pt-12" id="eventsSection">
         <div className="text-black text-left text-[1rem] p-3 lg:ml-8 lg:text-3xl">
-          <h1 className="">
-
-          </h1>
+          <h1 className="">01 MAY</h1>
           <h1 className=""> Wednesday</h1>
         </div>
         <div className="lg:flex  lg:pl-[18rem]">
@@ -67,7 +61,8 @@ const Home = () => {
                 />
               </div>
               <div className="flip-card-back w-40 text-black">
-                <p> 
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam
 
                 </p>
                 <p>10 AM</p>
