@@ -5,7 +5,8 @@ import { useLocation } from "react-router-dom";
 import { RenderPage } from "../exports/functions";
 const Preview = () => {
 
-  const Modelname = useLocation().state.Modelname
+  // const Modelname = useLocation().state.Modelname
+  const Modelname = sessionStorage.getItem('modelname')
   // const data = JSON.parse(sessionStorage.getItem('Formdata'))
   // console.log(data)
   // console.log(Modelname)

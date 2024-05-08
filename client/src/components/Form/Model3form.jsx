@@ -52,6 +52,15 @@ const Model3form = ({ Modelname }) => {
         eventdates: updatedEventNames,
       });
     }
+    else if(name === "eventdescription"){
+        const index = parseInt(e.target.id.replace("eventdescription", ""));
+      const updatedEventNames = [...formData.eventdescription];
+      updatedEventNames[index] = value;
+      setFormData({
+        ...formData,
+        eventdescription: updatedEventNames,
+      });
+    }
     else {
       setFormData({
         ...formData,
@@ -148,6 +157,17 @@ const Model3form = ({ Modelname }) => {
               onChange={handleChange}
               className="input border-2 py-1 px-3 w-full"
             />
+             <label htmlFor={`eventdescription${index}`} className="font-bold border-1">
+              Event Description
+            </label>
+            <input
+              type="text"
+              name="eventdescription"
+              id={`eventdescription${index}`}
+              placeholder="Event Description"
+              
+              onChange={handleChange}
+              className="input border-2 py-1 px-3 w-full" />
           </div>
         ))}
 

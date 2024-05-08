@@ -79,11 +79,11 @@ const Middle1 = () => {
 
   const [data,setdata] =useState({})
 
-  function myFunction() {
-   localStorage.setItem('mode','a')
-    // Add your functionality here
-  }
-  window.addEventListener('popstate', myFunction)
+  // function myFunction() {
+  //  localStorage.setItem('mode','a')
+  //   // Add your functionality here
+  // }
+  // window.addEventListener('popstate', myFunction)
   
   useEffect(()=>{
     const mode = localStorage.getItem('mode')
@@ -182,7 +182,7 @@ const Middle1 = () => {
           <div ref={section[0]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
           <div ref={section[1]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
           <div ref={section[2]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
-          <div ref={section[3]}>  <Middle2 refence={upsection} okay={true} text={text} date={date} image={Engage}/></div>
+          <div ref={section[3]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
 
           <div className=''>
 
