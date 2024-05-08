@@ -20,6 +20,9 @@ import Model from './screens/model';
 import Form3 from './components/Form/form';
 import Card from './screens/Display_userCard';
 import { Model1,Model2,Model3 } from './exports/exportsModule';
+import Preview from './screens/preview';
+import GeneralWedding from './components/Form/GeneralWedding';
+import Model3form from './components/Form/Model3form';
 
 
 function App() {
@@ -32,7 +35,14 @@ function App() {
       <Route path="/" element={<Index />} />
       <Route path="/main" element={<Mainpage />} />
       
-      
+      <Route path='/preview/model1' element={<Preview/>} />
+      <Route path='/preview/model2' element={<Preview/>} />
+      <Route path='/preview/model3' element={<Preview/>} >
+      {Model3router.map((route,index)=>(
+              <Route key={index} path={route.path} element={route.component} />
+            ))}
+        </Route>
+
       <Route path="/Create" element={<Create />} />
       <Route path="/More" element={<Post />} />
       <Route path="/show" element={<Show />} >
@@ -43,9 +53,9 @@ function App() {
       <Route path="/signUp" element={<Login />} />
       <Route path="/forget" element={<Forget />} />
       <Route path="/signin" element={<Signin />} /> 
-      <Route path="/main/model1" element={<Form3 Model={Model1}/>} />
-      <Route path="/main/model2" element={<Form3 Model={Model2}/>} />
-      <Route path='/main/model3' element={<Form3 Model={Model3}/>} >
+      <Route path="/main/model1" element={<Form3 Model={Model1} Modelname={'model1'} Formname={GeneralWedding}/>} />
+      <Route path="/main/model2" element={<Form3 Model={Model2} Modelname={'model2'} Formname={GeneralWedding}/>} />
+      <Route path='/main/model3' element={<Form3 Model={Model3} Modelname={'model3'} Formname={Model3form}/>} >
             {/* <Route path='map' element={<Map/>} />
             <Route path='album' element={<Album/>} />
             <Route path='' element={<Middle1/>} /> */}
@@ -53,7 +63,13 @@ function App() {
               <Route key={index} path={route.path} element={route.component} />
             ))}  
       </Route> 
-      <Route path='/user/:id' element={<Card/>} />
+      <Route path='/user/:id/Model1' element={<Card Model={Model1}/>} />
+      <Route path='/user/:id/Model2' element={<Card Model={Model2}/>} />
+      <Route path='/user/:id/Model3' element={<Card Model={Model3}/>} >
+      {Model3router.map((route,index)=>(
+              <Route key={index} path={route.path} element={route.component} />
+            ))} 
+      </Route>
 
 
 

@@ -21,10 +21,10 @@ const Container = ({ card }) => {
 
     const handdlechangetitle = (title) => {
         dispatch(changeTemplates(title))
-        // sessionStorage.setItem('title',title)
-        navigtor(`${title}`)
+       
     }
     const handleOpenNewTab = (path) => {
+        localStorage.setItem('mode','a')
         window.open(path, '_blank');
     };
     const GotoMore = () => {

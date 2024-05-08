@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Haldi from './images/haldi.png'
 import Engagement from './images/engagement.png'
@@ -19,6 +19,7 @@ import { Fade, AttentionSeeker, } from 'react-awesome-reveal'
 
 
 import { EffectCube, Pagination } from 'swiper/modules';
+import { useLocation } from 'react-router-dom';
 
 
 const Middle2 = ({ text, date,image,refence,okay }) => {
@@ -76,8 +77,50 @@ const Middle1 = () => {
   const isMobileh1 = window.innerHeight <= 800 && window.innerHeight >700;
   const isMobileh2 = window.innerHeight <= 700 && window.innerHeight >600;
 
+  const [data,setdata] =useState({})
+
+  function myFunction() {
+   localStorage.setItem('mode','a')
+    // Add your functionality here
+  }
+  window.addEventListener('popstate', myFunction)
+  
+  useEffect(()=>{
+    const mode = localStorage.getItem('mode')
+  console.log(mode)
+
+  if(mode == 'preview')
+    {
+      setdata(JSON.parse(sessionStorage.getItem('Formdata')))
+    }
+  else{
+    const value = {
+      firstname:'abc',
+      secondname:'bcgd'
+    }
+    setdata(value)
+  }
+  },[])
+  // if(mode == 'preview')
+  //   {
+  //      setdata(JSON.parse(sessionStorage.getItem('Formdata')))
+  //   }
+  // else if(mode == 'user')
+  //   {
+
+  //   }
+  //   else{
+  //     const value = {
+  //       firstname:'abc',
+  //       secondname:'efg'
+        
+  //     }
+  //     setdata(value)
+  //     console.log(data)
+  //   }
+
   const text = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero accusamus vel minus dignissimos, suscipit nulla ea dolorem? Earum odit veniam fuga repellat aperiam unde? Aut error quis minima nisi qui.  "
-  const data = "28/06/2004"
+  const date = "28/06/2004"
 
 
   const section = [useRef(null), useRef(null), useRef(null), useRef(null),]
@@ -100,7 +143,7 @@ const Middle1 = () => {
             <AttentionSeeker effect='bounce' triggerOnce={true}>
 
               <div className={`items-center text-center justify-center font mx-5 ${isMobileh ? 'mt-40 text-5xl mb-5' :( isMobileh1 ? 'mt-24 text-5xl mb-5' : (isMobileh2 ? 'mt-20 text-5xl mb-2' : 'mt-48 text-6xl mb-5')) } `}>
-                Welcome to The Wedding of Rahul And Sonia
+                Welcome to The Wedding of {data.firstname} And {data.secondname}
               </div>
 
             </AttentionSeeker>
@@ -136,10 +179,10 @@ const Middle1 = () => {
             </div>
           </div>
           
-          <div ref={section[0]}>  <Middle2 refence={upsection} text={text} date={data} image={Engage}/></div>
-          <div ref={section[1]}>  <Middle2 refence={upsection} text={text} date={data} image={Engage}/></div>
-          <div ref={section[2]}>  <Middle2 refence={upsection} text={text} date={data} image={Engage}/></div>
-          <div ref={section[3]}>  <Middle2 refence={upsection} okay={true} text={text} date={data} image={Engage}/></div>
+          <div ref={section[0]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
+          <div ref={section[1]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
+          <div ref={section[2]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
+          <div ref={section[3]}>  <Middle2 refence={upsection} okay={true} text={text} date={date} image={Engage}/></div>
 
           <div className=''>
 

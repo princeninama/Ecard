@@ -19,7 +19,7 @@ export const Model3 = () =>{
             <div >
                 
                 <Navbar/>
-                <Outlet/>
+                <Outlet />
                
                 
                

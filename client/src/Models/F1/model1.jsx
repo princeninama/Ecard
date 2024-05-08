@@ -5,7 +5,7 @@ import Img from "./Img";
 import Message from "./Message";
 import GeneralWedding from "../../components/Form/GeneralWedding";
 // import {showform} from "../../components/Mainpage/bottom"
-const Model1 = () => {
+const Model1 = ({data}) => {
   return (
     <div>
       <Navbar />

@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { FormSubmit } from "../../states/action-creators";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-const GeneralWedding = () => {
+
+
+const Model3form = ({Modelname}) => {
+
+
   const [fileInputs, setFileInputs] = useState([]);
   const dispatch = useDispatch();
   const addFileInput = () => {
@@ -14,12 +18,12 @@ const GeneralWedding = () => {
     firstname: "",
     secondname: "",
     location: "",
-    maindate: "",
     dates: [],
     eventname: [],
     invitedBy: "",
-    photos: [],
+    preweddigphotos: [],
     map_url: "",
+    eventdescription:[],
   });
 
   const handleFileChange = (e, index) => {
@@ -50,11 +54,11 @@ const GeneralWedding = () => {
   };
 
   const placeholders = {
-    maindate: "Enter Date",
+    // maindate: "Enter Date",
     firstname: "Enter Bride's Name",
     secondname: "Enter Groom's Name",
     hastag: "Enter #Couple",
-    dates: "Enter Date of Events",
+    // dates: "Enter Date of Events",
     invitedBy: "Enter Family's Names",
     map_url: "Enter Map Location",
     location: "Enter Venue Location",
@@ -152,4 +156,4 @@ const GeneralWedding = () => {
   );
 };
 
-export default GeneralWedding;
+export default Model3form;
