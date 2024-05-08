@@ -85,26 +85,22 @@ export const forgetPassword = (mail) => async (dispatch) => {
   }
 };
 
-export const FormSubmit = (data) =>(dispatch) => {
-  // return async (dispatch) => {
-  //   try {
-  //     console.log("data at api", data);
-  //     // const res = await axios.post(`${server}/api/ecard/form`, data);
-  //     // console.log("form's data is sent", res);
-  //     dispatch(
-  //       {
-  //         type:"formdata_success",
-  //         payload: data
-  //       }
-  //     );
-  //     // return res.data;
-  //   } catch (error) {
-  //     console.log("error in form submission", error);
-  //     throw error;
-  //   }
-  // };
-  dispatch({
-    type: "formdata_success",
-    payload: data,
-  });
-};
+export const FormSubmit = async(data) => {
+  try {
+    console.log("data at api",data)
+    const res=await axios.post(`${server}/api/ecard/form`,data);
+    console.log("form's data is sent",res)
+  } catch (error) {
+    console.log("error in form submission",error);
+  }
+}
+
+
+export const fetchEcardData = async(id)=>{
+  try {
+      const data = await axios.get(`${server}/api/user/getecard/${id}`);
+      return data;
+  } catch (error) {
+    console.log(error)
+  }
+}
