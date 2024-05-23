@@ -10,7 +10,7 @@ const Mainpage = () => {
 
   const [card, setCard] = useState([]);
     // const [array,setarray] =useState([]);
-    const title = useSelector((state)=>state.user.title)
+    // const title = useSelector((state)=>state.user.title)
     const navigator = useNavigate()
 
 

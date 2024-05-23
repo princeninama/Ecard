@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FormSubmit } from "../../states/action-creators";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Model3form = ({ Modelname }) => {
   const [fileInputs, setFileInputs] = useState([]);
@@ -18,17 +20,18 @@ const Model3form = ({ Modelname }) => {
     eventdates: [],
     eventname: [""], // At least one event input box will be displayed initially
     invitedBy: "",
-    preweddigphotos: [],
+    preweddingphotos: [],
     map_url: "",
     eventdescription: [],
   });
 
   const handleFileChange = (e, index) => {
-    const files = [...formData.preweddigphotos];
+    const files = [...formData.preweddingphotos];
     files[index] = e.target.files[0];
+    console.log('files : ',files)
     setFormData({
       ...formData,
-      preweddigphotos: files,
+      preweddingphotos: files,
     });
   };
 
@@ -69,6 +72,8 @@ const Model3form = ({ Modelname }) => {
     }
   };
 
+  
+
   const placeholders = {
     firstname: "Enter Bride's Name",
     secondname: "Enter Groom's Name",
@@ -77,7 +82,7 @@ const Model3form = ({ Modelname }) => {
     location: "Enter Venue Location",
   };
 
-  const eventNames = ["Haldi", "Mehndi", "Sagai", "Ras Garba", "Wedding"];
+  const eventNames = ["Haldi", "Ras Garba/Dj night", "Wedding"];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,6 +90,7 @@ const Model3form = ({ Modelname }) => {
     localStorage.setItem("mode", "preview");
     console.log("form's data is collected");
     console.log(JSON.stringify(formData))
+    console.log(formData.preweddingphotos)
     const Modelname = sessionStorage.getItem("modelname");
     navigate(`/preview/${Modelname}`, { state: { Modelname: Modelname } });
   };
@@ -94,6 +100,7 @@ const Model3form = ({ Modelname }) => {
       ...formData,
       eventname: [...formData.eventname, ""],
       eventdates: [...formData.eventdates, ""],
+      eventdescription: [...formData.eventdescription, ""],
     });
   };
 
@@ -101,21 +108,46 @@ const Model3form = ({ Modelname }) => {
     if (formData.eventname.length > 1) {
       const updatedEventNames = [...formData.eventname];
       const updatedEventDates = [...formData.eventdates];
+      const updatedEventDescriptions = [...formData.eventdescription];
       updatedEventNames.pop();
       updatedEventDates.pop();
+      updatedEventDescriptions.pop();
       setFormData({
         ...formData,
         eventname: updatedEventNames,
         eventdates: updatedEventDates,
+        eventdescription: updatedEventDescriptions,
       });
     }
+  };
+
+  const addPhoto = () => {
+    if (formData.preweddingphotos.length < 10) {
+      const newPhotos = [...formData.preweddingphotos];
+      newPhotos.push("");
+      setFormData({
+        ...formData,
+        preweddingphotos: newPhotos,
+      });
+    } else {
+      toast.error("Maximum limit of 10 photos reached!");
+    }
+  };
+
+  const removePhoto = (index) => {
+    const updatedPhotos = [...formData.preweddingphotos];
+    updatedPhotos.splice(index, 1);
+    setFormData({
+      ...formData,
+      preweddingphotos: updatedPhotos,
+    });
   };
 
   return (
     <div className="container mx-auto p-6 bg-slate-200">
       <form className="grid gap-4" onSubmit={handleSubmit}>
         <h1 className="text-4xl font-serif italic">
-          User Need to Insert The Actual Values From Here.
+          User Needs to Insert The Actual Values From Here.
         </h1>
         {Object.entries(placeholders).map(([name, placeholder]) => (
           <div key={name}>
@@ -133,61 +165,92 @@ const Model3form = ({ Modelname }) => {
             />
           </div>
         ))}
-
-        {formData.eventname.map((eventName, index) => (
+        
+      
+         {eventNames.map((eventName, index) => (
           <div key={index}>
-            <label htmlFor={`eventname${index}`} className="font-bold border-1">
-              Event Name
+          <label htmlFor={`eventname${index}`} className="font-bold border-1">
+            Event Name
+          </label>
+          <input
+            type="text"
+            name="eventname"
+            id={`eventname${index}`}
+            placeholder={eventNames[index] || "Event Name"}
+            onChange={handleChange}
+            className="input border-2 py-1 px-3 w-full"
+          />
+          <label htmlFor={`eventdate${index}`} className="font-bold border-1">
+            Event Date
+          </label>
+          <input
+            type="date"
+            name="eventdate"
+            id={`eventdate${index}`}
+            onChange={handleChange}
+            className="input border-2 py-1 px-3 w-full"
+          />
+          <label htmlFor={`eventdescription${index}`} className="font-bold border-1">
+            Event Description
+          </label>
+          <input
+            type="text"
+            name="eventdescription"
+            id={`eventdescription${index}`}
+            placeholder="Event Description"
+            onChange={handleChange}
+            className="input border-2 py-1 px-3 w-full"
+          />
+        </div>
+        ))}
+        <div className=" justify-center items-center flex">
+          {/* <button
+            type="button"
+            onClick={addEvent}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
+          >
+            Add Event
+          </button>
+
+          <button
+            type="button"
+            onClick={removeEvent}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
+          >
+            Remove Last Event
+          </button> */}
+
+          <button
+            type="button"
+            onClick={addPhoto}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
+          >
+            Add Prewedding Pic
+          </button>
+        </div>
+
+        {formData.preweddingphotos.map((photo, index) => (
+          <div key={index}>
+            <label htmlFor={`photo${index}`} className="font-bold border-1">
+              Prewedding Photo {index + 1}
             </label>
             <input
-              type="text"
-              name="eventname"
-              id={`eventname${index}`}
-              placeholder={eventNames[index] || "Event Name"}
-              onChange={handleChange}
+              type="file"
+              accept="image/*"
+              name={`photo${index}`}
+              id={`photo${index}`}
+              onChange={(e) => handleFileChange(e, index)}
               className="input border-2 py-1 px-3 w-full"
             />
-            <label htmlFor={`eventdate${index}`} className="font-bold border-1">
-              Event Date
-            </label>
-            <input
-              type="date"
-              name="eventdate"
-              id={`eventdate${index}`}
-              onChange={handleChange}
-              className="input border-2 py-1 px-3 w-full"
-            />
-             <label htmlFor={`eventdescription${index}`} className="font-bold border-1">
-              Event Description
-            </label>
-            <input
-              type="text"
-              name="eventdescription"
-              id={`eventdescription${index}`}
-              placeholder="Event Description"
-              
-              onChange={handleChange}
-              className="input border-2 py-1 px-3 w-full" />
+            <button
+              type="button"
+              onClick={() => removePhoto(index)}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold border-1 py-2 px-4 rounded mt-2"
+            >
+              Remove
+            </button>
           </div>
         ))}
-
-       <div className=" justify-center items-center flex">
-       <button
-          type="button"
-          onClick={addEvent}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
-        >
-          Add Event
-        </button>
-
-        <button
-          type="button"
-          onClick={removeEvent}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
-        >
-          Remove Last Event
-        </button>
-       </div>
 
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded"
@@ -195,6 +258,8 @@ const Model3form = ({ Modelname }) => {
         >
           SUBMIT
         </button>
+
+        <ToastContainer />
       </form>
     </div>
   );

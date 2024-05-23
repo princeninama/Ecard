@@ -14,7 +14,6 @@ import 'swiper/css/pagination';
 import './styles.css';
 
 
-
 import { Fade, AttentionSeeker, } from 'react-awesome-reveal'
 
 
@@ -77,14 +76,17 @@ const Middle1 = () => {
   const isMobileh1 = window.innerHeight <= 800 && window.innerHeight >700;
   const isMobileh2 = window.innerHeight <= 700 && window.innerHeight >600;
 
-  const [data,setdata] =useState({})
+  const [data,setdata] =useState({
+  })
+  const [x,setx] = useState(0)
 
   // function myFunction() {
   //  localStorage.setItem('mode','a')
   //   // Add your functionality here
   // }
   // window.addEventListener('popstate', myFunction)
-  
+  const text = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero accusamus vel minus dignissimos, suscipit nulla ea dolorem? Earum odit veniam fuga repellat aperiam unde? Aut error quis minima nisi qui.  "
+  const date = "28/06/2004"
   useEffect(()=>{
     const mode = localStorage.getItem('mode')
   console.log(mode)
@@ -92,11 +94,17 @@ const Middle1 = () => {
   if(mode == 'preview')
     {
       setdata(JSON.parse(sessionStorage.getItem('Formdata')))
+      
+      console.log('data : ',data)
     }
   else{
     const value = {
       firstname:'abc',
-      secondname:'bcgd'
+      secondname:'bcgd',
+      eventname:['aaa','bbb','ccc','ddd'],
+      eventdescription:[text,text,text],
+      eventdates:[date,date,date]
+
     }
     setdata(value)
   }
@@ -119,8 +127,7 @@ const Middle1 = () => {
   //     console.log(data)
   //   }
 
-  const text = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero accusamus vel minus dignissimos, suscipit nulla ea dolorem? Earum odit veniam fuga repellat aperiam unde? Aut error quis minima nisi qui.  "
-  const date = "28/06/2004"
+  
 
 
   const section = [useRef(null), useRef(null), useRef(null), useRef(null),]
@@ -132,57 +139,80 @@ const Middle1 = () => {
     section[n].current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  
+  function CapitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
+  
 
   return (
     <>
       <div className="h-screen bg-gradient-to-tr from-lime-200 via-teal-100 via-green-100 to-emerald-200">
         <div className={`h-screen ${!isMobile ? 'bg-gradient-to-tr' : 'bg-gradient-to-br'} from-transparent via-transparent via-transparent to-lime-200 overflow-scroll`}>
+
           <div className='h-screen' ref={upsection}>
+
             <AttentionSeeker effect='bounce' triggerOnce={true}>
 
               <div className={`items-center text-center justify-center font mx-5 ${isMobileh ? 'mt-40 text-5xl mb-5' :( isMobileh1 ? 'mt-24 text-5xl mb-5' : (isMobileh2 ? 'mt-20 text-5xl mb-2' : 'mt-48 text-6xl mb-5')) } `}>
                 Welcome to The Wedding of {data.firstname} And {data.secondname}
               </div>
-
+    
             </AttentionSeeker>
             <div className={`item-center justify-center flex ${isMobileh ? 'mt-28' :( isMobileh1 ? 'mt-20' : (isMobileh2 ? 'mt-10' : 'mt-32')) }`}>
               <div className='block'>
+                
                 <div className='flex mb-6'>
-                  <AttentionSeeker effect='tada' delay={800} triggerOnce={true}>
+                  {
+                    data.eventname ? <AttentionSeeker effect='tada' delay={800} triggerOnce={true}>
 
                     <div className='mx-3' onClick={() => { handleScroll(0); }}>
                       <img src={Haldi} alt="" style={{ height: isMobileh2 ? '140px' : '170px', width:isMobileh2 ? '140px' : '170px' , border: '4px solid  white', borderRadius: 20 }} className='shadow-md drop-shadow-lg' />
+                      <div className='font1 text-xl my-1 justify-center items-center flex font-semibold'>
+                        {CapitalizeFirstLetter(data.eventname[0])}
+                      </div>
                     </div>
 
-                  </AttentionSeeker>
-                  <AttentionSeeker effect='tada' delay={1100} triggerOnce={true}>
+                  </AttentionSeeker> : ''
+                  }
+                 {
+                    data.eventname ? <AttentionSeeker effect='tada' delay={800} triggerOnce={true}>
+
                     <div className='mx-3' onClick={() => { handleScroll(1); }}>
-                      <img src={Engagement} alt="" style={{ height: isMobileh2 ? '140px' : '170px', width:isMobileh2 ? '140px' : '170px', border: '4px solid  white', borderRadius: 20 }} className='shadow-md drop-shadow-lg' />
+                      <img src={Haldi} alt="" style={{ height: isMobileh2 ? '140px' : '170px', width:isMobileh2 ? '140px' : '170px' , border: '4px solid  white', borderRadius: 20 }} className='shadow-md drop-shadow-lg' />
+                      <div className='font1 text-xl my-1 justify-center items-center flex font-semibold'>
+                        {CapitalizeFirstLetter(data.eventname[1])}
+                      </div>
                     </div>
-                  </AttentionSeeker>
+
+                  </AttentionSeeker> : ''
+                  }
                 </div>
-                <div className='flex my-6' >
-                  <AttentionSeeker effect='tada' delay={1400} triggerOnce={true}>
+                <div className='flex justify-center items-center my-6' >
+                {
+                    data.eventname ? <AttentionSeeker effect='tada' delay={800} triggerOnce={true}>
+
                     <div className='mx-3' onClick={() => { handleScroll(2); }}>
-                      <img src={Haldi} alt="" style={{ height: isMobileh2 ? '140px' : '170px', width:isMobileh2 ? '140px' : '170px', border: '4px solid  white', borderRadius: 20 }} className='shadow-md drop-shadow-lg' />
+                      <img src={Haldi} alt="" style={{ height: isMobileh2 ? '140px' : '170px', width:isMobileh2 ? '140px' : '170px' , border: '4px solid  white', borderRadius: 20 }} className='shadow-md drop-shadow-lg' />
+                      <div className='font1 text-xl my-1 justify-center items-center flex font-semibold'>
+                        {CapitalizeFirstLetter(data.eventname[2])}
+                      </div>
                     </div>
-                  </AttentionSeeker>
-                  <AttentionSeeker effect='tada' delay={1800} triggerOnce={true}>
-                    <div className='mx-3' onClick={() => { handleScroll(3); }}>
-                      <img src={Engagement} alt="" style={{ height: isMobileh2 ? '140px' : '170px', width:isMobileh2 ? '140px' : '170px', border: '4px solid  white', borderRadius: 20 }} className='shadow-md drop-shadow-lg' />
-                    </div>
-                  </AttentionSeeker>
+
+                  </AttentionSeeker> : ''
+                  }
+                  
                 </div>
               </div>
             </div>
           </div>
           
-          <div ref={section[0]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
-          <div ref={section[1]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
-          <div ref={section[2]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
-          <div ref={section[3]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div>
+         {data.eventdescription ? <>
+          <div ref={section[0]}>  <Middle2 refence={upsection} text={data.eventdescription[0]} date={data.eventdates[0]} image={Engage}/></div>
+          <div ref={section[1]}>  <Middle2 refence={upsection} text={data.eventdescription[1]} date={data.eventdates[1]} image={Engage}/></div>
+          <div ref={section[2]}>  <Middle2 refence={upsection} text={data.eventdescription[2]} date={data.eventdates[2]} image={Engage}/></div>
+         </>:''}
+          {/* <div ref={section[3]}>  <Middle2 refence={upsection} text={text} date={date} image={Engage}/></div> */}
 
           <div className=''>
 

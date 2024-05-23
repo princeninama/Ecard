@@ -16,3 +16,39 @@ export const RenderPage = ({ model, data }) => {
     }
   };
   
+  // {eventNames.map((eventName, index) => (
+  //   <div key={index}>
+  //   <label htmlFor={`eventname${index}`} className="font-bold border-1">
+  //     Event Name
+  //   </label>
+  //   <input
+  //     type="text"
+  //     name="eventname"
+  //     id={`eventname${index}`}
+  //     placeholder={eventNames[index] || "Event Name"}
+  //     onChange={handleChange}
+  //     className="input border-2 py-1 px-3 w-full"
+  //   />
+  //   <label htmlFor={`eventdate${index}`} className="font-bold border-1">
+  //     Event Date
+  //   </label>
+  //   <input
+  //     type="date"
+  //     name="eventdate"
+  //     id={`eventdate${index}`}
+  //     onChange={handleChange}
+  //     className="input border-2 py-1 px-3 w-full"
+  //   />
+  //   <label htmlFor={`eventdescription${index}`} className="font-bold border-1">
+  //     Event Description
+  //   </label>
+  //   <input
+  //     type="text"
+  //     name="eventdescription"
+  //     id={`eventdescription${index}`}
+  //     placeholder="Event Description"
+  //     onChange={handleChange}
+  //     className="input border-2 py-1 px-3 w-full"
+  //   />
+  // </div>
+  // ))}
