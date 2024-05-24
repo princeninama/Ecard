@@ -9,7 +9,7 @@ import hastmelap from "../../assets/hastmelap.webp";
 import car from "../../assets/car.jpeg";
 import "./style.css";
 
-const Home = () => {
+const Home = ({data}) => {
   return (
     <>
       <div className="mt-0 w-full h-full z-10 relative">
@@ -31,15 +31,18 @@ const Home = () => {
           </div>
           <div className="w-[50%] h-full mt-6">
             <div className="  text-orange-100 lg:ml-16 lg:mt-56">
-              <p className=" text-[0.8rem] z-10 font-serif lg:text-2xl">MAY 2ND 2024</p>
+              <p className=" text-[0.8rem] z-10 font-serif lg:text-2xl"
+              >
+               {data.maindate}
+              </p>
               <p className="text-[2rem] font-serif lg:text-[5rem]  z-10 text-shodaow-lg shadow-red-200">
-
+              {data.firstname}
               </p>
               <p className="font-serif text-[0.5rem] lg:text-[2rem] text-red-200">
-
+          {data.hastag}
               </p>
               <p className="text-[2rem] font-serif lg:text-[5rem] z-10">
-
+              {data.secondname}
               </p>
             </div>
           </div>

@@ -4,10 +4,10 @@ import { useState } from "react";
 import "./../../css/heart.css";
 import Image1 from "../../assets/couplle.jpg";
 import Image2 from "../../assets/couples.jpg";
-const Middle2 = () => {
+const Middle2 = ({data}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [Image1, Image2]; // Add more image paths as needed
-  const textContent1 = ["Haldi", "Sangeet"]; // Add more text as needed
+  const textContent1 = [`${data.eventname}`, "Sangeet"]; // Add more text as needed
   const textContent2 = ["02-05-2004", "03-05-2004"]; // Add more text as needed
   const changeSlide = (newSlide) => {
     setCurrentSlide(newSlide);

@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./../../css/heart.css";
-const Middle3 = () => {
+const Middle3 = ({data}) => {
   const [currentSlide, setcurrentSlide] = useState(0);
 
   const text1 = [
-    "Mr Jivabhai Ninama ",
-    "Mrs. Ramilaben Ninama ",
-    "Mr Vivek Ninama",
-    "Ms. Vinishaben Ninama",
+   `${data.invitedBy}`
   ];
   const text2 = [
     "Mr Nileshbhai Ninama ",

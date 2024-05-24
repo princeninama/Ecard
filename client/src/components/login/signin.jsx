@@ -14,7 +14,11 @@ const Signin = () => {
     navigate('/signup')
   }
   const notify = (Message) => toast(Message);
-
+  const HandleNavigate=()=>
+    {
+      navigate('/forget')
+    }
+  
   const handleLogin = async(e) => {
     e.preventDefault();
     console.log("Logging in with:", { username, password });
@@ -75,6 +79,9 @@ const Signin = () => {
               className="bg-gray-200 rounded-lg p-2 w-full text-black"
             />
           </div>
+          <h1 onClick={HandleNavigate} className="font-mono text-white text-start underline hover:text-blue-400">
+              Forget Password?
+            </h1>
           <button
             type="submit"
             className="bg-blue-500 text-white rounded-lg px-4 py-2"
