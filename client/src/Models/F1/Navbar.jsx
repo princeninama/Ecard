@@ -35,16 +35,30 @@ const Navbar = () => {
         {/* Navigation links for small and medium devices */}
         {(showDropdown || window.innerWidth >= 640) && (
           <div className="hidden sm:flex sm:mr-5 space-x-4">
-            <div className="cursor-pointer hover:text-gray-700"  onClick={() => scrollToSection("eventsSection")}
-        >Events</div>
-            <div className="cursor-pointer hover:text-gray-700"  onClick={() => scrollToSection("imagesection")}
-        >
+            <div
+              className="cursor-pointer hover:text-gray-700"
+              onClick={() => scrollToSection("eventsSection")}
+            >
+              Events
+            </div>
+            <div
+              className="cursor-pointer hover:text-gray-700"
+              onClick={() => scrollToSection("imagesection")}
+            >
               Pre Wedding
             </div>
-            <div className="cursor-pointer hover:text-gray-700"  onClick={() => scrollToSection("eventsSection")}
-        >Reception</div>
-            <div className="cursor-pointer hover:text-gray-700"  onClick={() => scrollToSection("mapSection")}
-        >Map</div>
+            <div
+              className="cursor-pointer hover:text-gray-700"
+              onClick={() => scrollToSection("eventsSection")}
+            >
+              Reception
+            </div>
+            <div
+              className="cursor-pointer hover:text-gray-700"
+              onClick={() => scrollToSection("mapSection")}
+            >
+              Map
+            </div>
           </div>
         )}
 

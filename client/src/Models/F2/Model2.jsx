@@ -4,7 +4,6 @@ import Middle1 from "./Middle1";
 import Middle2 from "./Middle2";
 import Middle3 from "./Middle3";
 import Middle4 from "./Middle4";
-
 const Model2 = () => {
   
   const [data, setdata] = useState({});
@@ -37,9 +36,9 @@ const Model2 = () => {
     <div>
       <Navbar />
       <Middle1 data={data}/>
-      <Middle2 data={data}/>
+       <Middle2 data={data}/> 
       <Middle3 data={data}/>
-      <Middle4 data={data}/>
+      <Middle4 data={data}/> 
     </div>
   );
 };
