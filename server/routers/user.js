@@ -3,11 +3,13 @@ import { SaveTemplates, loadtemplates, logOut, login, signup } from '../controll
 import { isAuthenticated } from '../middleware/auth.js'
 import upload from '../middleware/multer.js'
 import { forget } from '../controllers/user.js'
+import { uploadImage } from '../controllers/user.js'
 import { getecard } from '../controllers/card.js'
 const router = express.Router()
 
 router.post("/new",signup)
 router.post("/login",login)
+router.post("/upload",uploadImage)
 router.get("/forget",forget)
 router.post('/post',upload.single('file'),SaveTemplates)
 router.get('/logout',isAuthenticated,logOut)

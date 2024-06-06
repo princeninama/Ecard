@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 const Middlebox = () => {
   return (
-    <div className="mx-2 md:mx-4 lg:mx-6 h-[21rem] xl:mx-8 my-6  rounded-lg overflow-hidden relative shadow-lg flex justify-center items-center">
+    <div className="mx-2 md:mx-4 lg:mx-6 h-[21rem] xl:mx-8 mt-7  rounded-lg overflow-hidden relative shadow-lg flex justify-center items-center">
       <div className="absolute inset-x-0 z-10 top-8 text-center text-2xl font-semibold text-gray-600"></div>
       <div className="absolute w-full h-full bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200"></div>
       {/* <div className="absolute mt-24 " style={{ top: "-30px" }}>
@@ -43,7 +43,7 @@ const Middlebox = () => {
         
         </div>
       ))} */}
-      <div className=" w-full mt-60 ">
+      <div className=" w-full  ">
       <Swiper
         slidesPerView={4}
         spaceBetween={50}

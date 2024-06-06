@@ -1,3 +1,10 @@
+.flip-card.no-flip .flip-card-inner {
+  transform: none;
+}
+
+.flip-card.no-flip .flip-card-inner:hover {
+  transform: none;
+}
 
 .flip-card {
     background-color: transparent;

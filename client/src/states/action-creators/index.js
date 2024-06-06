@@ -119,3 +119,34 @@ export const FormSubmit = (data) =>(dispatch) => {
     payload: data,
   });
 };
+
+export const uploadImage = (imageFile) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("image", imageFile);
+
+  try {
+    const response = await axios.post(`${server}/api/user/upload`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    console.log("Server response:", response.data);
+
+    const imageUrl = response.data.data.imageUrl;
+
+    dispatch({
+      type: "upload_success",
+      payload: imageUrl,
+    });
+
+    return imageUrl;
+  } catch (error) {
+    console.log("Error in image upload:", error);
+    dispatch({
+      type: "upload_fail",
+      payload: error.message,
+    });
+    return null;
+  }
+};

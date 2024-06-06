@@ -47,12 +47,7 @@ const Navbar = () => {
             >
               Pre Wedding
             </div>
-            <div
-              className="cursor-pointer hover:text-gray-700"
-              onClick={() => scrollToSection("eventsSection")}
-            >
-              Reception
-            </div>
+           
             <div
               className="cursor-pointer hover:text-gray-700"
               onClick={() => scrollToSection("mapSection")}

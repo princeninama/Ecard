@@ -3,11 +3,14 @@ import { config } from 'dotenv'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import path from 'path';
+import { fileURLToPath } from 'url';
 config({
     path: './General.env',
 })
 
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const app = express()
 
@@ -31,4 +34,4 @@ import user from './routers/user.js'
 
 app.use('/api/ecard',ecard)
 app.use('/api/user',user)
-
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));

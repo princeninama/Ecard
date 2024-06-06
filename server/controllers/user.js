@@ -1,9 +1,30 @@
 import { User } from "../models/User.js";
 import { asyncError } from "../middleware/error.js";
 import errorHanlder from "../utils/errorHandler.js";
-
 import { cookieOptions, sendToken } from "../utils/features.js";
 import { Templates } from "../models/templets.js";
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+// import { asyncError } from '../middleware/error.js';
+import multer from "multer";
+import { Photos } from "../models/Photo.js";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dir = path.join(__dirname, '../public/uploads');
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir, { recursive: true });
+    }
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+const upload = multer({ storage }).single("image");
 
 export const signup = asyncError(async (req, res, next) => {
   const { email, password } = req.body;
@@ -107,11 +128,32 @@ export const forget = async (req, res) => {
   const email = req.body;
   let user = await User.findOne({ email: email });
   if (!user) {
-    console.log("User not exist for forgot password")
+    console.log("User not exist for forgot password");
     return false;
-  }
-  else
-  {
+  } else {
     //send gmail to the user
   }
 };
+
+
+export const uploadImage = asyncError(async (req, res) => {
+  upload(req, res, async (err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error uploading file', success: false });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded', success: false });
+    }
+
+    const imageUrl = `/uploads/${req.file.filename}`;
+
+    res.status(201).json({
+      message: 'Image uploaded successfully',
+      success: true,
+      data: {
+        imageUrl,
+      },
+    });
+  });
+});
