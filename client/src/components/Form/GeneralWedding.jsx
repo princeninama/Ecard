@@ -1,92 +1,112 @@
 import React, { useState } from "react";
-import { FormSubmit } from "../../states/action-creators";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 const GeneralWedding = () => {
-  const [fileInputs, setFileInputs] = useState([]);
+  const [events, setEvents] = useState([
+    { name: "", date: "", description: "" },
+    { name: "", date: "", description: "" },
+    { name: "", date: "", description: "" },
+  ]);
   const dispatch = useDispatch();
-  const addFileInput = () => {
-    setFileInputs([...fileInputs, { key: fileInputs.length }]);
-  };
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    firstname: "",
-    secondname: "",
+    Bride_name: "",
+    Groom_name: "",
     location: "",
-    maindate: "",
-    dates: [],
-    eventname: [],
-    invitedBy: "",
-    photos: [],
+    Wedding_Date: "",
     map_url: "",
+    invitedBy: [],
   });
-
-  const handleFileChange = (e, index) => {
-    const files = [...formData.photos];
-    files[index] = e.target.files[0];
-    setFormData({
-      ...formData,
-      photos: files,
-    });
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "eventname") {
-      const index = parseInt(e.target.id.replace("eventname", ""));
-      const updatedEventNames = [...formData.eventname];
-      updatedEventNames[index] = value;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleEventChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedEvents = [...events];
+    updatedEvents[index][name] = value;
+    setEvents(updatedEvents);
+  };
+
+  const addEvent = () => {
+    setEvents([...events, { name: "", date: "", description: "" }]);
+  };
+
+  const extractSrcFromIframe = (embedCode) => {
+    const srcMatch = embedCode.match(/src="([^"]*)"/);
+    return srcMatch ? srcMatch[1] : "";
+  };
+
+  const handleMapUrlChange = () => {
+    const embedCode = prompt("Please paste the Google Maps embed code:");
+    if (embedCode) {
+      const mapUrl = extractSrcFromIframe(embedCode);
       setFormData({
         ...formData,
-        eventname: updatedEventNames,
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
+        map_url: mapUrl,
       });
     }
   };
 
-  const placeholders = {
-    maindate: "Enter Date",
-    firstname: "Enter Bride's Name",
-    secondname: "Enter Groom's Name",
-    hastag: "Enter #Couple",
-    dates: "Enter Date of Events",
-    invitedBy: "Enter Family's Names",
-    map_url: "Enter Map Location",
-    location: "Enter Venue Location",
+  const handleInviteeChange = (e, index) => {
+    const { value } = e.target;
+    const updatedInvitedBy = [...formData.invitedBy];
+    updatedInvitedBy[index] = value;
+    setFormData({
+      ...formData,
+      invitedBy: updatedInvitedBy,
+    });
   };
 
-  const eventNames = ["Haldi", "Mehndi", "Sagai", "Ras Garba", "Wedding"];
+  const addInvitee = () => {
+    setFormData({
+      ...formData,
+      invitedBy: [...formData.invitedBy, ""],
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const finalFormData = {
+      ...formData,
+      events,
+    };
 
-    sessionStorage.setItem('Formdata',JSON.stringify(formData))
-    localStorage.setItem('mode','preview')
-    
-    console.log("form's data is collected");
-    const Modelname = sessionStorage.getItem('modelname')
-    navigate(`/preview/${Modelname}` , {state : {Modelname:Modelname}});
+    sessionStorage.setItem("Formdata", JSON.stringify(finalFormData));
+    localStorage.setItem("mode", "preview");
+
+    console.log("form's data is collected",finalFormData.events[0].name);
+    const Modelname = sessionStorage.getItem("modelname");
+    // navigate(`/preview/${Modelname}`, { state: { Modelname: Modelname } });
+  };
+
+  const placeholders = {
+    Wedding_Date: "Enter Date",
+    Bride_name: "Enter Bride's Name",
+    Groom_name: "Enter Groom's Name",
+    hastag: "Enter #Couple",
+    location: "Enter Venue Location",
   };
 
   return (
     <div className="container mx-auto p-6 bg-slate-200">
       <form className="grid gap-4" onSubmit={handleSubmit}>
-        <h1 className="text-4xl font-serif italic">
-          User Need to Insert The Actual Values From Here.
-        </h1>
+        <h1 className="text-4xl font-serif italic">Enter The Details</h1>
         {Object.entries(placeholders).map(([name, placeholder]) => (
           <div key={name}>
             <label htmlFor={name} className="font-bold border-1">
               {name.charAt(0).toUpperCase() + name.slice(1)}
             </label>
             <input
-              type={name === "maindate" || name === "dates" ? "date" : "text"}
+              type={name === "Wedding_Date" ? "date" : "text"}
               name={name}
               id={name}
               placeholder={placeholder}
@@ -97,53 +117,95 @@ const GeneralWedding = () => {
           </div>
         ))}
 
-        {eventNames.map((eventName, index) => (
-          <div key={index}>
-            <label htmlFor={`eventname${index}`} className="font-bold border-1">
-              Event Name
-            </label>
+        {events.map((event, index) => (
+          <div key={index} className="grid gap-4">
+            <label className="font-bold border-1">Event {index + 1}</label>
             <input
               type="text"
-              name="eventname"
-              id={`eventname${index}`}
-              placeholder={eventName}
-              onChange={handleChange}
-              className="input border-2 py-1 px-3 w-full"
+              name="name"
+              placeholder={`Event Name ${index + 1}`}
+              value={event.name}
+              onChange={(e) => handleEventChange(e, index)}
+              className="input border-2 py-1 px-3 rounded w-full"
             />
-          </div>
-        ))}
-
-        <input
-          type="file"
-          onChange={handleFileChange}
-          value={formData.photos}
-          name={`file`}
-          id={`file`}
-        />
-
-        {fileInputs.map((input, index) => (
-          <div key={input.key}>
             <input
-              type="file"
-              name={`file${index}`}
-              onChange={handleFileChange}
-              id={`file${index}`}
-              value={formData.photos}
+              type="date"
+              name="date"
+              placeholder={`Event Date ${index + 1}`}
+              value={event.date}
+              onChange={(e) => handleEventChange(e, index)}
+              className="input border-2 py-1 px-3 rounded w-full"
+            />
+            <textarea
+              name="description"
+              placeholder={`Event Description ${index + 1}`}
+              value={event.description}
+              onChange={(e) => handleEventChange(e, index)}
+              className="input border-2 py-1 px-3 rounded w-full"
             />
           </div>
         ))}
-
         <button
           type="button"
-          onClick={addFileInput}
+          onClick={addEvent}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded"
         >
-          Add One More Pic
+          Add Another Event
         </button>
 
+        <div>
+          <label htmlFor="map_url" className="font-bold border-1">
+            Map URL
+          </label>
+          <input
+            type="text"
+            name="map_url"
+            id="map_url"
+            placeholder="Enter Map Location"
+            value={formData.map_url}
+            onChange={handleChange}
+            className="input border-2 py-1 px-3 rounded w-full"
+          />
+          <button
+            type="button"
+            onClick={() => window.open("https://www.google.com/maps", "_blank")}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded mt-2"
+          >
+            Open Google Maps
+          </button>
+          <button
+            type="button"
+            onClick={handleMapUrlChange}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded mt-2"
+          >
+            Set Google Maps Link
+          </button>
+        </div>
+
+        <div>
+          <label className="font-bold border-1">Invited By</label>
+          {formData.invitedBy.map((invitee, index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder={`Invitee ${index + 1}`}
+              value={invitee}
+              onChange={(e) => handleInviteeChange(e, index)}
+              className="input border-2 py-1 px-3 rounded w-full mt-2"
+            />
+          ))}
+          <button
+            type="button"
+            onClick={addInvitee}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded mt-2"
+          >
+            Add Another Invitee
+          </button>
+        </div>
+
         <button
+          type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded"
-          onChange={handleSubmit}
         >
           SUBMIT
         </button>

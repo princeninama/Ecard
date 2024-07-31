@@ -57,7 +57,7 @@ function App() {
       <Route path="/signin" element={<Signin />} /> 
       <Route path="/main/model1" element={<Form3 Model={Model1} Modelname={'model1'} Formname={GeneralWedding}/>} />
       <Route path="/main/model2" element={<Form3 Model={Model2} Modelname={'model2'} Formname={GeneralWedding}/>} />
-      <Route path="/main/model4" element={<Form3 Model={Model4} Modelname={'model4'} Formname={GeneralWedding}/>} />
+      <Route path="/main/model4" element={<Form3 Model={Model4} Modelname={'model4'} Formname={Model3form}/>} />
       <Route path='/main/model3' element={<Form3 Model={Model3} Modelname={'model3'} Formname={Model3form}/>} >
             {/* <Route path='map' element={<Map/>} />
             <Route path='album' element={<Album/>} />
