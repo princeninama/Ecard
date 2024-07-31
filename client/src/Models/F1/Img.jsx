@@ -1,6 +1,11 @@
 import React from "react";
 
-const Img = () => {
+const Img = ({ data }) => {
+  // // Access photos from data
+  // const firstPhoto = data.photos[0];
+  // const secondPhoto = data.photos[1];
+  
+  // Set up other images based on screen width
   let imgsrc = [];
   let images = [];
   let isSmallScreen = window.innerWidth <= 320;
@@ -15,13 +20,29 @@ const Img = () => {
 
   return (
     <div id="imagesection" className="flex justify-between relative">
+      {/* <div className="flex flex-col items-center">
+        {firstPhoto && (
+          <img
+            src={firstPhoto.src}
+            alt={firstPhoto.alt}
+            className="h-40 w-auto lg:h-80 opacity-100"
+          />
+        )}
+        {secondPhoto && (
+          <img
+            src={secondPhoto.src}
+            alt={secondPhoto.alt}
+            className="h-40 w-auto lg:h-80 opacity-100"
+          />
+        )}
+      </div> */}
       <div className="flex flex-col items-center">
         {imgsrc.map((image, index) => (
           <img
             key={index}
             src={image.src}
             alt={image.alt}
-            className="h-40 w-auto lg:h-80  opacity-100"
+            className="h-40 w-auto lg:h-80 opacity-100"
           />
         ))}
       </div>

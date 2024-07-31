@@ -48,7 +48,7 @@ const Model1 = () => {
     <div>
       <Navbar />
       <Home data={data}/>
-      <Img />
+      <Img data={data} />
       <Message data={data}/>
       {/* <GeneralWedding /> */}
     </div>

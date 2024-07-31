@@ -82,6 +82,9 @@ const Show = () =>{
     return(
         <div className='bg-gradient-to-br from-red-500 via-pink-300 to-rose-300 h-screen w-screen'>
             <div className='justify-center flex items-center'>
+            <div>
+        
+      </div>
             <div  className='scrollbar h-screen overflow-y-scroll' id='scroll'>
             {card.map((images,index)=>(
                

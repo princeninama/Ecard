@@ -17,10 +17,10 @@ const Model2 = () => {
       console.log("data : ", formData);
     } else {
       const value = {
-        firstname: "Twinkal",
-        secondname: "Tejas",
+        Bride_name: "Twinkal",
+        Groom_name: "Tejas",
         location: "Saydi,Torda , Bhiloda, Gujarat",
-        maindata: "02/01/2004",
+        Wedding_Date: "02/01/2004",
         dates: "01/01/2004",
         eventname: "Mahendi",
         invitedBy: "Mr, Jivabhai",

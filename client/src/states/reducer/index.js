@@ -1,10 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { act } from "react";
 const initialState = {
-  firstname: "Twinkal",
-  secondname: "Tejas",
+  Bride_name: "Twinkal",
+  Groom_name: "Bhaillo",
   location: "Saydi,Torda",
-  maindate: "02/042004",
+  Wedding_Date: "02/042004",
   dates: ["01/01/2004", "02/01/2004", "03/01/2004"],
   eventname: ["Ras Garba", "mahendi", "Sagai", "Varghodo"],
   invitedBy: "Mr. Jivabhai Ninama , Mrs. Ramilaben Ninama",
@@ -53,10 +53,10 @@ export const userReducer = createReducer({}, (builder) => {
     })
     .addCase("formdata_success", (state, action) => {
       const data = action.payload;
-      state.firstname = data.firstname;
-      state.secondname = data.secondname;
+      state.Bride_name = data.Bride_name;
+      state.Groom_name = data.Groom_name;
       state.location = data.location;
-      state.maindate = data.maindate;
+      state.Wedding_Date = data.Wedding_Date;
       state.dates = data.dates;
       state.eventname = data.eventname;
       state.invitedBy = data.invitedBy;
