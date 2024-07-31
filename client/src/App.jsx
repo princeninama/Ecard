@@ -35,7 +35,7 @@ function App() {
       <Route path="/" element={<Index />} />
       <Route path="/main" element={<Mainpage />} />
       <Route path="/preview" element={<Preview />} />
-      
+      <Route path="/general" element={<GeneralWedding />} />
       <Route path='/preview/model1' element={<Preview/>} />
       <Route path='/preview/model2' element={<Preview/>} />
       <Route path='/preview/model3' element={<Preview/>} >
