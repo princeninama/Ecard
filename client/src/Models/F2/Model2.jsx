@@ -19,11 +19,14 @@ const Model2 = () => {
       const value = {
         Bride_name: "Twinkal",
         Groom_name: "Tejas",
-        location: "Saydi,Torda , Bhiloda, Gujarat",
-        Wedding_Date: "02/01/2004",
-        dates: "01/01/2004",
-        eventname: "Mahendi",
-        invitedBy: "Mr, Jivabhai",
+        location: "Saydi,Torda, Bhiloda, Gujarat",
+        Wedding_Date: "2004-01-02",
+        events: [
+          { name: "Mahendi", date: "01-01-2024", description: "Mahendi Hai rachne wali" },
+          { name: "Puja Path", date: "01-06-2025", description: "" },
+          { name: "Wedding", date: "01-06-2025", description: "" },
+        ],
+        invitedBy: ["Mr. Jivabhai"],
         hastag: "#TwinTej",
         map_url:
           "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.259407846772!2d73.3104949!3d23.8093729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395d850068f0ee4b%3A0x50db475944194ce9!2sSaydi!5e0!3m2!1sen!2sin!4v1716543496127!5m2!1sen!2sin",

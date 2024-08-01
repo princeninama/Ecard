@@ -1,7 +1,7 @@
 
 import Login from './screens/login'
 // import Model1 from './Models/F1/model1'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes,Navigate } from 'react-router-dom';
 import Mainpage from './screens/Mainpage'
 import Create from './screens/create'
 import Show from './components/Mainpage/More'
@@ -24,16 +24,18 @@ import Preview from './screens/preview';
 import GeneralWedding from './components/Form/GeneralWedding';
 import Model3form from './components/Form/Model3form';
 import Model4 from './Models/F4/mainpage';
-
+import { useAuthContext } from './context/useAuthcontext';
 
 function App() {
+  const {authUser}=useAuthContext();
+  console.log(authUser);
   return (
     
     <BrowserRouter>
     <Routes>
 
-      <Route path="/" element={<Index />} />
-      <Route path="/main" element={<Mainpage />} />
+      <Route path="/" element={ authUser? <Navigate to={"/main"}/>:<Index />} />
+      <Route path="/main" element={authUser?  <Mainpage />:<Navigate to={"/signin"}/>} />
       <Route path="/preview" element={<Preview />} />
       <Route path="/general" element={<GeneralWedding />} />
       <Route path='/preview/model1' element={<Preview/>} />
@@ -52,9 +54,9 @@ function App() {
         <Route path='model2' element={<Model2/>} />
         <Route path='model4' element={<Model4/>} />
       </Route>
-      <Route path="/signUp" element={<Login />} />
+      <Route path="/signUp" element={authUser? <Navigate to={"/main"}/>:<Login />} />
       <Route path="/forget" element={<Forget />} />
-      <Route path="/signin" element={<Signin />} /> 
+      <Route path="/signin" element={authUser? <Navigate to={"/main"}/>:<Signin />} /> 
       <Route path="/main/model1" element={<Form3 Model={Model1} Modelname={'model1'} Formname={GeneralWedding}/>} />
       <Route path="/main/model2" element={<Form3 Model={Model2} Modelname={'model2'} Formname={GeneralWedding}/>} />
       <Route path="/main/model4" element={<Form3 Model={Model4} Modelname={'model4'} Formname={Model3form}/>} />

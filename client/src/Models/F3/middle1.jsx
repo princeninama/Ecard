@@ -99,16 +99,23 @@ const Middle1 = () => {
     }
   else{
     const value = {
-      firstname:'abc',
-      secondname:'bcgd',
-      eventname:['aaa','bbb','ccc','ddd'],
-      eventdescription:[text,text,text],
-      eventdates:[date,date,date]
-
-    }
-    setdata(value)
+      Bride_name: "Twinkal",
+      Groom_name: "Tejas",
+      location: "Saydi,Torda, Bhiloda, Gujarat",
+      Wedding_Date: "2004-01-02",
+      events: [
+        { name: "Mahendi", date: "01-01-2024", description: "Mahendi Hai rachne wali" },
+        { name: "Puja Path", date: "01-06-2025", description: "" },
+        { name: "Wedding", date: "01-06-2025", description: "" },
+      ],
+      invitedBy: ["Mr. Jivabhai"],
+      hastag: "#TwinTej",
+      map_url:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.259407846772!2d73.3104949!3d23.8093729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395d850068f0ee4b%3A0x50db475944194ce9!2sSaydi!5e0!3m2!1sen!2sin!4v1716543496127!5m2!1sen!2sin",
+    };
+    setdata(value);
   }
-  },[])
+}, []);
   // if(mode == 'preview')
   //   {
   //      setdata(JSON.parse(sessionStorage.getItem('Formdata')))
@@ -155,7 +162,7 @@ const Middle1 = () => {
             <AttentionSeeker effect='bounce' triggerOnce={true}>
 
               <div className={`items-center text-center justify-center font mx-5 ${isMobileh ? 'mt-40 text-5xl mb-5' :( isMobileh1 ? 'mt-24 text-5xl mb-5' : (isMobileh2 ? 'mt-20 text-5xl mb-2' : 'mt-48 text-6xl mb-5')) } `}>
-                Welcome to The Wedding of {data.firstname} And {data.secondname}
+                Welcome to The Wedding of {data.Groom_name} And {data.Bride_name}
               </div>
     
             </AttentionSeeker>
@@ -181,7 +188,7 @@ const Middle1 = () => {
                     <div className='mx-3' onClick={() => { handleScroll(1); }}>
                       <img src={Haldi} alt="" style={{ height: isMobileh2 ? '140px' : '170px', width:isMobileh2 ? '140px' : '170px' , border: '4px solid  white', borderRadius: 20 }} className='shadow-md drop-shadow-lg' />
                       <div className='font1 text-xl my-1 justify-center items-center flex font-semibold'>
-                        {CapitalizeFirstLetter(data.eventname[1])}
+                        {CapitalizeFirstLetter(data.events[0].name)}
                       </div>
                     </div>
 
@@ -195,7 +202,7 @@ const Middle1 = () => {
                     <div className='mx-3' onClick={() => { handleScroll(2); }}>
                       <img src={Haldi} alt="" style={{ height: isMobileh2 ? '140px' : '170px', width:isMobileh2 ? '140px' : '170px' , border: '4px solid  white', borderRadius: 20 }} className='shadow-md drop-shadow-lg' />
                       <div className='font1 text-xl my-1 justify-center items-center flex font-semibold'>
-                        {CapitalizeFirstLetter(data.eventname[2])}
+                        {CapitalizeFirstLetter(data.events[0].name)}
                       </div>
                     </div>
 

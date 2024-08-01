@@ -1,5 +1,4 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { act } from "react";
 const initialState = {
   Bride_name: "Twinkal",
   Groom_name: "Bhaillo",

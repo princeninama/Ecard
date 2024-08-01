@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { signup } from "../../states/action-creators";
+import { useAuthContext } from "../../context/useAuthcontext";
 const Signup = () => {
 
-
+  const {setAuthUser}=useAuthContext();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const { message,auth } = useSelector((state) => state.user);
@@ -41,7 +42,7 @@ const Signup = () => {
       notify("Passwords don't match");
       return;
     }
-    const resp = await dispatch(signup(email,password));
+    const resp = await dispatch(signup(email,password,setAuthUser));
     console.log('fetch success')
     // console.log(message,auth)
     notify(resp.message)
