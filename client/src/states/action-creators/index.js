@@ -1,7 +1,7 @@
 import { server } from "../api";
 import axios from "axios";
 
-export const signup = (email, password) => async (dispatch) => {
+export const signup = (email, password,setAuthUser) => async (dispatch) => {
   try {
     const { data } = await axios.post(
       `${server}/api/user/new`,
@@ -18,6 +18,9 @@ export const signup = (email, password) => async (dispatch) => {
     document.cookie = `token=${data.token} expires=${new Date(
       Date.now() + 1000 * 60 * 60 * 24 * 5
     ).toUTCString()} path=/`;
+    const resp=data.data;
+    localStorage.setItem("authuser", JSON.stringify(resp));
+    setAuthUser(resp);
     return data;
   } catch (error) {
     console.log("errror in sign up is ", error);
@@ -28,15 +31,17 @@ export const signup = (email, password) => async (dispatch) => {
   }
 };
 
-export const login = async (username, password) => {
+export const login = async (username, password,setAuthUser) => {
   try {
-    const data = await axios.post(`${server}/api/user/login`, {
+    const response = await axios.post(`${server}/api/user/login`, {
       username,
       password,
     });
-
-    console.log("this is data = ", data);
-    return data;
+    const item=response.data;
+    localStorage.setItem("authUser", JSON.stringify(item));
+    setAuthUser(item);
+    console.log("this is data = ", response);
+    return response;
   } catch (error) {
     console.log("error in login", error);
   }

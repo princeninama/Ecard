@@ -4,12 +4,14 @@ import Video from "../../../public/smoke.mp4"
 import {login} from "../../states/action-creators/index"
 import { useDispatch } from "react-redux";
 import { toast,ToastContainer } from "react-toastify";
+import { useAuthContext } from "../../context/useAuthcontext";
 const Signin = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginstate, setloginstate] = useState("Login");
   const navigate = useNavigate()
+  const {setAuthUser}=useAuthContext();
   const handleSignup=()=>{
     navigate('/signup')
   }
@@ -22,7 +24,7 @@ const Signin = () => {
   const handleLogin = async(e) => {
     e.preventDefault();
     console.log("Logging in with:", { username, password });
-    const response= await login(username,password)
+    const response= await login(username,password,setAuthUser)
     console.log("fethced success", response);
     setUsername("");
     setPassword("");

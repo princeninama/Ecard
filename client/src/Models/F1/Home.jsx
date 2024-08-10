@@ -74,16 +74,16 @@ const Home = ({ data }) => {
           <div className="w-[50%] h-full mt-6">
             <div className="text-orange-100 lg:ml-16 lg:mt-56">
               <p className="text-[0.8rem] z-10 font-serif lg:text-2xl">
-                {data.maindate}
+                {data.Wedding_Date}
               </p>
               <p className="text-[2rem] font-serif lg:text-[5rem] z-10 text-shadow-lg shadow-red-200">
-                {data.firstname}
+                {data.Bride_name}
               </p>
               <p className="font-serif text-[0.5rem] lg:text-[2rem] text-red-200">
                 {data.hastag}
               </p>
               <p className="text-[2rem] font-serif lg:text-[5rem] z-10">
-                {data.secondname}
+                {data.Groom_name}
               </p>
             </div>
           </div>
@@ -100,8 +100,7 @@ const Home = ({ data }) => {
         id="eventsSection"
       >
         <div className="text-black text-left text-[1rem] p-3 lg:ml-8 lg:text-3xl">
-          <h1>01 MAY</h1>
-          <h1>Wednesday</h1>
+        <h1>{data.events[0].date}</h1>
         </div>
         <div className="lg:flex lg:pl-[18rem]">
           <div className={`flip-card ${isEditing ? 'no-flip' : ''}`}>
@@ -125,8 +124,7 @@ const Home = ({ data }) => {
                 )}
               </div>
               <div className="flip-card-back w-40 text-black">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam</p>
-                <p>10 AM</p>
+                <p>{data.events[0].description}</p>
               </div>
             </div>
           </div>
@@ -151,8 +149,7 @@ const Home = ({ data }) => {
                 )}
               </div>
               <div className="flip-card-back w-40 text-black">
-                <p></p>
-                <p>9 PM</p>
+                <p>{data.events[1].description}</p>
               </div>
             </div>
           </div>
@@ -177,15 +174,15 @@ const Home = ({ data }) => {
                 )}
               </div>
               <div className="flip-card-back w-40 text-black">
-                <p>Jamanwar</p>
-                <p>9 AM</p>
+                <p>
+                  {data.events[2].description}
+                </p>
               </div>
             </div>
           </div>
         </div>
         <div className="text-left text-[1rem] p-3 mt-[12rem] lg:text-3xl lg:ml-8 lg:mt-64">
-          <h1></h1>
-          <h1>THURSDAY</h1>
+          {data.events[1].date}
         </div>
         <div className="lg:flex sm:flex-row sm:space-x-4 lg:pl-[15rem]">
           <div className={`flip-card ${isEditing ? 'no-flip' : ''}`}>
@@ -209,8 +206,7 @@ const Home = ({ data }) => {
                 )}
               </div>
               <div className="flip-card-back w-40 text-black">
-                <p></p>
-                <p>9 AM</p>
+                {data.events[0].description}
               </div>
             </div>
           </div>
@@ -235,8 +231,7 @@ const Home = ({ data }) => {
                 )}
               </div>
               <div className="flip-card-back w-40 text-black">
-                <p></p>
-                <p>9 AM</p>
+                {data.events.description}
               </div>
             </div>
           </div>

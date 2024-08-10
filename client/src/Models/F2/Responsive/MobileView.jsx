@@ -7,7 +7,7 @@ import Image2 from "../../../assets/couples.jpg";
 const Mobileview = ({ data }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [Image1, Image2];
-  const textContent1 = [`${data.eventname}`, "Sangeet"];
+  const textContent1 = [`${data.events[0].name}`, "Sangeet"];
   const textContent2 = ["02-05-2004", "03-05-2004"];
 
   useEffect(() => {

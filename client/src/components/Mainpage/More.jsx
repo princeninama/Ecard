@@ -1,7 +1,4 @@
-import Image1 from '../../../public/sample1.jpg'
-import Image2 from '../../../public/sample2.jpg'
-import Image3 from '../../../public/sample3.png'
-import Image4 from '../../../public/smaple4.png'
+
 import '../../css/mainpage.css'
 import { useState,useEffect } from 'react'
 import { loadtemplates } from '../../states/action-creators'
