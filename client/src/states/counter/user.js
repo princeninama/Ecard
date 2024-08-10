@@ -22,7 +22,13 @@ export const userReducer = createSlice({
     reducers: {
         // Add your reducer functions here
         saveuser : (state,action) =>{
+            // console.log('here');
+            // console.log(action.payload)
             state.user = action.payload;
+            // console.log(state.user)
         }
     }
 })
+
+export const { saveuser} = userReducer.actions;
+export default userReducer.reducer

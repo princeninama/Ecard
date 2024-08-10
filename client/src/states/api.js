@@ -5,11 +5,12 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import counterReducer from './counter/counter';
+import  userReducer  from './counter/user';
 // import postReducer from './reducer/index'; // Uncomment and use if you have more reducers
 
 // Combine your reducers
 const rootReducer = combineReducers({
-  counter: counterReducer,
+  user: userReducer,
   // post: postReducer,
 });
 

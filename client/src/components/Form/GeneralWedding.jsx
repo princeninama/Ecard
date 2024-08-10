@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { saveuser } from "../../states/counter/user";
+import { increment } from "../../states/counter/counter";
 const GeneralWedding = () => {
+
   const [events, setEvents] = useState([
     { name: "", date: "", description: "" },
     { name: "", date: "", description: "" },
@@ -80,12 +82,15 @@ const GeneralWedding = () => {
       events,
     };
 
-    sessionStorage.setItem("Formdata", JSON.stringify(finalFormData));
-    localStorage.setItem("mode", "preview");
+    // sessionStorage.setItem("Formdata", JSON.stringify(finalFormData));
+    // localStorage.setItem("mode", "preview");
 
-    console.log("form's data is collected",finalFormData.events[0].name);
-    const Modelname = sessionStorage.getItem("modelname");
+    // console.log("form's data is collected",finalFormData.events[0].name);
+    // const Modelname = sessionStorage.getItem("modelname");
     // navigate(`/preview/${Modelname}`, { state: { Modelname: Modelname } });
+    console.log(finalFormData);
+    dispatch(saveuser(finalFormData))
+
   };
 
   const placeholders = {
@@ -206,6 +211,7 @@ const GeneralWedding = () => {
         <button
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded"
+          onClick={handleSubmit}
         >
           SUBMIT
         </button>
