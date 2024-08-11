@@ -1,9 +1,10 @@
 import { useDispatch} from 'react-redux'
 import '../../css/mainpage.css'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { changeTemplates } from '../../states/action-creators'
 import { useState } from 'react'
-
+import { choosemodel } from '../../states/counter/generaldata'
+import { inittransferdata } from '../../states/counter/user'
 
 
 
@@ -23,9 +24,12 @@ const Container = ({ card }) => {
         dispatch(changeTemplates(title))
        
     }
-    const handleOpenNewTab = (path) => {
+    const handleOpenNewTab = (path,title) => {
         localStorage.setItem('mode','a')
-        window.open(path, '_blank');
+        navigtor(path)
+        // console.log(title)
+        dispatch(choosemodel(title))
+        dispatch(inittransferdata())
     };
     const GotoMore = () => {
         navigtor('/show')
@@ -41,7 +45,7 @@ const Container = ({ card }) => {
                     {images.map(((image, idex) => (
 
                         <div style={{ margin: '15px 30px', cursor: 'pointer' }} className=' h-[320px] '>
-                            <img src={image.imageURL} alt="" style={{ height: 300, width: 300, border: '3px solid #f2ca5c', borderRadius: 10 }} className='image'  onClick={()=>{handleOpenNewTab(`/main/${image.title}`)}}/>
+                            <img src={image.imageURL} alt="" style={{ height: 300, width: 300, border: '3px solid #f2ca5c', borderRadius: 10 }} className='image'  onClick={()=>{handleOpenNewTab(`/main/${image.title}`,image.title)}}/>
                             <div className=' justify-center items-center flex'>{image.title}</div>
                         </div>
                     )))}

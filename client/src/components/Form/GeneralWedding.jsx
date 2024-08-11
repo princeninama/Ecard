@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveuser } from "../../states/counter/user";
-import { increment } from "../../states/counter/counter";
+// import { increment } from "../../states/counter/counter";
 const GeneralWedding = () => {
 
+  const model = useSelector((state)=>state.generalState.model)
+  // console.log(model)
   const [events, setEvents] = useState([
     { name: "", date: "", description: "" },
     { name: "", date: "", description: "" },
@@ -90,6 +92,8 @@ const GeneralWedding = () => {
     // navigate(`/preview/${Modelname}`, { state: { Modelname: Modelname } });
     console.log(finalFormData);
     dispatch(saveuser(finalFormData))
+
+    navigate(`/main/${model}`)
 
   };
 

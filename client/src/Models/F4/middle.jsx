@@ -22,25 +22,9 @@ import Page1 from './page1'
 import Page2 from './page2'
 import Page3 from './Page3'
 
-const Middle = () => {
+const Middle = ({data}) => {
 
-    const data = {
-        firstname: 'Rahul',
-        secondname: 'Rashmika',
-        images: [image1, image2, image3, image4],
-        // dates: ['06/02/2024', '06/02/2024', '06/02/2024', '06/02/2024',],
-        // eventname: ['Haldi', 'Mehndi', 'Dj Night', 'Wedding'],
-        // eventdescription: ['In the joyous chaos of the Haldi ceremony, traditions meet celebrations, painting a picture of love.',
-        //     'Henna-tinted hands, laughter, and music—Mehndi night is a celebration of vibrant traditions and joyful beginnings.',
-        //     'Feel the rhythm, embrace the night—DJ night is where magic happens on the dance floor.',
-        //     'In the vibrant celebration of an wedding, love and tradition create an unforgettable tapestry of joy.'
-        // ],
-        event: [['06/02/2024', 'Haldi', 'In the joyous chaos of the Haldi ceremony, traditions meet celebrations, painting a picture of love.',],
-        ['07/02/2024', 'Mehndi', 'Henna-tinted hands, laughter, and music—Mehndi night is a celebration of vibrant traditions and joyful beginnings.',],
-        ['08/02/2024', 'Dj Night', 'Feel the rhythm, embrace the night—DJ night is where magic happens on the dance floor.',],
-        ['08/02/2024', 'Wedding', 'In the vibrant celebration of an wedding, love and tradition create an unforgettable tapestry of joy.']
-        ]
-    }
+    
 
 
 

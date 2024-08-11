@@ -3,7 +3,6 @@ import React, { useRef, useState } from 'react';
 import FadeIn from 'react-fade-in';
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useNavigate } from 'react-router-dom'
 // Import Swiper styles
 import 'swiper/css';
 const Middlebox = () => {

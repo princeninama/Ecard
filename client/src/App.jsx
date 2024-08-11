@@ -40,6 +40,7 @@ function App() {
       <Route path="/general" element={<GeneralWedding />} />
       <Route path='/preview/model1' element={<Preview/>} />
       <Route path='/preview/model2' element={<Preview/>} />
+      <Route path='/preview/model4' element={<Preview/>} />
       <Route path='/preview/model3' element={<Preview/>} >
       {Model3router.map((route,index)=>(
               <Route key={index} path={route.path} element={route.component} />

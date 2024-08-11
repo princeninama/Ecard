@@ -6,12 +6,14 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import counterReducer from './counter/counter';
 import  userReducer  from './counter/user';
+import  generalState  from './counter/generaldata';
 // import postReducer from './reducer/index'; // Uncomment and use if you have more reducers
 
 // Combine your reducers
 const rootReducer = combineReducers({
-  user: userReducer,
+  users: userReducer,
   // post: postReducer,
+  generalState: generalState,
 });
 
 // Persist config

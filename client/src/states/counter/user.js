@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    user:{
+    inituser:{
     Bride_name: "Sakshi",
     Groom_name: "Aryan",
     location: "Veer Narmad South Gujarat University, Surat, Gujarat 395007",
@@ -24,11 +24,20 @@ export const userReducer = createSlice({
         saveuser : (state,action) =>{
             // console.log('here');
             // console.log(action.payload)
-            state.user = action.payload;
-            // console.log(state.user)
-        }
+            state.formdata = action.payload;
+            state.data = state.formdata;
+            console.log(state.data)
+
+
+        },
+        inittransferdata :  (state) =>{
+            state.data = state.inituser;
+            console.log(state.data)
+        },
+      
+
     }
 })
 
-export const { saveuser} = userReducer.actions;
+export const { saveuser,inittransferdata} = userReducer.actions;
 export default userReducer.reducer
