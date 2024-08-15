@@ -12,7 +12,6 @@ import Album from "./Album";
 import { useState, useEffect } from "react";
 
 export const Model3 = ({ data }) => {
-  const name = "Model3";
 
   return (
     <>

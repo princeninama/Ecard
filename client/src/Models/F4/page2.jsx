@@ -18,8 +18,9 @@ import './style.css'
 import { Pagination } from 'swiper/modules';
 import { AttentionSeeker } from 'react-awesome-reveal'
 
-const Page2 = ({ data }) => {
+const Page2 = ({ data,picdata }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const arrayofpic = picdata.arrayofpic;
 
     // useEffect(() => {
     //     const interval = setInterval(() => {
@@ -30,7 +31,7 @@ const Page2 = ({ data }) => {
 
     // }, []);
 
-    const [images, setImages] = useState([img1]);
+    const [images, setImages] = useState(arrayofpic[0]);
 
     const handleImageUpload = (event) => {
         const files = event.target.files;
@@ -60,9 +61,12 @@ const Page2 = ({ data }) => {
         return () => clearInterval(interval);
     }, [images]);
 
+    const golden= "text-transparent bg-clip-text bg-gradient-to-r from-amber-200  to-yellow-200"
+
+
     return (
 
-        <div className=" h-screen w-screen bg-gradient-to-r from-fuchsia-200 via-pink-100 via-white  via-rose-100 to-rose-50">
+        <div className=" h-screen w-screen bg-gradient-to-tr from-red-800 to-red-950">
             <div className=' h-screen overflow-scroll scrollbar flex items-center justify-center'>
                 <div className="pt-1">
                     <div className="mt-20 flex items-center justify-center">
@@ -82,7 +86,8 @@ const Page2 = ({ data }) => {
                                             No images uploaded
                                         </div>
                                     )}
-                                    <input
+                                    { data.mode == "0" ? "" : <>
+                                        <input
                                         type="file"
                                         onChange={handleImageUpload}
                                         className="hidden"
@@ -128,12 +133,12 @@ const Page2 = ({ data }) => {
                                                     d="M6 18L18 6M6 6l12 12"
                                                 />
                                             </svg>
-                                            Delete
+                                            delete
                                         </button>
-                                    </div>
+                                    </div> </>}
                                 </div>
                             </div>
-                            <div className='h-24 flex items-center justify-center font1 font-semibold text-5xl my-16 text-gradient bg-clip-text'>
+                            <div className={`h-24 flex items-center justify-center font1 font-semibold text-5xl my-16 ${golden}`}>
                                 {data.Bride_name} <div className='font1'>&#160; &#38; &#160;</div> {data.Groom_name}
                             </div>
                         </div>

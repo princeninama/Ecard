@@ -16,14 +16,15 @@ const Navbar = ({setalbum,setmap,setcombine}) => {
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
+  const golden= "text-transparent bg-clip-text bg-gradient-to-r from-amber-200  to-yellow-200"
 
   const isMobile = window.innerWidth <= 768;
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-gradient-to-r from-fuchsia-200 via-pink-100 via-rose-100 to-rose-200 p-4 shadow-lg">
+    <nav className="fixed top-0 z-50 w-full bg-gradient-to-tr from-red-700 via-red-800 to-red-900 p-4 shadow-lg">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-         < div  onClick={()=>{navigator('')}} className="text-xl font-semibold text-gray-800 cursor-pointer">Wedding</div>
+         < div  onClick={()=>{navigator('')}} className={`text-xl font-semibold ${golden} cursor-pointer`}>Wedding</div>
           {isMobile ? (
             <div>
               <span
@@ -74,20 +75,20 @@ const Navbar = ({setalbum,setmap,setcombine}) => {
             </div>
           ) : (
             // Links for Larger Screens
-            <ul className="flex space-x-4">
-              <li className="text-gray-600 hover:text-gray-800 transition duration-300 cursor-pointer"  onClick={()=>{navigator('map');}}>
+            <ul className={`flex space-x-4  hover:text-gray-800 transition duration-300 cursor-pointer `}>
+              <li  className={`${golden}`} onClick={()=>{navigator('map');}}>
                 Address
               </li>
-              <li className="text-gray-600 hover:text-gray-800 transition duration-300 cursor-pointer" onClick={()=>{navigator('');}}>
+              <li className={`${golden}`} onClick={()=>{navigator('');}}>
                 PreWedding
               </li>
-              <li className="text-gray-600 hover:text-gray-800 transition duration-300 cursor-pointer"  onClick={()=>{navigator('album');}}>
+              <li  className={`${golden}`} onClick={()=>{navigator('album');}}>
                 Album
               </li>
-              <li className="text-gray-600 hover:text-gray-800 transition duration-30 cursor-pointer"   onClick={()=>{navigator('');}}>
+              <li  className={`${golden}`} onClick={()=>{navigator('');}}>
                 RSVP
               </li>
-              <li className="text-gray-600 hover:text-gray-800 transition duration-300 cursor-pointer"  onClick={()=>{navigator('');}}>
+              <li  className={`${golden}`} onClick={()=>{navigator('');}}>
                 Contact
               </li>
             </ul>

@@ -38,7 +38,7 @@ function App() {
       <Route path="/main" element={authUser?  <Mainpage />:<Navigate to={"/signin"}/>} />
       <Route path="/preview" element={<Preview />} />
       <Route path="/general" element={<GeneralWedding />} />
-      <Route path='/preview/model1' element={<Preview/>} />
+      <Route path='/preview' element={<Preview/>} />
       <Route path='/preview/model2' element={<Preview/>} />
       <Route path='/preview/model4' element={<Preview/>} />
       <Route path='/preview/model3' element={<Preview/>} >
@@ -58,9 +58,9 @@ function App() {
       <Route path="/signUp" element={authUser? <Navigate to={"/main"}/>:<Login />} />
       <Route path="/forget" element={<Forget />} />
       <Route path="/signin" element={authUser? <Navigate to={"/main"}/>:<Signin />} /> 
-      <Route path="/main/model1" element={<Form3 Model={Model1} Modelname={'model1'} Formname={GeneralWedding}/>} />
-      <Route path="/main/model2" element={<Form3 Model={Model2} Modelname={'model2'} Formname={GeneralWedding}/>} />
-      <Route path="/main/model4" element={<Form3 Model={Model4} Modelname={'model4'} Formname={Model3form}/>} />
+      {/* <Route path="/main/model1" element={<Form3 Model={Model1} Modelname={'model1'} Formname={GeneralWedding}/>} /> */}
+      {/* <Route path="/main/model2" element={<Form3 Model={Model2} Modelname={'model2'} Formname={GeneralWedding}/>} /> */}
+      <Route path="/main/modeldisplay" element={<Form3 />} />
       <Route path='/main/model3' element={<Form3 Model={Model3} Modelname={'model3'} Formname={Model3form}/>} >
             {/* <Route path='map' element={<Map/>} />
             <Route path='album' element={<Album/>} />

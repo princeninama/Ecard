@@ -21,10 +21,11 @@ import { AttentionSeeker } from 'react-awesome-reveal'
 import Page1 from './page1'
 import Page2 from './page2'
 import Page3 from './Page3'
+import Page4 from './page4'
 
-const Middle = ({data}) => {
+const Middle = ({ data,picdata }) => {
 
-    
+
 
 
 
@@ -42,12 +43,17 @@ const Middle = ({data}) => {
 
                 <SwiperSlide>
 
-                    <Page2 data={data} />
+                    <Page2 data={data} picdata={picdata}/>
 
                 </SwiperSlide>
                 <SwiperSlide>
 
                     <Page3 data={data} />
+
+                </SwiperSlide>
+                <SwiperSlide>
+
+                    <Page4 data={data} />
 
                 </SwiperSlide>
 

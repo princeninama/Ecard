@@ -93,7 +93,7 @@ const GeneralWedding = () => {
     console.log(finalFormData);
     dispatch(saveuser(finalFormData))
 
-    navigate(`/main/${model}`)
+    navigate(`/preview`)
 
   };
 

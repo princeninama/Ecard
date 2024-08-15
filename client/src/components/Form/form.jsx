@@ -3,14 +3,19 @@ import '../../css/mainpage.css'
 import { useEffect, useRef, useState } from "react"
 import GeneralWedding from "../../components/Form/GeneralWedding"
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { RenderPage } from '../../exports/functions'
 
 
+const Form3 = () => {
 
-const Form3 = ({Model,Modelname,Formname}) => {
-
-    const [selected,setselected] = useState(false)
-    sessionStorage.setItem('modelname',Modelname)
+    // const [selected,setselected] = useState(false)
+    // sessionStorage.setItem('modelname',Modelname)\
+    const model = useSelector((state) =>state.generalState.model)
     const navigator = useNavigate()
+    console.log(model)
+    const Model = RenderPage(model);
+    // console.log(Model)
     return (
         <div className="scrollbar">
             <div className="w-screen h-screen overflow-y-scroll " id="scroll">

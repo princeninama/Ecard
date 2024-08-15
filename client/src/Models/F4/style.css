@@ -28,8 +28,20 @@
   display: none;
 }
   
-.text-gradient {
-  background: linear-gradient(90deg, black,#8B8B8A,#BBBBBB);
+.text-gradient1 {
+  background: linear-gradient(30deg, rgb(245, 232, 91),#efe80b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient2 {
+  background: linear-gradient(60deg, rgb(240, 230, 120),#ebce57);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient3 {
+  background: linear-gradient(60deg, rgb(236, 125, 236),#49344a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

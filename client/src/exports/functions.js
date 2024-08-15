@@ -1,9 +1,11 @@
 import Model1 from "../Models/F1/model1";
 import Model2 from "../Models/F2/Model2";
 import Model3 from "../Models/F3/mainpage";
+import Model4 from "../Models/F4/mainpage";
 
 
-export const RenderPage = ({ model, data }) => {
+export const RenderPage = (model) => {
+  console.log(model)
     switch (model) {
       case 'model1':
         return Model1
@@ -11,6 +13,8 @@ export const RenderPage = ({ model, data }) => {
         return Model2 ;
       case 'model3':
         return Model3;
+      case 'model4':
+        return Model4;
       default:
         return null;
     }

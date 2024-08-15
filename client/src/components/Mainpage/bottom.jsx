@@ -5,6 +5,7 @@ import { changeTemplates } from '../../states/action-creators'
 import { useState } from 'react'
 import { choosemodel } from '../../states/counter/generaldata'
 import { inittransferdata } from '../../states/counter/user'
+import { inititranfer } from '../../states/counter/picture'
 
 
 
@@ -25,11 +26,14 @@ const Container = ({ card }) => {
        
     }
     const handleOpenNewTab = (path,title) => {
-        localStorage.setItem('mode','a')
-        navigtor(path)
+        // localStorage.setItem('mode','a')
+        
         // console.log(title)
         dispatch(choosemodel(title))
         dispatch(inittransferdata())
+        dispatch(inititranfer())
+
+        navigtor(path)
     };
     const GotoMore = () => {
         navigtor('/show')
@@ -45,7 +49,7 @@ const Container = ({ card }) => {
                     {images.map(((image, idex) => (
 
                         <div style={{ margin: '15px 30px', cursor: 'pointer' }} className=' h-[320px] '>
-                            <img src={image.imageURL} alt="" style={{ height: 300, width: 300, border: '3px solid #f2ca5c', borderRadius: 10 }} className='image'  onClick={()=>{handleOpenNewTab(`/main/${image.title}`,image.title)}}/>
+                            <img src={image.imageURL} alt="" style={{ height: 300, width: 300, border: '3px solid #f2ca5c', borderRadius: 10 }} className='image'  onClick={()=>{handleOpenNewTab(`/main/modeldisplay`,image.title)}}/>
                             <div className=' justify-center items-center flex'>{image.title}</div>
                         </div>
                     )))}

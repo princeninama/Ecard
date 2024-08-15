@@ -8,13 +8,15 @@ const Model4 = () =>{
 
     const data = useSelector((state)=>state.users.data)
     console.log(data)
+    const picdata  = useSelector((state)=>state.picdata.picsdata)
+    console.log(picdata)
     return(
         <div>
             <div>
                 <Navbar/>
             </div>
             <div>
-                <Middle data={data}/>
+                <Middle data={data} picdata={picdata}/>
             </div>
         </div>
     )

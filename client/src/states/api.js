@@ -7,6 +7,7 @@ import { combineReducers } from 'redux';
 import counterReducer from './counter/counter';
 import  userReducer  from './counter/user';
 import  generalState  from './counter/generaldata';
+import picture from './counter/picture';
 // import postReducer from './reducer/index'; // Uncomment and use if you have more reducers
 
 // Combine your reducers
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   users: userReducer,
   // post: postReducer,
   generalState: generalState,
+  picdata : picture,
 });
 
 // Persist config

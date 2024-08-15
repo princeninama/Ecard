@@ -5,7 +5,7 @@ const Page1 = ()=>{
     
 
     return (
-        <div className=" h-screen w-screen bg-gradient-to-r from-rose-300 via-red-200 via-red-200 to-fuchsia-100">
+        <div className=" h-screen w-screen bg-gradient-to-tr from-red-800 to-red-950">
             <div className=' h-screen overflow-scroll scrollbar'>
                 <div className='pt-1'>
                     <div className='mt-24 flex items-center justify-center font3 text-6xl text-rose-500 font-thin'>
