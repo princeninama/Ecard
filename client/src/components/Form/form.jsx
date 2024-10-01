@@ -2,19 +2,27 @@
 import '../../css/mainpage.css'
 import { useEffect, useRef, useState } from "react"
 import GeneralWedding from "../../components/Form/GeneralWedding"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RenderPage } from '../../exports/functions'
+import {data} from '../../data/dummydata.js'
 
 
 const Form3 = () => {
 
     // const [selected,setselected] = useState(false)
     // sessionStorage.setItem('modelname',Modelname)\
-    const model = useSelector((state) =>state.generalState.model)
+    // const model = useSelector((state) =>state.generalState.model)
+    const {modelId }= useParams()
+    sessionStorage.setItem('modelId',modelId)
+    sessionStorage.setItem('events',JSON.stringify(data.events))
+    sessionStorage.setItem('locationUrl',data.locationUrl)
+    sessionStorage.setItem('weddingDetails',JSON.stringify(data.weddingDetails))
+    sessionStorage.setItem('mode',"0")
+    sessionStorage.setItem('imagep',JSON.stringify(data.image))
     const navigator = useNavigate()
-    console.log(model)
-    const Model = RenderPage(model);
+    console.log(modelId)
+    const Model = RenderPage(modelId);
     // console.log(Model)
     return (
         <div className="scrollbar">

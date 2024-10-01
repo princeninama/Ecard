@@ -18,7 +18,7 @@ const corsOptions = {
     origin: 'http://localhost:5173',
     credentials: true // Allow credentials
   };
-app.use(bodyParser.json({extended:true}))
+app.use(bodyParser.json({extended:true,limit:'20mb'}))
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors(corsOptions));
 app.use(express.json())

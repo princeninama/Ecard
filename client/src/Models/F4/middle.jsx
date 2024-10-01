@@ -23,7 +23,7 @@ import Page2 from './page2'
 import Page3 from './Page3'
 import Page4 from './page4'
 
-const Middle = ({ data,picdata }) => {
+const Middle = ({ data }) => {
 
 
 
@@ -43,7 +43,7 @@ const Middle = ({ data,picdata }) => {
 
                 <SwiperSlide>
 
-                    <Page2 data={data} picdata={picdata}/>
+                    <Page2 data={data} />
 
                 </SwiperSlide>
                 <SwiperSlide>

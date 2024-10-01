@@ -11,10 +11,13 @@ const Preview = () => {
 
     // const [selected,setselected] = useState(false)
     // sessionStorage.setItem('modelname',Modelname)\
-    const model = useSelector((state) =>state.generalState.model)
+    // const model = useSelector((state) =>state.generalState.model)
+    const modelId = sessionStorage.getItem('modelId')
+    console.log(sessionStorage.getItem(''))
     const navigator = useNavigate()
-    console.log(model)
-    const Model = RenderPage(model);
+    console.log(modelId)
+    const Model = RenderPage(modelId);
+
     // console.log(Model)
     return (
         <div className="scrollbar">
@@ -24,10 +27,10 @@ const Preview = () => {
             
             <div className=" justify-center flex items-center my-4" >
                 
-                   <button onClick={()=>{navigator('/general')}} className="relative overflow-hidden bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-md">
+                   <button onClick={()=>{navigator('/final');}} className="relative overflow-hidden bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-md">
                     <span className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600"></span>
                     <span className="absolute inset-0 transform scale-0 bg-white rounded-lg" />
-                    <span className="relative z-10">final</span>
+                    <span className="relative z-10" >final</span>
                 </button> 
                 
               

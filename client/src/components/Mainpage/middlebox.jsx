@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
-import FadeIn from 'react-fade-in';
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -16,7 +15,6 @@ const Middlebox = () => {
       <div className="absolute inset-x-0 z-10 top-8 text-center text-2xl font-semibold text-gray-600"></div>
       <div className="absolute w-full h-full bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200">
       <div className='absolute bottom-0 mb-5 ml-[44%]'>
-        <FadeIn>
 
         <button className='border-2 rounded-2xl bg-transparent p-4 hover:bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200  hover:p-6 hover:w-auto'
         onClick={handleGeneral}>
@@ -24,7 +22,6 @@ const Middlebox = () => {
           Enter Your Details
           </p> 
         </button>
-        </FadeIn>
       </div>
       </div>
       {/* <div className="absolute mt-24 " style={{ top: "-30px" }}>

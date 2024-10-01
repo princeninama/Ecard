@@ -1,41 +1,42 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  Bride_name: {
+ weddingDetails: {
+  brideName: {
     type: String,
-    required: true,
+    // required: true,
   },
-  Groom_name: {
+  groomName: {
     type: String,
   },
   location: {
     type: String,
-    required: true,
+    // required: true,
   },
-  Wedding_Date: {
+  weddingDate: {
     type: Date,
-    required: true,
+    // required: true,
   },
-  dates: {
-    type: [Date],
-    default: [],
-  },
-  eventname: {
-    type: [String],
-    default: [],
-  },
+ 
+ },
+  events: [{
+    name: { type: String, },
+    date: { type: Date,  },
+    description: { type: String,  },
+  }],
   invitedBy: {
     type: [String],
     default: [],
   },
-  photos: {
-    type: [String],
-    default: [],
+  photo: {
+    type: String,
+    // default: [],
   },
   map_url: {
     type: String,
-    required: true,
+    // required: true,
   },
+  modelId: { type: String, required: true}
 }, {
   timestamps: true
 });

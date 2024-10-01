@@ -4,9 +4,9 @@ import Model3 from "../Models/F3/mainpage";
 import Model4 from "../Models/F4/mainpage";
 
 
-export const RenderPage = (model) => {
-  console.log(model)
-    switch (model) {
+export const RenderPage = (modelId) => {
+  console.log(modelId)
+    switch (modelId) {
       case 'model1':
         return Model1
       case 'model2':

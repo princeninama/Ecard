@@ -19,8 +19,8 @@ import { Pagination } from 'swiper/modules';
 import { AttentionSeeker } from 'react-awesome-reveal'
 
 const Page2 = ({ data,picdata }) => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const arrayofpic = picdata.arrayofpic;
+    // const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    // const arrayofpic = picdata.arrayofpic;
 
     // useEffect(() => {
     //     const interval = setInterval(() => {
@@ -31,7 +31,7 @@ const Page2 = ({ data,picdata }) => {
 
     // }, []);
 
-    const [images, setImages] = useState(arrayofpic[0]);
+    // const [images, setImages] = useState(arrayofpic[0]);
 
     const handleImageUpload = (event) => {
         const files = event.target.files;
@@ -51,15 +51,15 @@ const Page2 = ({ data,picdata }) => {
         }
     };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) =>
-                prevIndex === images.length - 1 ? 0 : prevIndex + 1
-            );
-        }, 2000);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setCurrentImageIndex((prevIndex) =>
+    //             prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    //         );
+    //     }, 2000);
 
-        return () => clearInterval(interval);
-    }, [images]);
+    //     return () => clearInterval(interval);
+    // }, [images]);
 
     const golden= "text-transparent bg-clip-text bg-gradient-to-r from-amber-200  to-yellow-200"
 
@@ -74,8 +74,9 @@ const Page2 = ({ data,picdata }) => {
                         <div className=' '>
                             <div className='j justify-center flex items-center'>
                                 {/* <AttentionSeeker effect='jello' triggerOnce={true}><img src={data.images[currentIndex]} alt="" style={{ height: 300, width: 450 }} className=' rounded-md shadow-md border-2 border-neutral-600' /> </AttentionSeeker> */}
-                                <div className="relative w-72 h-72 group">
-                                    {images.length > 0 ? (
+                                <div className="relative w-80 h-72 group">
+                                    <img src={data.image} alt="" />
+                                    {/* {images.length > 0 ? (
                                         <img
                                             src={images[currentImageIndex]}
                                             alt="Slideshow"
@@ -85,8 +86,8 @@ const Page2 = ({ data,picdata }) => {
                                         <div className="w-full h-full flex items-center justify-center bg-gray-200">
                                             No images uploaded
                                         </div>
-                                    )}
-                                    { data.mode == "0" ? "" : <>
+                                    )} */}
+                                    {/* { data.mode == "0" ? "" : <>
                                         <input
                                         type="file"
                                         onChange={handleImageUpload}
@@ -135,11 +136,11 @@ const Page2 = ({ data,picdata }) => {
                                             </svg>
                                             delete
                                         </button>
-                                    </div> </>}
+                                    </div> </>} */}
                                 </div>
                             </div>
                             <div className={`h-24 flex items-center justify-center font1 font-semibold text-5xl my-16 ${golden}`}>
-                                {data.Bride_name} <div className='font1'>&#160; &#38; &#160;</div> {data.Groom_name}
+                                {data.weddingDetails.brideName} <div className='font1'>&#160; &#38; &#160;</div> {data.weddingDetails.groomName}
                             </div>
                         </div>
 

@@ -1,268 +1,250 @@
-import React, { useState } from "react";
-import { FormSubmit } from "../../states/action-creators";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+'use client'
 
-const Model3form = ({ Modelname }) => {
-  const [fileInputs, setFileInputs] = useState([]);
-  const dispatch = useDispatch();
-  const addFileInput = () => {
-    setFileInputs([...fileInputs, { key: fileInputs.length }]);
-  };
-  const navigate = useNavigate();
+import React, { useState } from 'react'
+import { PlusCircle, Trash2 } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useNavigate } from 'react-router-dom'
 
-  const [formData, setFormData] = useState({
-    firstname: "",
-    secondname: "",
-    location: "",
-    eventdates: [],
-    eventname: [""], // At least one event input box will be displayed initially
-    invitedBy: "",
-    preweddingphotos: [],
-    map_url: "",
-    eventdescription: [],
-  });
+export default function WeddingPlannerForm() {
 
-  const handleFileChange = (e, index) => {
-    const files = [...formData.preweddingphotos];
-    files[index] = e.target.files[0];
-    console.log('files : ',files)
-    setFormData({
-      ...formData,
-      preweddingphotos: files,
-    });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "eventname") {
-      const index = parseInt(e.target.id.replace("eventname", ""));
-      const updatedEventNames = [...formData.eventname];
-      updatedEventNames[index] = value;
-      setFormData({
-        ...formData,
-        eventname: updatedEventNames,
-      });
-    }
-    else if(name === "eventdate"){
-        const index = parseInt(e.target.id.replace("eventdate", ""));
-      const updatedEventNames = [...formData.eventdates];
-      updatedEventNames[index] = value;
-      setFormData({
-        ...formData,
-        eventdates: updatedEventNames,
-      });
-    }
-    else if(name === "eventdescription"){
-        const index = parseInt(e.target.id.replace("eventdescription", ""));
-      const updatedEventNames = [...formData.eventdescription];
-      updatedEventNames[index] = value;
-      setFormData({
-        ...formData,
-        eventdescription: updatedEventNames,
-      });
-    }
-    else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
-  };
-
+  const navigate = useNavigate()
+  const [step, setStep] = useState(1)
+  const [weddingDetails, setWeddingDetails] = useState({
+    weddingDate: '',
+    brideName: '',
+    groomName: '',
+    hashtag: '',
+    location: ''
+  })
+  const [events, setEvents] = useState([{ date: '', name: '', description: '' }])
+  const [locationUrl, setLocationUrl] = useState('')
   
+  // New states for image upload and preview
+  const [image, setImage] = useState(null)
+  const [imagePreview, setImagePreview] = useState(null)
 
-  const placeholders = {
-    firstname: "Enter Bride's Name",
-    secondname: "Enter Groom's Name",
-    invitedBy: "Enter Family's Names",
-    map_url: "Enter Map Location",
-    location: "Enter Venue Location",
-  };
+  const handleWeddingDetailsChange = (e) => {
+    setWeddingDetails({ ...weddingDetails, [e.target.name]: e.target.value })
+  }
 
-  const eventNames = ["Haldi", "Ras Garba/Dj night", "Wedding"];
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    sessionStorage.setItem("Formdata", JSON.stringify(formData));
-    localStorage.setItem("mode", "preview");
-    console.log("form's data is collected");
-    console.log(JSON.stringify(formData))
-    console.log(formData.preweddingphotos)
-    const Modelname = sessionStorage.getItem("modelname");
-    navigate(`/preview/${Modelname}`, { state: { Modelname: Modelname } });
-  };
+  const handleEventChange = (index, field, value) => {
+    const newEvents = [...events]
+    newEvents[index][field] = value
+    setEvents(newEvents)
+  }
 
   const addEvent = () => {
-    setFormData({
-      ...formData,
-      eventname: [...formData.eventname, ""],
-      eventdates: [...formData.eventdates, ""],
-      eventdescription: [...formData.eventdescription, ""],
-    });
-  };
+    setEvents([...events, { date: '', name: '', description: '' }])
+  }
 
-  const removeEvent = () => {
-    if (formData.eventname.length > 1) {
-      const updatedEventNames = [...formData.eventname];
-      const updatedEventDates = [...formData.eventdates];
-      const updatedEventDescriptions = [...formData.eventdescription];
-      updatedEventNames.pop();
-      updatedEventDates.pop();
-      updatedEventDescriptions.pop();
-      setFormData({
-        ...formData,
-        eventname: updatedEventNames,
-        eventdates: updatedEventDates,
-        eventdescription: updatedEventDescriptions,
-      });
+  const removeEvent = (index) => {
+    const newEvents = events.filter((_, i) => i !== index)
+    setEvents(newEvents)
+  }
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      console.log(file)
+      // sessionStorage.setItem('image', file)
+      setImage(file)
+
+      // Generate image preview
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setImagePreview(reader.result)
+        sessionStorage.setItem('imagep', JSON.stringify(reader.result))
+      }
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
-  const addPhoto = () => {
-    if (formData.preweddingphotos.length < 10) {
-      const newPhotos = [...formData.preweddingphotos];
-      newPhotos.push("");
-      setFormData({
-        ...formData,
-        preweddingphotos: newPhotos,
-      });
-    } else {
-      toast.error("Maximum limit of 10 photos reached!");
-    }
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('Form submitted:', { weddingDetails, events, locationUrl, image })
+    sessionStorage.setItem('weddingDetails', JSON.stringify(weddingDetails))
+    sessionStorage.setItem('events', JSON.stringify(events))
+    sessionStorage.setItem('locationUrl', locationUrl)
+    sessionStorage.setItem('mode', "1")
 
-  const removePhoto = (index) => {
-    const updatedPhotos = [...formData.preweddingphotos];
-    updatedPhotos.splice(index, 1);
-    setFormData({
-      ...formData,
-      preweddingphotos: updatedPhotos,
-    });
-  };
+    const modeId = sessionStorage.getItem('modeId')
+
+    navigate('/preview')
+
+    // Here you would typically send this data to your backend
+  }
 
   return (
-    <div className="container mx-auto p-6 bg-slate-200">
-      <form className="grid gap-4" onSubmit={handleSubmit}>
-        <h1 className="text-4xl font-serif italic">
-          User Needs to Insert The Actual Values From Here.
-        </h1>
-        {Object.entries(placeholders).map(([name, placeholder]) => (
-          <div key={name}>
-            <label htmlFor={name} className="font-bold border-1">
-              {name.charAt(0).toUpperCase() + name.slice(1)}
-            </label>
-            <input
-              type={name === "maindate" || name === "dates" ? "date" : "text"}
-              name={name}
-              id={name}
-              placeholder={placeholder}
-              value={formData[name]}
-              onChange={handleChange}
-              className="input border-2 py-1 px-3 rounded w-full"
-            />
-          </div>
-        ))}
-        
-      
-         {eventNames.map((eventName, index) => (
-          <div key={index}>
-          <label htmlFor={`eventname${index}`} className="font-bold border-1">
-            Event Name
-          </label>
-          <input
-            type="text"
-            name="eventname"
-            id={`eventname${index}`}
-            placeholder={eventNames[index] || "Event Name"}
-            onChange={handleChange}
-            className="input border-2 py-1 px-3 w-full"
-          />
-          <label htmlFor={`eventdate${index}`} className="font-bold border-1">
-            Event Date
-          </label>
-          <input
-            type="date"
-            name="eventdate"
-            id={`eventdate${index}`}
-            onChange={handleChange}
-            className="input border-2 py-1 px-3 w-full"
-          />
-          <label htmlFor={`eventdescription${index}`} className="font-bold border-1">
-            Event Description
-          </label>
-          <input
-            type="text"
-            name="eventdescription"
-            id={`eventdescription${index}`}
-            placeholder="Event Description"
-            onChange={handleChange}
-            className="input border-2 py-1 px-3 w-full"
-          />
-        </div>
-        ))}
-        <div className=" justify-center items-center flex">
-          {/* <button
-            type="button"
-            onClick={addEvent}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
-          >
-            Add Event
-          </button>
+    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 space-y-8">
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-3xl font-bold text-center">Wedding Planner</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {step === 1 && (
+            <div className="space-y-4">
+              {/* Step 1: Wedding Details */}
+              <div>
+                <label htmlFor="weddingDate" className="block text-sm font-medium text-gray-700">Wedding Date</label>
+                <Input
+                  id="weddingDate"
+                  type="date"
+                  name="weddingDate"
+                  value={weddingDetails.weddingDate}
+                  onChange={handleWeddingDetailsChange}
+                  className="mt-1"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="brideName" className="block text-sm font-medium text-gray-700">Bride's Name</label>
+                <Input
+                  id="brideName"
+                  name="brideName"
+                  value={weddingDetails.brideName}
+                  onChange={handleWeddingDetailsChange}
+                  className="mt-1"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="groomName" className="block text-sm font-medium text-gray-700">Groom's Name</label>
+                <Input
+                  id="groomName"
+                  name="groomName"
+                  value={weddingDetails.groomName}
+                  onChange={handleWeddingDetailsChange}
+                  className="mt-1"
+                  required
+                />
+              </div>
+              {/* <div>
+                <label htmlFor="hashtag" className="block text-sm font-medium text-gray-700">Wedding Hashtag</label>
+                <Input
+                  id="hashtag"
+                  name="hashtag"
+                  value={weddingDetails.hashtag}
+                  onChange={handleWeddingDetailsChange}
+                  className="mt-1"
+                  required
+                />
+              </div> */}
+              <div>
+                <label htmlFor="location" className="block text-sm font-medium text-gray-700">Wedding Location</label>
+                <Input
+                  id="location"
+                  name="location"
+                  value={weddingDetails.location}
+                  onChange={handleWeddingDetailsChange}
+                  className="mt-1"
+                  required
+                />
+              </div>
+              <Button type="button" onClick={() => setStep(2)} className="w-full">Next</Button>
+            </div>
+          )}
 
-          <button
-            type="button"
-            onClick={removeEvent}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
-          >
-            Remove Last Event
-          </button> */}
+          {step === 2 && (
+            <div className="space-y-6">
+              {/* Step 2: Event Details */}
+              {events.map((event, index) => (
+                <Card key={index} className="p-4">
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor={`eventDate-${index}`} className="block text-sm font-medium text-gray-700">Event Date</label>
+                      <Input
+                        id={`eventDate-${index}`}
+                        type="date"
+                        value={event.date}
+                        onChange={(e) => handleEventChange(index, 'date', e.target.value)}
+                        className="mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor={`eventName-${index}`} className="block text-sm font-medium text-gray-700">Event Name</label>
+                      <Input
+                        id={`eventName-${index}`}
+                        value={event.name}
+                        onChange={(e) => handleEventChange(index, 'name', e.target.value)}
+                        className="mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor={`eventDescription-${index}`} className="block text-sm font-medium text-gray-700">Event Description</label>
+                      <Textarea
+                        id={`eventDescription-${index}`}
+                        value={event.description}
+                        onChange={(e) => handleEventChange(index, 'description', e.target.value)}
+                        className="mt-1"
+                        required
+                      />
+                    </div>
+                    {events.length > 1 && (
+                      <Button type="button" variant="destructive" onClick={() => removeEvent(index)} className="mt-2">
+                        <Trash2 className="mr-2 h-4 w-4" /> Remove Event
+                      </Button>
+                    )}
+                  </div>
+                </Card>
+              ))}
+              <Button type="button" onClick={addEvent} variant="outline" className="w-full">
+                <PlusCircle className="mr-2 h-4 w-4" /> Add Event
+              </Button>
+              <div className="flex justify-between">
+                <Button type="button" onClick={() => setStep(1)} variant="outline">Previous</Button>
+                <Button type="button" onClick={() => setStep(3)}>Next</Button>
+              </div>
+            </div>
+          )}
 
-          <button
-            type="button"
-            onClick={addPhoto}
-            className="bg-green-500 hover:bg-green-700 text-white font-bold border-1 py-2 px-4 rounded mx-2"
-          >
-            Add Prewedding Pic
-          </button>
-        </div>
+          {step === 3 && (
+            <div className="space-y-4">
+              {/* Step 3: Location URL and Image Upload */}
+              <div>
+                <label htmlFor="locationUrl" className="block text-sm font-medium text-gray-700">Location URL</label>
+                <Input
+                  id="locationUrl"
+                  type="url"
+                  value={locationUrl}
+                  onChange={(e) => setLocationUrl(e.target.value)}
+                  className="mt-1"
+                  placeholder="https://..."
+                  required
+                />
+              </div>
 
-        {formData.preweddingphotos.map((photo, index) => (
-          <div key={index}>
-            <label htmlFor={`photo${index}`} className="font-bold border-1">
-              Prewedding Photo {index + 1}
-            </label>
-            <input
-              type="file"
-              accept="image/*"
-              name={`photo${index}`}
-              id={`photo${index}`}
-              onChange={(e) => handleFileChange(e, index)}
-              className="input border-2 py-1 px-3 w-full"
-            />
-            <button
-              type="button"
-              onClick={() => removePhoto(index)}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold border-1 py-2 px-4 rounded mt-2"
-            >
-              Remove
-            </button>
-          </div>
-        ))}
+              <div>
+                <label htmlFor="imageUpload" className="block text-sm font-medium text-gray-700">Upload Wedding Image</label>
+                <Input
+                  id="imageUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="mt-1"
+                />
+              </div>
 
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold border-1 py-2 px-4 rounded"
-          onChange={handleSubmit}
-        >
-          SUBMIT
-        </button>
+              {/* Image Preview */}
+              {imagePreview && (
+                <div className="mt-4">
+                  <label className="block text-sm font-medium text-gray-700">Image Preview</label>
+                  <img src={imagePreview} alt="Wedding Preview" className="mt-2 max-w-xs" />
+                </div>
+              )}
 
-        <ToastContainer />
-      </form>
-    </div>
-  );
-};
-
-export default Model3form;
+              <div className="flex justify-between">
+                <Button type="button" onClick={() => setStep(2)} variant="outline">Previous</Button>
+                <Button type="submit">Submit</Button>
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </form>
+  )
+}
