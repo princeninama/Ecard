@@ -4,18 +4,15 @@ import Video from "../../../public/smoke.mp4"
 import {login} from "../../states/action-creators/index"
 import { useDispatch } from "react-redux";
 import { toast,ToastContainer } from "react-toastify";
-import { useAuthContext } from "../../context/useAuthcontext";
 const Signin = () => {
-  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginstate, setloginstate] = useState("Login");
   const navigate = useNavigate()
-  const {setAuthUser}=useAuthContext();
+  // const {setAuthUser}=useAuthContext();
   const handleSignup=()=>{
     navigate('/signup')
   }
-  const notify = (Message) => toast(Message);
   const HandleNavigate=()=>
     {
       navigate('/forget')
@@ -24,12 +21,11 @@ const Signin = () => {
   const handleLogin = async(e) => {
     e.preventDefault();
     console.log("Logging in with:", { username, password });
-    const response= await login(username,password,setAuthUser)
-    console.log("fethced success", response);
+    const response= await login(username,password)
+    console.log("fethced success", response.success);
     setUsername("");
     setPassword("");
-    notify(response.data.message)
-    if(response.data.success)
+    if(response.success)
     {
       navigate('/main')
     }
@@ -61,7 +57,7 @@ const Signin = () => {
       {/* <div className="z-10  bg-[#21272b] text-white text-center w-full sm:max-w-md mx-auto p-4"> */}
       <div className="bg-black bg-opacity-75 p-6 rounded-lg absolute mt-60 ml-[32rem] text-white text-center w-full sm:max-w-md  ">
         <h1 className="text-4xl font-mono mb-4 font-extrabold">Login</h1>
-        <ToastContainer/>
+       
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <input

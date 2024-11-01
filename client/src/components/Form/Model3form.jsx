@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useNavigate } from 'react-router-dom'
+import { Label } from '@radix-ui/react-context-menu'
 
 export default function WeddingPlannerForm() {
 
@@ -16,7 +17,7 @@ export default function WeddingPlannerForm() {
     weddingDate: '',
     brideName: '',
     groomName: '',
-    hashtag: '',
+    story: '',
     location: ''
   })
   const [events, setEvents] = useState([{ date: '', name: '', description: '' }])
@@ -25,6 +26,8 @@ export default function WeddingPlannerForm() {
   // New states for image upload and preview
   const [image, setImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
+
+  const [invitedBy, setInvitees] = useState([''])
 
   const handleWeddingDetailsChange = (e) => {
     setWeddingDetails({ ...weddingDetails, [e.target.name]: e.target.value })
@@ -56,21 +59,46 @@ export default function WeddingPlannerForm() {
       const reader = new FileReader()
       reader.onloadend = () => {
         setImagePreview(reader.result)
-        sessionStorage.setItem('imagep', JSON.stringify(reader.result))
+        // sessionStorage.setItem('imagep', JSON.stringify(reader.result))
       }
       reader.readAsDataURL(file)
     }
   }
 
+  const addInvitee = () => {
+    setInvitees([...invitedBy, ''])
+  }
+
+  const removeInvitee = (index) => {
+    const newInvitees = invitedBy.filter((_, i) => i !== index)
+    setInvitees(newInvitees)
+  }
+
+  const handleInviteeChange = (index, value) => {
+    const newInvitees = [...invitedBy]
+    newInvitees[index] = value
+    setInvitees(newInvitees)
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('Form submitted:', { weddingDetails, events, locationUrl, image })
-    sessionStorage.setItem('weddingDetails', JSON.stringify(weddingDetails))
-    sessionStorage.setItem('events', JSON.stringify(events))
-    sessionStorage.setItem('locationUrl', locationUrl)
-    sessionStorage.setItem('mode', "1")
+    const data = {
+      weddingDetails,
+      events,
+      locationUrl,
+      // image: sessionStorage.getItem('image')
+      photo: imagePreview,
+      invitedBy
+    }
+    console.log(data)
 
-    const modeId = sessionStorage.getItem('modeId')
+    sessionStorage.setItem('data',JSON.stringify(data))
+    // console.log('Form submitted:', { weddingDetails, events, locationUrl, image })
+    // sessionStorage.setItem('weddingDetails', JSON.stringify(weddingDetails))
+    // sessionStorage.setItem('events', JSON.stringify(events))
+    // sessionStorage.setItem('locationUrl', locationUrl)
+    // sessionStorage.setItem('mode', "1")
+
+    // const modeId = sessionStorage.getItem('modeId')
 
     navigate('/preview')
 
@@ -121,17 +149,21 @@ export default function WeddingPlannerForm() {
                   required
                 />
               </div>
-              {/* <div>
-                <label htmlFor="hashtag" className="block text-sm font-medium text-gray-700">Wedding Hashtag</label>
-                <Input
-                  id="hashtag"
-                  name="hashtag"
-                  value={weddingDetails.hashtag}
+              <div>
+                <Label htmlFor="story" className="block text-sm font-medium text-gray-700">Story</Label>
+                <Textarea
+                  id="story"
+                  name="story"
+                  value={weddingDetails.story}
                   onChange={handleWeddingDetailsChange}
                   className="mt-1"
                   required
+                  maxLength = {200}
                 />
-              </div> */}
+                 <div className="text-sm text-gray-600">
+                      {weddingDetails.story.length} / 200 characters
+                    </div>
+              </div>
               <div>
                 <label htmlFor="location" className="block text-sm font-medium text-gray-700">Wedding Location</label>
                 <Input
@@ -195,6 +227,29 @@ export default function WeddingPlannerForm() {
               <Button type="button" onClick={addEvent} variant="outline" className="w-full">
                 <PlusCircle className="mr-2 h-4 w-4" /> Add Event
               </Button>
+              {/* Invitees Section */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Invitees</label>
+                {invitedBy.map((invitee, index) => (
+                  <div key={index} className="flex items-center space-x-2">
+                    <Input
+                      value={invitee}
+                      onChange={(e) => handleInviteeChange(index, e.target.value)}
+                      className="mt-1"
+                      placeholder="Invitee Name"
+                      required
+                    />
+                    {invitedBy.length > 1 && (
+                      <Button type="button" variant="destructive" onClick={() => removeInvitee(index)}>
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
+                ))}
+                <Button type="button" onClick={addInvitee} variant="outline" className="w-full">
+                  <PlusCircle className="mr-2 h-4 w-4" /> Add Invitee
+                </Button>
+              </div>
               <div className="flex justify-between">
                 <Button type="button" onClick={() => setStep(1)} variant="outline">Previous</Button>
                 <Button type="button" onClick={() => setStep(3)}>Next</Button>
@@ -239,7 +294,7 @@ export default function WeddingPlannerForm() {
 
               <div className="flex justify-between">
                 <Button type="button" onClick={() => setStep(2)} variant="outline">Previous</Button>
-                <Button type="submit">Submit</Button>
+                <Button type="submit" onClick={(e)=>{handleSubmit(e);}}>Submit</Button>
               </div>
             </div>
           )}

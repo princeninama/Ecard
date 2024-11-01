@@ -18,33 +18,18 @@ const CreateKankotri = () => {
   // for (const pair of formdata.entries()) {
   //   console.log(`${pair[0]}: ${pair[1]}`);
 
-  const events = JSON.parse(sessionStorage.getItem('events'))
-    const locationUrl = sessionStorage.getItem('locationUrl')
-    const weddingDetails = JSON.parse(sessionStorage.getItem('weddingDetails'))
-    const mode = sessionStorage.getItem('mode')
-    // const image1 = (sessionStorage.getItem('image'))
-    const image = JSON.parse(sessionStorage.getItem('imagep'))
-
-  // }
-  const data = {
-    events: events,
-    weddingDetails: weddingDetails,
-    map_url: locationUrl,
-    // mode: mode,
-    modelId:sessionStorage.getItem('modelId'),
-    photo: image,
-      // Add image field if you have one. Otherwise, remove this line.
-
-   // Add more fields as needed for your needs
-}
+  
 
   const handleClick = async() => {
 
-
-    const resp = await SaveWeddingdata(data)
+    setLoading(true);
+    const data = JSON.parse(sessionStorage.getItem('data'));
+    console.log(data)
+    const modelId = sessionStorage.getItem('modelId');
+    const resp = await SaveWeddingdata({data,modelId})
     console.log('data saved successfully', resp)
 
-    setLoading(true);
+    
     setTimeout(() => {
       const uniqueLink = resp.link; // Replace with your logic to generate a unique link
       setLink(uniqueLink);

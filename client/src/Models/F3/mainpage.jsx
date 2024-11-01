@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 import Navbar from "./navbar";
 import Middle1 from "./middle1";
-import Map from "./map";
-import Album from "./Album";
+
 import { useState, useEffect } from "react";
 
 export const Model3 = ({ data }) => {
@@ -16,8 +15,7 @@ export const Model3 = ({ data }) => {
   return (
     <>
       <div>
-        <Navbar />
-        <Outlet />
+       <Middle1 data={data}/>
       </div>
     </>
   );

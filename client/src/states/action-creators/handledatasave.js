@@ -2,8 +2,8 @@ import { server } from "../api";
 import axios from "axios";
 
 
-export const SaveWeddingdata = async(data) =>{
-    const responce = await axios.post(`${server}/api/ecard/Saveuserdata`,data,{withCredentials:true})
+export const SaveWeddingdata = async({data,modelId}) =>{
+    const responce = await axios.post(`${server}/api/ecard/Saveuserdata`,{data,modelId},{withCredentials:true})
     console.log(responce.data)
     return responce.data
 }

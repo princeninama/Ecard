@@ -40,23 +40,27 @@ async function uploadBase64Image(base64Image) {
 
 export const Saveusedata = async(req,res)=>{
    try {
-    const {weddingDetails,events,photo,map_url,modelId} = req.body
-    console.log(weddingDetails,events,photo,map_url,modelId) 
-    const image = await uploadBase64Image(photo)
+    const {data,modelId} = req.body
+    console.log(data,modelId)
+    console.log(req.user)
+    // console.log(weddingDetails,events,photo,map_url,modelId) 
+    const image = await uploadBase64Image(data.photo)
     console.log(image)  // { public_id: 'your_public_id', secure_url: 'https://example.com/image.jpg' }
     const newCard = new Ecard(
        {
-        modelId:modelId,
-        weddingDetails:weddingDetails,
-        events:events,
-        photo:image.secure_url,
-        map_url:map_url,
+       email:req.user.email,
+       weddingDetails:data.weddingDetails,
+       events:data.events,
+       photo:image.secure_url,
+       map_url:data.locationUrl,
+       modelId:modelId,
+       invitees:data.invitees,
        } 
      
     )
     console.log(newCard)
     const savaeddata = await newCard.save()
-    return res.status(200).json({link : `http:/localhost:5173/${savaeddata._id}`});
+    return res.status(200).json({link : `http://localhost:5173/${savaeddata._id}`});
    } catch (error) {
     console.log("error",error)
    }

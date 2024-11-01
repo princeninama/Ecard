@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
+ email:{
+  type:String,
+ },
  weddingDetails: {
   brideName: {
     type: String,
@@ -17,6 +20,10 @@ const schema = new mongoose.Schema({
     type: Date,
     // required: true,
   },
+  story: {
+    type: String,
+    // required: true,
+  }
  
  },
   events: [{
@@ -36,7 +43,14 @@ const schema = new mongoose.Schema({
     type: String,
     // required: true,
   },
-  modelId: { type: String, required: true}
+  modelId: { type: String, required: true},
+  story:{
+    type:String,
+  },
+  imagearray:{
+    type: [String],
+    
+  }
 }, {
   timestamps: true
 });

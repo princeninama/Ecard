@@ -5,8 +5,7 @@ const schema = new mongoose.Schema({
             type:String
         },
         Photo:{
-            Data:Buffer,
-            contentType: String
+            type:String,
         },
         type:{
             type:String,

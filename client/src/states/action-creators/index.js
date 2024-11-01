@@ -1,47 +1,25 @@
 import { server } from "../api";
 import axios from "axios";
 
-export const signup = (email, password,setAuthUser) => async (dispatch) => {
+export const signup = async (email, password) => {
   try {
-    const { data } = await axios.post(
-      `${server}/api/user/new`,
-      { email, password },
-      { withCredentials: true }
-    );
+    const response = await axios.post(`${server}/api/user/new`,{ email, password },{ withCredentials: true });
 
-    dispatch({
-      type: "signupsuccess",
-      payload: data.message,
-    });
+    console.log("data : ", response.status);
+    return response;
 
-    console.log("data : ", data);
-    document.cookie = `token=${data.token} expires=${new Date(
-      Date.now() + 1000 * 60 * 60 * 24 * 5
-    ).toUTCString()} path=/`;
-    const resp=data.data;
-    localStorage.setItem("authuser", JSON.stringify(resp));
-    setAuthUser(resp);
-    return data;
   } catch (error) {
-    console.log("errror in sign up is ", error);
-    dispatch({
-      type: "signupfail",
-      payload: "email already exist",
-    });
+    console.log("errror in sign up is ", error.response.status);
+    return error.response;
   }
 };
 
-export const login = async (username, password,setAuthUser) => {
+export const login = async (email, password) => {
   try {
-    const response = await axios.post(`${server}/api/user/login`, {
-      username,
-      password,
-    });
-    const item=response.data;
-    localStorage.setItem("authUser", JSON.stringify(item));
-    setAuthUser(item);
-    console.log("this is data = ", response);
-    return response;
+    const response = await axios.post(`${server}/api/user/login`, { email, password,},{ withCredentials: true });
+    
+    return response.data;
+
   } catch (error) {
     console.log("error in login", error);
   }
@@ -49,18 +27,19 @@ export const login = async (username, password,setAuthUser) => {
 
 export const postupload = async (data) => {
   try {
-    const resp = await axios.post(`${server}/api/user/post`, data);
-    console.log(resp.data);
-    return resp.data;
+    const resp = await axios.post(`${server}/api/user/post`, data, { withCredentials: true });
+    console.log(resp.status);
+    return resp;
   } catch (error) {
-    console.log(error);
+    console.log(error.response);
+    return error.response;
   }
 };
 
-export const loadtemplates = async (page, pagesize, row, col) => {
+export const loadtemplates = async (page, pagesize) => {
   try {
     const resp = await axios.get(
-      `${server}/api/user/templates/${page}/${pagesize}/${row}/${col}`
+      `${server}/api/user/templates/${page}/${pagesize}`
     );
     console.log("data  ", resp.data);
     return resp.data;
@@ -92,16 +71,16 @@ export const forgetPassword = (mail) => async (dispatch) => {
 
 
 
-export const fetchEcardData = async(id)=>{
+export const fetchEcardData = async (id) => {
   try {
-      const data = await axios.get(`${server}/api/user/getecard/${id}`);
-      return data;
+    const data = await axios.get(`${server}/api/user/getecard/${id}`);
+    return data;
   } catch (error) {
     console.log(error)
   }
 }
 
-export const FormSubmit = (data) =>(dispatch) => {
+export const FormSubmit = (data) => (dispatch) => {
   // return async (dispatch) => {
   //   try {
   //     console.log("data at api", data);

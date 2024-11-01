@@ -75,7 +75,7 @@ const Page2 = ({ data,picdata }) => {
                             <div className='j justify-center flex items-center'>
                                 {/* <AttentionSeeker effect='jello' triggerOnce={true}><img src={data.images[currentIndex]} alt="" style={{ height: 300, width: 450 }} className=' rounded-md shadow-md border-2 border-neutral-600' /> </AttentionSeeker> */}
                                 <div className="relative w-80 h-72 group">
-                                    <img src={data.image} alt="" />
+                                    <img src={data.photo} alt="" />
                                     {/* {images.length > 0 ? (
                                         <img
                                             src={images[currentImageIndex]}

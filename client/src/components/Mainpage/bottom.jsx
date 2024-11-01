@@ -1,69 +1,75 @@
-import { useDispatch} from 'react-redux'
-import '../../css/mainpage.css'
-import { Navigate, useNavigate } from 'react-router-dom'
-import { changeTemplates } from '../../states/action-creators'
-import { useState } from 'react'
-import { choosemodel } from '../../states/counter/generaldata'
-import { inittransferdata } from '../../states/counter/user'
-import { inititranfer } from '../../states/counter/picture'
+import { useDispatch } from 'react-redux';
+import '../../css/mainpage.css';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { changeTemplates } from '../../states/action-creators';
+import { useEffect, useState } from 'react';
+import { choosemodel } from '../../states/counter/generaldata';
+import { inittransferdata } from '../../states/counter/user';
+import { inititranfer } from '../../states/counter/picture';
+import image2 from '../../../public/3.jpg';
+import { loadtemplates } from '../../states/action-creators/index';
+
+const Container = ({  }) => {
+    // const card = [
+    //     { title: 'Navratri', imageURL: image2 },
+    //     { title: 'Diwali', imageURL: image2 },
+    //     { title: 'Eid', imageURL: image2 },
+    //     { title: 'Christmas', imageURL: image2 },
 
 
+    // ]
 
-const Container = ({ card }) => {
+    const url = 'https://res.cloudinary.com/dx1iyidst/image/upload/v1730350505/cqvcmdshmzpjn2cyo7wa.png'
+    const [card,setcard] = useState([{ title: 'Diwali', Photo: url, type: 'wedding'}]);
 
-
-    const [showform,setShowform]=useState(false)
-    const handleshowform=()=>
-    {
+    useEffect(()=>{
+        const getcards = async() =>{
+            const resp = await loadtemplates(1,8)
+            console.log(resp.data)
+            setcard(resp.data)
+        }
+        getcards()
+    },[])
+    const [showform, setShowform] = useState(false);
+    const handleshowform = () => {
         setShowform(true);
-        console.log("Form will be visible now")
-    }
-    const navigtor = useNavigate();
+        console.log("Form will be visible now");
+    };
+
+    const navigator = useNavigate();
     const dispatch = useDispatch();
 
     const handdlechangetitle = (title) => {
-        dispatch(changeTemplates(title))
-       
-    }
-    const handleOpenNewTab = (path,title) => {
-        // localStorage.setItem('mode','a')
-        
-        // console.log(title)
-        dispatch(choosemodel(title))
-        dispatch(inittransferdata())
-        dispatch(inititranfer())
-
-        window.open(path, '_blank')
-
+        dispatch(changeTemplates(title));
     };
+
+    const handleOpenNewTab = (path, title) => {
+        // dispatch(choosemodel(title));
+        // dispatch(inittransferdata());
+        // dispatch(inititranfer());
+        window.open(path, '_blank');
+    };
+
     const GotoMore = () => {
-        navigtor('/show')
-    }
-  
-    // const Images = [[Image1,Image2,Image3,Image4],[Image1,Image2,Image3,Image4],[Image1,Image2,Image3,Image4],[Image1,Image2,Image3,Image4,]]
+        navigator('/show');
+    };
 
     return (
-        <div >
-            {card.map((images) => (
-
-                <div className='flex'>
-                    {images.map(((image, idex) => (
-
-                        <div style={{ margin: '15px 30px', cursor: 'pointer' }} className=' h-[320px] '>
-                            <img src={image.imageURL} alt="" style={{ height: 300, width: 300, border: '3px solid #f2ca5c', borderRadius: 10 }} className='image'  onClick={()=>{handleOpenNewTab(`/main/${image.title}`,image.title)}}/>
-                            <div className=' justify-center items-center flex'>{image.title}</div>
-                        </div>
-                    )))}
-                </div>
-
-            ))}
-            <div className='justify-center flex items-center'>
-                <div onClick={GotoMore} className='text-center justify-center flex items-center my-10 text-lg text-slate-50 font-semibold cursor-pointer border-2 rounded-full shadow-md w-48 h-10 bg-slate-950'>
-                    &#60;&#60; Show More  &#62;&#62;
-                </div>
+        <div className="p-4">
+            <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+                {card.map((image, index) => (
+                    <div key={index} className="cursor-pointer" onClick={() => handleOpenNewTab(`/main/${image.title}`, image.title)}>
+                        <img
+                            src={image.Photo} // Fallback to `image2` if imageURL is null
+                            alt={image.title}
+                            className="w-full h-60 object-cover border-4 border-yellow-400 rounded-md"
+                        />
+                        <div className="text-center mt-2 text-sm font-semibold">{image.title}</div>
+                    </div>
+                ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Container;

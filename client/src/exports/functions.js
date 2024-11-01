@@ -7,14 +7,14 @@ import Model4 from "../Models/F4/mainpage";
 export const RenderPage = (modelId) => {
   console.log(modelId)
     switch (modelId) {
+      case 'Elegance in Bloom':
+        return Model3
+      case 'Classic and Elegant':
+        return Model4 ;
       case 'model1':
-        return Model1
+        return Model1;
       case 'model2':
-        return Model2 ;
-      case 'model3':
-        return Model3;
-      case 'model4':
-        return Model4;
+        return Model2;
       default:
         return null;
     }

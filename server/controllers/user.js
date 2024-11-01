@@ -5,18 +5,25 @@ import { cookieOptions, sendToken } from "../utils/features.js";
 import { Templates } from "../models/templets.js";
 import path from 'path';
 import fs from 'fs';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import { fileURLToPath } from 'url';
 // import { asyncError } from '../middleware/error.js';
 import multer from "multer";
+import dotenv from "dotenv"
 import { Photos } from "../models/Photo.js";
+import cloudinary from '../connection/cloudinary.js';
+
+
+dotenv.config()
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const dir = path.join(__dirname, '../public/uploads');
-    if (!fs.existsSync(dir)){
-        fs.mkdirSync(dir, { recursive: true });
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
     }
     cb(null, dir);
   },
@@ -26,57 +33,93 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage }).single("image");
 
-export const signup = asyncError(async (req, res, next) => {
+export const signup = async (req, res) => {
   const { email, password } = req.body;
-  console.log("here");
-  let user = await User.findOne({ email });
-  if (user)
-    return res.status(200).json({ message: "already exist", success: false });
+  try {
+    const user = await User.findOne({ email: email });
 
-  // file request
+    if (user) {
+      return res.status(409).json({ message: "User Already Exist" });
+    }
+    const hashpassword = await bcrypt.hash(password, 10);
+    const newUser = new User({
+      email,
+      password: hashpassword,
+    })
 
-  user = await User.create({
-    email,
-    password,
-  });
-  sendToken(user, res, `Registered Successfully`, 201);
-});
+    await newUser.save();
+
+    return res.status(201).json({ message: "registration successfull", success: true });
+
+  } catch (error) {
+    return res.status(500).json({ error: error });
+  }
+
+
+};
 
 export const login = asyncError(async (req, res, next) => {
-  const { username, password } = req.body;
-  console.log("info  : ", username, password);
+  const { email, password } = req.body;
+  console.log("info  : ", email, password);
 
-  let user = await User.findOne({ email: username });
-  // console.log('user : ',user.password)
-
-  if (!user) {
-    return res
-      .status(200)
-      .json({ message: "Invalid username/email", success: false });
+  let user = await User.findOne({ email: email });
+  console.log('user : ',user.password)
+  
+  
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.status(401).json({ message: "Invalid username or password" })
   }
 
-  const isMatched = await user.comparePassword(password);
-  if (!isMatched) {
-    return res
-      .status(200)
-      .json({ message: "Incorrect password", success: false });
-  }
+  const token = jwt.sign({user:user},process.env.JWT_SECRET,{ expiresIn: 10 * 24 * 3600 });
+  res.cookie(
+    "token",token,
+    {  expires: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),}
+  )
 
-  sendToken(user, res, `Welcome back ${user.name}`, 200);
+  return res.status(200).json({ message: "Login successfull", success: true,token: token });
 });
 
-export const SaveTemplates = async (req, res, next) => {
-  console.log("its here");
-  let newTemplates = new Templates({
-    title: req.body.title,
-    Photo: {
-      Data: req.file.buffer,
-      contentType: req.file.mimetype,
-    },
-  });
-  const resp = await newTemplates.save();
+export const SaveTemplates = async (req, res) => {
+  // console.log("its here");
+  // let newTemplates = new Templates({
+  //   title: req.body.title,
+  //   Photo: {
+  //     Data: req.file.buffer,
+  //     contentType: req.file.mimetype,
+  //   },
+  // });
+  // const resp = await newTemplates.save();
 
-  return res.status(200).json({ message: "saved", success: true });
+  // return res.status(200).json({ message: "saved", success: true });
+
+  try {
+    const { title,type } = req.body;
+    const file = req.file;
+
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream(
+        { resource_type: 'image' }, 
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      ).end(file.buffer);
+    });
+
+    const newTemplates = new Templates({
+      title,
+      Photo:result.secure_url,
+      type
+    });
+
+    await newTemplates.save();
+
+    return res.status(201).json({ message: "saved", success: true });
+
+
+  } catch (error) {
+    return res.status(500).json({ error: error });
+  }
 };
 
 export const logOut = asyncError(async (req, res, next) => {
@@ -93,35 +136,15 @@ export const logOut = asyncError(async (req, res, next) => {
 });
 
 export const loadtemplates = asyncError(async (req, res, next) => {
-  const { page, pageSize, row, col } = req.params;
+  const { page, pageSize} = req.params;
   const skip = (page - 1) * pageSize;
 
   const data = await Templates.find().skip(skip).limit(parseInt(pageSize));
 
-  let Tempaletlist = [];
+  
+  console.log(data)
 
-  for (let i = 0, k = 0; i < row; i++) {
-    Tempaletlist[i] = []; // Initialize each row
-    for (let j = 0; j < col; j++) {
-      if (k < data.length) {
-        const base64Image = data[k].Photo.Data.toString("base64");
-        const imageData = `data:${data[k].Photo.contentType};base64,${base64Image}`;
-        const object = {
-          imageURL: imageData,
-          title: data[k].title,
-          type: data[k].type,
-        };
-        // console.log('object : ', object.title);
-        Tempaletlist[i][j] = object;
-        k++;
-      } else {
-        Tempaletlist[i][j] = null; // Fill with null if no more data
-      }
-    }
-  }
-  console.log(Tempaletlist);
-
-  return res.status(200).json({ data: Tempaletlist });
+  return res.status(200).json({ data: data });
 });
 
 export const forget = async (req, res) => {

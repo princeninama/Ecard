@@ -5,7 +5,7 @@ import cors from 'cors'
 
 Connection()
 
-app.use(cors());
+
 
 app.listen(8000,()=>{
     console.log(`server is running on port ${8000}`)
